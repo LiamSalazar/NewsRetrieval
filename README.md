@@ -1,89 +1,111 @@
-# NewsRetrieval — Fase 1
+# NewsRetrieval
 
-Proyecto escolar de extracción de noticias en Python. Consulta RSS/Atom de Global Voices y el archivo histórico de Wikinews, limpia texto, valida metadatos, elimina duplicados por URL canónica y guarda TSV UTF-8. La única dependencia externa es `requests`.
+Proyecto escolar basado en los apartados 4–8 de `01_News_Retrieval_Project_Stage_1.pdf` (el PDF está en el directorio superior). Adquisición HTTP pública, normalización inglesa con spaCy y recuperación léxica por coseno. No incluye todavía benchmark, métricas ni embeddings.
 
-`retrieval.py` y `evaluation.py` siguen como estructuras vacías. Los TSV de corpus normalizado, consultas, juicios, rankings y métricas conservan sus encabezados para las siguientes fases.
+## Ejecutar
 
-## Preparación y comandos
-
-Requiere Python 3.10 o posterior y una base de zonas horarias del sistema; se verificó con Python 3.12 en Linux. En este entorno el ejecutable es `python3`; dentro del entorno virtual también está disponible `python`.
+Python 3.12. En este equipo el ejecutable del sistema es `python3`; dentro del entorno se utiliza `python`:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-# Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python -m unittest -v test_project
-python main.py init --target 30 --max-batches 2 --dry-run
 python main.py init --target 2000
+python main.py update --per-category 10 --dry-run
 python main.py update --per-category 10
-python main.py update --dry-run
+python main.py process
+python main.py search
+python main.py search --query "European Union semiconductor production Chips Act 43 billion"
+python main.py search --query "satellite launch" --field title --ngram 2 --representation binary
 ```
 
-`init --target` indica la meta total, repartida entre finanzas, deportes y tecnología (667/667/666 para 2,000). Conserva lo ya guardado y busca los faltantes por categoría. Primero consulta los feeds y luego pagina el archivo en lotes de 50 páginas, con un máximo de 80 lotes por categoría. Si se agota una categoría, el límite o falla una consulta, informa la cantidad obtenida y el motivo. Una ejecución posterior vuelve a calcular los faltantes; los resultados de una ejecución se guardan al terminar, mediante reemplazo atómico del TSV.
+`--field`: `title` o `body`; `--ngram`: `1` o `2`; `--representation`: `frequency`, `binary` o `tfidf`. Predeterminado: cuerpo, unigramas, TF-IDF, diez resultados. Las consultas deben estar en inglés. Sin coincidencias se muestran puntuaciones cero y un aviso; los empates conservan el orden del corpus.
 
-`update` consulta solamente los feeds, con una ventana de publicación reciente de 8 días (`--days`). La cuota se comparte entre todas las ejecuciones del mismo periodo: viernes 00:00 a jueves 23:59, hora de Ciudad de México. Con `--per-category 10`, volver a ejecutar el comando busca únicamente lo que falta de esas diez noticias por categoría. El siguiente viernes abre otra cuota. El archivo histórico nunca se usa para completar novedades semanales.
+`init` completa cuotas totales, no consume cuota semanal y no vuelve a descargar un corpus que ya alcanza el objetivo. Para adquisición histórica consulta hasta cinco páginas RSS por tema y después la API de Wikinews; `--max-batches` limita los lotes históricos. Si se interrumpe una carga inicial incompleta, puede reanudarse con `init`. No se declara completa sin el volumen, las categorías y tres medios representados.
 
-La cuota consumida se conserva en `results/collection_log.jsonl`: mantenerlo junto al corpus y no borrarlo entre actualizaciones. Solo se agrega una entrada cuando se guardan noticias. Las ejecuciones sin novedades muestran su informe en pantalla y no modifican archivos. La función `collect_news(path=..., log_path=...)` permite destinos temporales; sin `log_path`, un corpus alternativo utiliza un JSONL con su mismo nombre.
+`update` admite cuotas de 1 a 10 por categoría, acumuladas desde el viernes 00:00 de Ciudad de México hasta el jueves siguiente, mediante `results/collection_log.jsonl`. La ventana predeterminada es de ocho días de publicación (`--days`); nunca usa el archivo histórico como sustituto de novedades. Una semana con 1–10 incorporaciones por tema es válida (`complete`); `target_met` indica si alcanzó la meta solicitada. El informe siempre muestra faltantes respecto de esa meta.
 
-`--dry-run` consulta y valida, pero no crea ni modifica corpus, bitácora o cuotas persistentes. En su informe, `added` representa candidatos que se guardarían y `total_after` conserva el tamaño persistido. `per_category_missing` indica los faltantes de esta ejecución; `weekly_already_added` muestra la cuota consumida. Los rechazos por derechos particulares también se explican en `errors`. Los faltantes se avisan sin descartar los resultados válidos; los argumentos inválidos y errores locales de integridad terminan con error.
+Sin incorporaciones no cambia el corpus, la copia de seguridad ni la bitácora. `--dry-run` de adquisición tampoco escribe archivos. Hay deduplicación por ID, URL, título y cuerpo, validación y reemplazo atómico del TSV; antes del primer reemplazo se conserva `data/news_raw_corpus.tsv.bak`. No se debe borrar la bitácora semanal. Después de incorporar noticias, ejecutar `process`; la interfaz de búsqueda rechaza índices cuyo corpus cambió.
 
-## Fuentes, categorías y atribución
+El workflow conserva viernes a las 16:00 UTC (10:00 CDMX), ejecución manual y exclusión de ejecuciones concurrentes. Instala dependencias/modelo, prueba y actualiza; su paso existente de guardado publica los cambios mediante GitHub Actions. Durante esta intervención no se ejecutó ese paso ni se hicieron commits o pushes.
 
-| Categoría | RSS de Global Voices | Categoría histórica de Wikinews |
+## Corpus verificado el 15 de octubre de 2026
+
+| Medio | Finanzas | Deportes | Tecnología | Total |
+|---|---:|---:|---:|---:|
+| Global Voices | 64 | 69 | 48 | 181 |
+| Wikinews | 603 | 598 | 579 | 1,780 |
+| EFF Deeplinks | 0 | 0 | 39 | 39 |
+| Total | 667 | 667 | 666 | 2,000 |
+
+| Categoría | Primera publicación | Última publicación |
 |---|---|---|
-| finanzas | [Economics & Business](https://globalvoices.org/-/topics/economics-business/feed/) | [Economy and business](https://en.wikinews.org/wiki/Category:Economy_and_business) |
-| deportes | [Sport](https://globalvoices.org/-/topics/sport/feed/) | [Sports](https://en.wikinews.org/wiki/Category:Sports) |
-| tecnologia | [Technology](https://globalvoices.org/-/topics/technology/feed/) | [Science and technology](https://en.wikinews.org/wiki/Category:Science_and_technology) |
+| Finanzas | 2005-07-13 | 2026-10-14 |
+| Deportes | 2006-06-10 | 2026-09-05 |
+| Tecnología | 2004-11-16 | 2026-10-15 |
 
-Son categorías editoriales amplias: finanzas incluye economía y negocios; tecnología incluye ciencia. La asignación procede del feed o de la categoría de Wikinews, sin un clasificador automático. Puede haber temas compartidos; se conserva una sola copia y la primera categoría que lo incorpora. No se garantiza pertinencia temática estricta de cada artículo. El muestreo histórico confirmó, por ejemplo, noticias sobre empleo de Hewlett-Packard, los Juegos Mediterráneos y propulsión espacial.
+Es un corpus histórico y actual; finanzas incluye economía y negocios. Las categorías proceden de feeds temáticos y categorías editoriales de Wikinews. En su categoría amplia «Science and technology» se exige además vocabulario tecnológico; es un filtro léxico, no una clasificación manual exhaustiva.
 
-- **Global Voices:** se almacena únicamente la descripción/resumen editorial del feed, con autor, título y enlace, bajo [CC BY 3.0 y su política de atribución](https://globalvoices.org/about/global-voices-attribution-policy/). El contenido completo del feed se examina para excluir avisos de republicación, publicación original externa o derechos reservados; una declaración individual de derechos no reconocida también se omite. No se asigna CC BY 3.0 a esas republicaciones. No se descargan fotografías ni se guardan sus pies. Se rechazan entradas sin resumen o autor. Estos controles dependen de los avisos suministrados por la fuente; no constituyen una revisión jurídica individual de todo el sitio. [Directorio oficial de feeds](https://globalvoices.org/feeds/).
-- **Wikinews:** la [política oficial de copyright](https://en.wikinews.org/wiki/Wikinews:Copyright) permite atribuir el texto a “Wikinews”. Antes del 25/09/2005 se registra dominio público; del 25/09/2005 al 15/12/2024, CC BY 2.5; desde el 16/12/2024, CC BY 4.0. La plantilla individual `Archived-cc-2.5`, `Archived-cc-4.0` o `Archived-pd`, si está presente, prevalece sobre la regla por fecha. Se exige una marca de publicación, fecha interpretable y al menos 18 palabras, y se rechazan marcas reconocidas de infracción de copyright. Se excluyen las recopilaciones `Digest/` y se eliminan medios, galerías, tablas, referencias, fuentes y plantillas auxiliares; se conservan los textos visibles de enlaces y plantillas `w`. La conversión es sencilla: se omiten entradas con delimitadores wiki sin resolver. No es una reproducción íntegra de la página original.
-- El [cierre de Wikinews en mayo de 2026](https://meta.wikimedia.org/wiki/Wikinews) lo convierte en una fuente histórica. Su [API MediaWiki](https://en.wikinews.org/w/api.php) sigue siendo el mecanismo usado para leer categorías y revisiones; no se sortean bloqueos. Las consultas tienen timeout de 25 segundos y hasta tres intentos ante fallos de conexión o estados transitorios; los HTTP permanentes no se reintentan.
+Se conservaron exactamente los IDs de 1,672 artículos; se sustituyeron 328 artículos por otros con nuevos IDs. Las listas y hashes están en [results/corpus_changes.json](results/corpus_changes.json). La copia `.bak` conserva las 2,000 noticias anteriores, está disponible localmente y se excluye de Git. Los futuros juicios de relevancia deben usar los IDs actuales. `queries.tsv` y `qrels.tsv` mantienen solamente sus cabeceras; `evaluation.py` y `evaluate` quedan pendientes.
 
-Al distribuir el corpus, acompañarlo con esta declaración: **“Textos obtenidos de las fuentes enlazadas; resúmenes RSS o texto de Wikinews convertido a texto plano, con eliminación de formato y material auxiliar. Se conservan título, autor, fuente, fecha, URL y licencia por registro.”** Mantener estos metadatos y las condiciones de cada licencia. El uso académico no concede permisos adicionales sobre textos o medios de terceros.
+### Procedencia y permisos
 
-## Archivos persistentes
+Se comprobaron por HTTP las tres políticas oficiales (200). Se almacenan autor, fuente, URL, licencia y enlace de licencia por noticia; no se descargan imágenes ni se sortean restricciones de acceso.
 
-`data/news_raw_corpus.tsv` conserva exactamente estas once columnas:
+- **Global Voices:** resúmenes de RSS de economía/negocios, deportes y tecnología, [CC BY 3.0 y política de atribución](https://globalvoices.org/about/global-voices-attribution-policy/). Se conservan autor y enlace; se rechazan republicaciones y avisos particulares detectados en el contenido/derechos del feed. Se respeta la pausa de diez segundos solicitada por su `robots.txt`.
+- **Wikinews inglés:** texto introductorio del wikitext público, sin imágenes, tablas ni apartado de fuentes. Su [política oficial](https://en.wikinews.org/wiki/Wikinews:Copyright) permite atribuir a Wikinews. En este corpus hay 64 textos de dominio público, 1,701 CC BY 2.5 y 15 CC BY 4.0. Las marcas explícitas del artículo prevalecen sobre la regla por fecha. Solo se aceptan páginas publicadas, sin marcas de infracción. Es un [archivo de solo lectura desde mayo de 2026](https://en.wikinews.org/wiki/Wikinews:Closure_of_Wikinews), no una fuente semanal.
+- **EFF Deeplinks:** medio editorial independiente sobre tecnología y derechos digitales, obtenido mediante [RSS oficial](https://www.eff.org/rss/updates.xml). Su [política](https://www.eff.org/copyright) autoriza reutilización y adaptación de material original bajo CC BY 4.0. Se excluyen republicaciones detectadas, entradas promocionales/podcasts y bloques HTML de citas de terceros; no se extiende esa licencia a materiales ajenos.
+
+Los textos originales quedan en `news_raw_corpus.tsv`. La versión normalizada y los vectores son transformaciones para NLP; esta documentación identifica esos cambios y conserva la atribución. Los filtros de derechos son conservadores y dependen de los avisos publicados por las fuentes; no constituyen una auditoría individual de todos los derechos de terceros.
+
+### Actualización real
+
+Se ejecutaron `init`, `update --dry-run`, `update` y su repetición sobre el corpus definitivo. Resultado semanal: **0 finanzas, 0 deportes, 0 tecnología**, con faltantes 10/10/10 frente a la meta. Las noticias recientes admisibles de finanzas/tecnología ya estaban almacenadas; el feed deportivo más reciente es del 5 de septiembre, fuera de la ventana. Cinco avisos de exclusión por derechos aparecen en el informe; no hubo errores HTTP en esta ejecución. No se sustituyeron faltantes por noticias antiguas. Hashes y tiempos de modificación de los archivos de adquisición permanecieron iguales.
+
+Los casos de incorporaciones positivas parciales, acumulación semanal y apertura del siguiente viernes se verifican con datos simulados en las pruebas unitarias. No se atribuyen esas incorporaciones a la actualización HTTP real. La disponibilidad deportiva semanal sigue dependiendo de Global Voices y no está garantizada.
+
+## Normalización y VSM
+
+Antes de aplicar el modelo se verifican los dominios de las ediciones inglesas y señales léxicas inglesas en título+cuerpo de cada registro. Los 2,000 registros superaron esta comprobación. Es una comprobación conservadora de procedencia/vocabulario, no un detector multilingüe universal; pueden existir nombres y citas breves en otros idiomas dentro de noticias inglesas.
+
+Se usa `en_core_web_sm` 3.8.0 con spaCy 3.8.16, tokenización, POS y lemas; NER/parser están desactivados. Se limpian HTML, controles, espacios y puntuación; se pasa a minúsculas. Solo se eliminan stopwords etiquetadas como preposición, conjunción o pronombre y los artículos `a/an/the` con etiqueta DT. Se descartan clíticos posesivos POS; se conservan números, nombres, vocabulario técnico, negación y auxiliares. `normalize_text` es compartida por documentos y consultas.
+
+Ejemplo real del corpus:
+
+> Digital authoritarianism is not developing in isolation, but through the international exchange of technologies, standards, and practices.
 
 ```text
-id  title  description/body  source  category  date  url  retrieved_at  author  license  license_url
+digital authoritarianism be not develop isolation international exchange technology standard practice
 ```
 
-El separador real es tabulación y la codificación es UTF-8. `date` contiene la fecha de publicación UTC; `retrieved_at`, la fecha y hora de recuperación UTC. El ID deriva de la URL, eliminando fragmentos y parámetros habituales de seguimiento. Se escribe mediante `csv`, de forma atómica, ordenando por fecha e ID. Un corpus con columnas faltantes o registros incompletos causa un error antes de escribir.
+El TSV normalizado conserva todos los campos originales y añade `language`, `normalized_title` y `normalized_body`, sin cambiar IDs ni orden. El corpus original no se sobrescribe durante `process`.
 
-`results/collection_log.jsonl` registra las incorporaciones y permite mantener las cuotas semanales. Los demás TSV permanecen reservados, sin contenido generado para fases posteriores.
+Se generan **tres matrices por cada fila de esta tabla**, es decir, las doce combinaciones requeridas. El número de columnas coincide con el vocabulario de cada espacio:
 
-## Automatización
+| Contenido | N-gramas | Frecuencia | Binaria | TF-IDF |
+|---|---|---|---|---|
+| Título | 1 | 2000 × 4772 | 2000 × 4772 | 2000 × 4772 |
+| Título | 2 | 2000 × 11392 | 2000 × 11392 | 2000 × 11392 |
+| Cuerpo | 1 | 2000 × 28266 | 2000 × 28266 | 2000 × 28266 |
+| Cuerpo | 2 | 2000 × 281917 | 2000 × 281917 | 2000 × 281917 |
 
-`.github/workflows/weekly.yml` programa `0 16 * * 5`: viernes a las 10:00 CDMX (UTC−6). Permite ejecución manual mediante `workflow_dispatch`, instala dependencias, ejecuta las pruebas y después `python main.py update --per-category 10 --days 8`. Publica el informe en el resumen de Actions y muestra advertencias de faltantes. Serializa las ejecuciones mediante `concurrency`.
+`results/vectors.joblib` contiene un diccionario con `ids`, `documents`, `spaces`, versiones del modelo y hash lógico del corpus. Cada espacio, por ejemplo `body_1_tfidf`, tiene `vectorizer` y `matrix` CSR. Frecuencia/binaria usan CountVectorizer; TF-IDF usa TfidfVectorizer. Los n-gramas son exclusivamente `(1,1)` o `(2,2)`, sobre los tokens ya normalizados; se conservan también tokens de un carácter. El archivo (~53 MiB) está generado localmente y excluido de Git; se reconstruye con `process`.
 
-El workflow guarda el corpus y la bitácora si hay cambios; una ejecución sin incorporaciones no provoca commit. Necesita permisos de escritura del token y estar instalado en un repositorio GitHub. Esta copia local no contiene `.git`; no se ejecutaron Actions ni pushes remotos. El horario y el comando local se revisaron; la ejecución remota sigue pendiente. GitHub puede retrasar los cron programados.
+### Recuperación comprobada
 
-## Validación real de esta auditoría — 15/10/2026
+Configuración predeterminada, resultados ordenados por coseno:
 
-Las pruebas unitarias usan ejemplos simulados; las siguientes comprobaciones de extracción utilizaron solicitudes HTTP reales, sin sustituir sus respuestas:
+| Consulta | Primer resultado | Puntuación |
+|---|---|---:|
+| European Union semiconductor production Chips Act 43 billion | EU agrees €43 billion Chips Act to boost semiconductor production | 0.407940 |
+| chips investment markets | EU agrees €43 billion Chips Act to boost semiconductor production | 0.253131 |
+| zzzxxyyqqvv | Sin coincidencias; diez documentos con cero | 0.000000 |
 
-- `python3 -m unittest -v test_project`: 14 pruebas correctas, incluyendo RSS/Atom, atribución, limpieza wiki, paginación, TSV, cuotas entre ejecuciones y cambio de viernes, deduplicación, reanudación y modo de prueba.
-- Los tres endpoints RSS y la API respondieron HTTP 200 con XML/JSON válidos. Se recuperaron documentos históricos completos mediante consultas de categorías y revisiones, no solamente respuestas de estado satisfactorio.
-- Muestra de feeds: 15 entradas por tema; se aceptaron 12 de finanzas, 15 de deportes y 13 de tecnología antes de deduplicar entre temas. Se excluyeron cinco apariciones por avisos de republicación/derechos. Se extrajeron además dos artículos históricos válidos por categoría.
-- `python3 main.py init --target 30 --max-batches 2 --dry-run`: 30 candidatos reales, 10 por tema, todos de Global Voices. Sin escrituras.
-- Persistencia temporal: se guardaron 90 documentos (38 Global Voices y 52 Wikinews), se reejecutó con cero incorporaciones y después se amplió a 93 (31 por tema). Se verificaron las once columnas, UTF-8 con acentos, URLs e IDs únicos y conservación byte por byte de corpus y bitácora durante el modo de prueba.
-- `python3 main.py update --dry-run`, sobre corpus vacío: 6 candidatos recientes (3 finanzas, 0 deportes, 3 tecnología), todos de Global Voices; faltaron 7/10/7 para la cuota de diez. La misma actualización en archivos temporales guardó seis y, al repetirla, añadió cero.
+Los treinta resultados con ID, título, URL y puntuación están en [results/validation_report.json](results/validation_report.json), junto con fechas por año, dimensiones, vocabularios, políticas HTTP, ejemplos y resultados de adquisición. Estos ejemplos son pruebas funcionales, no el benchmark formal de quince consultas.
 
-- `python3 main.py init --target 2000`: alcanzó la meta. La revisión del primer resultado descubrió galerías sin limpiar y cuatro recopilaciones `Digest/`; se corrigió el extractor y se repitió la carga completa en un destino temporal antes de guardar el corpus definitivo del proyecto, que originalmente solo tenía encabezados. La carga corregida realizó **99 solicitudes HTTP en 23.5 segundos**. Los resultados definitivos son:
+## Verificación y límites
 
-| Categoría | Global Voices | Wikinews | Total |
-|---|---:|---:|---:|
-| finanzas | 12 | 655 | 667 |
-| deportes | 14 | 653 | 667 |
-| tecnologia | 12 | 654 | 666 |
-| **Total** | **38** | **1,962** | **2,000** |
+Las 23 pruebas unitarias pasan y usan fixtures y no realizan tráfico HTTP. Cubren extracción, licencias, fechas, cuotas, deduplicación, escrituras, idioma, POS, lemas, stopwords selectivas, números, doce espacios, persistencia y las configuraciones de búsqueda. La integración ejecutada por separado verificó las 2,000 filas, metadatos/IDs, las doce matrices dispersas, valores enteros/binarios/TF-IDF, transformación tras recarga y las tres consultas reales. Dos ejecuciones completas produjeron el mismo SHA-256 del TSV normalizado y del archivo de vectores. Se validó el YAML del workflow y sus comandos localmente; no se ejecutó un job alojado en GitHub.
 
-El corpus definitivo está en `data/news_raw_corpus.tsv`, con su informe en `results/collection_log.jsonl`. Se comprobaron 2,000 IDs y 2,000 URLs distintos, campos obligatorios completos y ausencia de etiquetas HTML, delimitadores wiki, residuos de imágenes/galerías y páginas `Digest/`. Se revisaron textos de muestra y seis enlaces de artículos (una muestra por categoría y fuente) respondieron HTTP 200. Esto acredita el volumen inicial obtenido, sin extrapolar cifras de páginas catalogadas.
-
-Repetir `init --target 2000` añadió cero noticias. `update --dry-run` y dos ejecuciones de `update --per-category 10`, sobre el corpus ya cargado, añadieron cero: las seis noticias recientes elegibles ya estaban guardadas. Se compararon hashes SHA-256 de corpus y bitácora para verificar que permanecían idénticos. Los resultados de la prueba semanal sobre corpus vacío se distinguen de estos resultados posteriores a la carga inicial.
-
-La limitación semanal es real: el feed deportivo más reciente de la muestra era del 05/09/2026, fuera de la ventana de ocho días. Global Voices no garantiza diez noticias por tema cada semana. Si se exige completar esa cuota obligatoriamente, se necesitaría una fuente adicional con suficiente frecuencia y permiso explícito para almacenar su texto; no se añaden proveedores sin verificar esas condiciones ni se rellenan faltantes con históricos.
+Quedan para otra iteración el benchmark y sus métricas. La principal limitación externa actual es la ausencia de novedades deportivas dentro de la ventana semanal; los faltantes se informan, no se ocultan.

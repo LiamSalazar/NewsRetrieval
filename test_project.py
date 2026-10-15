@@ -181,7 +181,7 @@ A source"""
             file = Path(d) / "news.tsv"
             log = Path(d) / "log.jsonl"
             def feeds(client, category, errors):
-                return [c.prepare("News", "Authentic fixture text", "Global Voices", category,
+                return [c.prepare(f"News {category} {i}", f"Authentic fixture text {category} {i}", "Global Voices", category,
                                   "2026-10-14", f"https://globalvoices.org/{category}/{i}",
                                   "Writer", "CC BY 3.0", c.GV_LICENSE) for i in range(5)]
             with patch.object(c, "fetch_feeds", side_effect=feeds):
@@ -225,5 +225,166 @@ A source"""
             self.assertIn("description/body", data[0])
 
 
-if __name__ == "__main__":
+
+
+
+class NewExtractionTests(unittest.TestCase):
+    def test_basic_science_is_not_automatically_technology(self):
+        page = {'ns': 0, 'title': 'An anthropologist dies', 'revisions':
+                [{'slots': {'main': {'content': WIKITEXT}}}]}
+        self.assertIsNone(c.extract_wikinews(page, 'tecnologia'))
+        page['title'] = 'A new satellite launches'
+        self.assertIsNotNone(c.extract_wikinews(page, 'tecnologia'))
+
+    def test_eff_attribution_and_third_party_exclusion(self):
+        rss = RSS.replace(b'https://globalvoices.org/2026/10/test/', b'https://www.eff.org/deeplinks/2026/10/test')
+        rss = rss.replace(b'<p>Local', b'<blockquote>Third party words</blockquote><p>Local')
+        row = next(c.rss_records(rss, 'tecnologia', source='EFF'))
+        self.assertEqual(row['source'], 'EFF')
+        self.assertEqual(row['license_url'], c.WIKINEWS_CC40)
+        self.assertEqual(row['author'], 'Original Writer')
+        self.assertNotIn('Third party', row['description/body'])
+        self.assertEqual(list(c.rss_records(rss, 'finanzas', source='EFF')), [])
+        self.assertEqual(list(c.rss_records(RSS, 'tecnologia', source='EFF')), [])
+
+    def test_validation_prevents_overwriting_duplicates(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / 'raw.tsv'
+            row = next(c.rss_records(RSS, 'finanzas'))
+            c.save_corpus([row], path)
+            original = path.read_bytes()
+            with self.assertRaises(ValueError):
+                c.save_corpus([row, dict(row, id='different')], path)
+            self.assertEqual(path.read_bytes(), original)
+
+    def test_partial_week_quota_history_and_old_dates(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / 'raw.tsv'
+            log = Path(d) / 'log.jsonl'
+            log.write_text('{"mode":"init","period_start":"2026-10-09","per_category_added":{"finanzas":667}}\n')
+            def feeds(client, category, errors):
+                return [c.prepare(f'News {category} {i}', f'Real fixture {category} {i}',
+                                  'Global Voices', category, '2026-10-14' if i else '2024-01-01',
+                                  f'https://globalvoices.org/{category}/{i}', 'Writer', 'CC BY 3.0', c.GV_LICENSE)
+                        for i in range(4)]
+            with patch.object(c, 'fetch_feeds', side_effect=feeds):
+                args = dict(path=path, log_path=log, now=datetime(2026,10,15,tzinfo=timezone.utc), session=Client([]))
+                report = c.collect_news(**args)
+                self.assertEqual(list(report['per_category_added'].values()), [3,3,3])
+                self.assertTrue(report['complete'])
+                self.assertFalse(report['target_met'])
+                self.assertEqual(list(report['per_category_missing'].values()), [7,7,7])
+                original = {p.name: p.read_bytes() for p in Path(d).iterdir()}
+                again = c.collect_news(**args)
+                self.assertEqual(again['added'], 0)
+                self.assertEqual(again['weekly_already_added'], dict.fromkeys(c.CATEGORIES,3))
+                self.assertEqual(original, {p.name: p.read_bytes() for p in Path(d).iterdir()})
+                c.collect_news(dry_run=True, **args)
+                self.assertEqual(original, {p.name: p.read_bytes() for p in Path(d).iterdir()})
+            with self.assertRaises(ValueError):
+                c.collect_news(per_category=11, path=path)
+
+
+class RetrievalTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import retrieval as r
+        cls.r = r
+        cls.temp = tempfile.TemporaryDirectory()
+        cls.raw = Path(cls.temp.name) / 'raw.tsv'
+        cls.normalized = Path(cls.temp.name) / 'normalized.tsv'
+        cls.vectors = Path(cls.temp.name) / 'vectors.joblib'
+        texts = [('NASA launches rockets', 'The engineers were testing rockets and satellites in 2026.'),
+                 ('Banks report profits', 'The banks reported higher profits in the financial markets.'),
+                 ('Players win match', 'The players were running with their teams and scored 3 goals.')]
+        rows = [c.prepare(title, body, 'Global Voices', cat, '2026-10-14',
+                          f'https://globalvoices.org/test/{i}', 'Writer', 'CC BY 3.0', c.GV_LICENSE)
+                for i, ((title,body),cat) in enumerate(zip(texts,c.CATEGORIES))]
+        c.save_corpus(rows, cls.raw)
+        cls.report = r.process_corpus(cls.raw, cls.normalized, cls.vectors)
+        cls.bundle = r.joblib.load(cls.vectors)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.temp.cleanup()
+
+    def test_pos_lemmas_and_selective_stopwords(self):
+        r = self.r
+        text = 'The players were running with their teams and scored 2026 goals. NASA uses GPUs.'
+        doc = r.load_nlp()(text)
+        self.assertTrue({'DET','ADP','CCONJ','PRON'}.issubset({t.pos_ for t in doc}))
+        value = r.normalize_text(text).split()
+        for word in ['player','run','team','score','2026','goal','nasa','gpu','be']:
+            self.assertIn(word,value)
+        for word in ['the','with','their','and']:
+            self.assertNotIn(word,value)
+        self.assertIn('not',r.normalize_text('The banks are not profitable.').split())
+        self.assertNotIn('’s', r.normalize_text('NASA’s rockets are ready.').split())
+        self.assertEqual(r.normalize_text(text),r.normalize_text(text))
+        self.assertEqual(r.normalize_text('<p>The players\x00 were running.</p><script>bad()</script>'), 'player be run')
+
+    def test_language_validation(self):
+        row = dict(self.bundle['documents'][0], title='Los jugadores ganaron',
+                   **{'description/body':'Los jugadores ganaron el partido con sus equipos y celebraron la victoria.'})
+        with self.assertRaises(ValueError):
+            self.r.verify_english(row)
+
+    def test_normalized_ids_metadata_and_raw_preservation(self):
+        raw = c.read_corpus(self.raw)
+        normalized = c.read_corpus(self.normalized)
+        self.assertEqual([row['id'] for row in raw], self.bundle['ids'])
+        self.assertEqual([row['id'] for row in raw], [row['id'] for row in normalized])
+        self.assertEqual(len(normalized),3)
+        for before, after in zip(raw,normalized):
+            self.assertTrue(all(after[key] == value for key,value in before.items()))
+            self.assertEqual(after['language'],'en')
+            self.assertTrue(after['normalized_title'] and after['normalized_body'])
+        self.assertEqual(self.r.corpus_digest(raw),self.bundle['raw_digest'])
+
+    def test_twelve_sparse_spaces_and_persistence(self):
+        import numpy as np
+        from scipy.sparse import issparse
+        self.assertEqual(len(self.report),12)
+        for key,space in self.bundle['spaces'].items():
+            matrix, vectorizer = space['matrix'],space['vectorizer']
+            self.assertTrue(issparse(matrix))
+            self.assertEqual(matrix.shape,(3,len(vectorizer.vocabulary_)))
+            self.assertTrue(np.isfinite(matrix.data).all())
+            self.assertTrue((matrix.data >= 0).all())
+            if key.endswith('binary'):
+                self.assertEqual(set(matrix.data),{1})
+            elif key.endswith('frequency'):
+                self.assertTrue(np.issubdtype(matrix.dtype,np.integer))
+            else:
+                self.assertTrue((matrix.data <= 1).all())
+                self.assertTrue(np.allclose(np.asarray(matrix.multiply(matrix).sum(axis=1)).ravel(),1))
+            n = int(key.split('_')[1])
+            self.assertEqual(vectorizer.ngram_range,(n,n))
+            self.assertTrue(all(len(term.split()) == n for term in vectorizer.vocabulary_))
+            column = 'normalized_title' if key.startswith('title') else 'normalized_body'
+            transformed = vectorizer.transform([row[column] for row in self.bundle['documents']])
+            self.assertEqual((transformed != matrix).nnz,0)
+
+    def test_search_high_partial_zero_and_all_configurations(self):
+        r = self.r
+        strong = r.search_news('engineers testing rockets satellites',bundle=self.bundle)
+        partial = r.search_news('satellites unfamiliarword',bundle=self.bundle)
+        self.assertIn('NASA',strong[0]['title'])
+        self.assertGreater(strong[0]['score'],partial[0]['score'])
+        self.assertGreater(partial[0]['score'],0)
+        self.assertEqual(strong, sorted(strong,key=lambda row:-row['score']))
+        zero = r.search_news('zzzxxyyqqvv',bundle=self.bundle)
+        self.assertEqual([row['score'] for row in zero],[0,0,0])
+        self.assertEqual([row['id'] for row in zero],self.bundle['ids'])
+        for field in ['title','body']:
+            for n in [1,2]:
+                for rep in ['frequency','binary','tfidf']:
+                    query = 'NASA launches rockets' if field == 'title' else 'engineers testing rockets satellites'
+                    rows=r.search_news(query,field,n,rep,path=self.vectors)
+                    self.assertEqual(len(rows),3)
+                    self.assertEqual(rows[0]['title'],'NASA launches rockets')
+                    self.assertGreater(rows[0]['score'],0)
+
+
+if __name__ == '__main__':
     unittest.main()

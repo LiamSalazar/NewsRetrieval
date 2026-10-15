@@ -9,6 +9,7 @@ import hashlib
 import html
 import json
 import re
+import shutil
 import time
 import xml.etree.ElementTree as ET
 from collections import Counter
@@ -35,6 +36,7 @@ FEEDS = {
     "deportes": ["https://globalvoices.org/-/topics/sport/feed/"],
     "tecnologia": ["https://globalvoices.org/-/topics/technology/feed/"],
 }
+FEEDS['tecnologia'].append('https://www.eff.org/rss/updates.xml')
 # Archivo HISTÓRICO: cerró para nuevas publicaciones en mayo de 2026.
 WIKINEWS = {
     "finanzas": "Category:Economy and business",
@@ -47,6 +49,16 @@ GV_LICENSE = "https://creativecommons.org/licenses/by/3.0/"
 # Global Voices dice CC BY; revisar licencia concreta del artículo antes de republicarlo.
 WIKINEWS_CC25 = "https://creativecommons.org/licenses/by/2.5/"
 WIKINEWS_CC40 = "https://creativecommons.org/licenses/by/4.0/"
+_LAST_REQUEST = {}
+# La categoría de Wikinews mezcla ciencia básica y tecnología. Exigir evidencia
+# textual de tecnología evita clasificar biografías o biología general como tal.
+TECH_TERMS = re.compile(r'\b(?:technolog\w*|comput\w*|internet|software|hardware|digital|'
+                        r'cyber\w*|artificial intelligence|robot\w*|semiconductor\w*|'
+                        r'telecom\w*|smartphone\w*|mobile phone\w*|wi-fi|websit\w*|'
+                        r'encrypt\w*|broadband|browser\w*|satellite\w*|spacecraft|'
+                        r'spacewalk\w*|space station|space shuttle|rocket\w*|'
+                        r'telescope\w*|rover\w*|hoverboard\w*|laser\w*|3d print\w*|'
+                        r'nuclear reactor\w*|particle accelerator\w*)\b', re.I)
 
 
 class TextOnly(HTMLParser):
@@ -131,6 +143,11 @@ def get(session, url, params=None):
     """HTTP limitado; reintenta errores transitorios, nunca elude bloqueos."""
     for attempt in range(3):
         try:
+            # El robots.txt de Global Voices pide diez segundos entre accesos.
+            host = urlsplit(url).netloc
+            if host == 'globalvoices.org' and isinstance(session, requests.Session):
+                time.sleep(max(0, 10 - (time.monotonic() - _LAST_REQUEST.get(host, 0))))
+                _LAST_REQUEST[host] = time.monotonic()
             response = session.get(url, params=params, timeout=25, headers=HEADERS)
             if response.status_code in {429, 500, 502, 503, 504} and attempt < 2:
                 time.sleep(attempt + 1)
@@ -153,8 +170,10 @@ def xml_value(node, names):
     return ""
 
 
-def rss_records(xml_content, category, errors=None):
-    """RSS/Atom de Global Voices: solo resúmenes, sin medios de terceros."""
+def rss_records(xml_content, category, errors=None, source='Global Voices'):
+    """RSS/Atom autorizados: conserva autor y rechaza derechos particulares."""
+    if source not in {'Global Voices', 'EFF'}:
+        raise ValueError('Fuente RSS no autorizada')
     root = ET.fromstring(xml_content)
     dc = "{http://purl.org/dc/elements/1.1/}"
     atom = "{http://www.w3.org/2005/Atom}"
@@ -170,26 +189,42 @@ def rss_records(xml_content, category, errors=None):
             link = next((node.get("href", "") for node in item.findall(f"{atom}link")
                          if node.get("rel", "alternate") == "alternate"), "")
         # El contenido completo sirve para detectar republicaciones; no se almacena.
-        full = plain_text(xml_value(item, [content, f"{atom}content"]))
+        full = plain_text(xml_value(item, [content, f"{atom}content"]) + ' ' + description)
         full = re.sub(r"Originally published on Global Voices", "", full, flags=re.I)
         rights = xml_value(item, [f"{dc}rights", f"{atom}rights"])
+        license_url = GV_LICENSE if source == 'Global Voices' else WIKINEWS_CC40
         if (re.search(r"republished|(?:originally|first) published|all rights reserved", full, re.I)
-                or (rights and rights not in {GV_LICENSE, "CC BY 3.0"})):
+                or (rights and rights not in {license_url, 'CC BY 3.0' if source == 'Global Voices' else 'CC BY 4.0'})):
             if errors is not None:
                 errors.append(f"RSS {category}: omitido por derechos particulares/republicación: {title}")
             continue
-        record = prepare(title, description, "Global Voices", category, date, link,
-                         author, "CC BY 3.0 (resumen de Global Voices)", GV_LICENSE)
+        host = urlsplit(canonical_url(link)).netloc
+        if host != ('globalvoices.org' if source == 'Global Voices' else 'www.eff.org'):
+            continue
+        if source == 'EFF':
+            if category != 'tecnologia' or '/deeplinks/' not in link or re.search(
+                    r'podcast|effector|daf day|organizing in|award winners|welcomes .*board|join us|donate', title, re.I):
+                continue
+            # No conservar bloques citados de terceros ni imágenes del feed.
+            description = re.sub(r'(?is)<blockquote\b[^>]*>.*?</blockquote>', ' ', description)
+        record = prepare(title, description, source, category, date, link,
+                         plain_text(author), 'CC BY 3.0 (resumen de Global Voices)' if source == 'Global Voices'
+                         else 'CC BY 4.0 (texto original EFF; sin bloques citados)', license_url)
         if record:
             yield record
 
 
-def fetch_feeds(session, category, errors):
+def fetch_feeds(session, category, errors, page=1):
     records = []
     for url in FEEDS[category]:
         try:
+            if page > 1:
+                if urlsplit(url).netloc != 'globalvoices.org':
+                    continue
+                url += f'?paged={page}'
             response = get(session, url)
-            parsed = list(rss_records(response.content, category, errors))
+            source = 'EFF' if urlsplit(url).netloc == 'www.eff.org' else 'Global Voices'
+            parsed = list(rss_records(response.content, category, errors, source))
             if not parsed:
                 errors.append(f"RSS {category}: no ofreció artículos con fecha, URL y texto válidos: {url}")
             records.extend(parsed)
@@ -249,6 +284,8 @@ def extract_wikinews(page, category):
     if not date:
         return None
     body = wikinews_excerpt(text)
+    if category == 'tecnologia' and not TECH_TERMS.search(page['title'] + ' ' + body):
+        return None
     # Al menos unas cuantas palabras para que sea una noticia recuperable.
     if len(body.split()) < 18 or any(mark in body for mark in ("{{", "}}", "[[", "]]", "{|", "|}")):
         return None
@@ -329,13 +366,28 @@ def read_corpus(path=CORPUS):
 
 def save_corpus(rows, path=CORPUS):
     """Escritura atómica: reemplaza el TSV solo cuando está completo."""
+    validate_corpus(rows)
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and not path.with_suffix('.tsv.bak').exists():
+        shutil.copy2(path, path.with_suffix('.tsv.bak'))
     temp = path.with_suffix(".tmp")
     with temp.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t", extrasaction="ignore")
+        writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t", extrasaction="ignore", lineterminator='\n')
         writer.writeheader()
         writer.writerows(sorted(rows, key=lambda r: (r["date"], r["id"]), reverse=True))
+    validate_corpus(read_corpus(temp))
     temp.replace(path)
+
+
+def validate_corpus(rows):
+    """Rechaza registros incompletos y duplicados antes del reemplazo atómico."""
+    for field in ('id', 'url', 'title', 'description/body'):
+        values = [' '.join(row.get(field, '').casefold().split()) for row in rows]
+        if len(values) != len(set(values)):
+            raise ValueError(f'Duplicados en {field}')
+    for row in rows:
+        if any(not row.get(field) for field in FIELDS) or row['category'] not in CATEGORIES:
+            raise ValueError('Registro incompleto o categoría inválida')
 
 
 def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=False,
@@ -346,8 +398,8 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
     """
     if mode not in {"init", "weekly"}:
         raise ValueError("mode debe ser init o weekly")
-    if target < 1 or per_category < 1 or days < 1 or max_batches < 1:
-        raise ValueError("target, per_category, days y max_batches deben ser positivos")
+    if target < 1 or not 1 <= per_category <= 10 or days < 1 or max_batches < 1:
+        raise ValueError("per_category debe estar entre 1 y 10; target, days y max_batches deben ser positivos")
     now = now or datetime.now(timezone.utc)
     local = now.astimezone(ZoneInfo("America/Mexico_City"))
     # Una cuota compartida desde el viernes 00:00 hasta el siguiente jueves.
@@ -361,7 +413,11 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
             if entry.get("mode") == "weekly" and entry.get("period_start") == period:
                 weekly_saved.update(entry["per_category_added"])
     current = read_corpus(path)
+    validate_corpus(current)
     present = {r["id"] for r in current}
+    urls = {canonical_url(r['url']) for r in current}
+    titles = {r['title'].casefold() for r in current}
+    bodies = {r['description/body'].casefold() for r in current}
     original = Counter(r["category"] for r in current)
     quotas = ({k: target // 3 + (i < target % 3) for i, k in enumerate(CATEGORIES)}
               if mode == "init" else {k: per_category for k in CATEGORIES})
@@ -375,19 +431,33 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
             have = 0
             if not needed:
                 continue
-            feeds = sorted(fetch_feeds(client, category, errors), key=lambda a: a["date"], reverse=True)
+            feeds = fetch_feeds(client, category, errors)
+            if mode == 'init' and needed > len(feeds):
+                for page in range(2, min(5, max_batches) + 1):
+                    feeds.extend(fetch_feeds(client, category, errors, page=page))
+            feeds.sort(key=lambda a: a['date'], reverse=True)
             for item in feeds:
                 if have >= needed:
                     break
                 if mode == "weekly" and not before <= item["date"] <= now.date().isoformat():
                     continue
-                if item["id"] not in present:
+                if (item['id'] not in present and canonical_url(item['url']) not in urls
+                        and item['title'].casefold() not in titles and item['description/body'].casefold() not in bodies):
                     present.add(item["id"])
+                    urls.add(canonical_url(item['url']))
+                    titles.add(item['title'].casefold())
+                    bodies.add(item['description/body'].casefold())
                     added.append(item)
                     have += 1
             if mode == "init" and have < needed:
-                added.extend(fetch_archive(client, category, needed - have, present, errors,
-                                           max_batches=max_batches))
+                for item in fetch_archive(client, category, needed - have, present, errors,
+                                          max_batches=max_batches):
+                    if (canonical_url(item['url']) not in urls and item['title'].casefold() not in titles
+                            and item['description/body'].casefold() not in bodies):
+                        urls.add(canonical_url(item['url']))
+                        titles.add(item['title'].casefold())
+                        bodies.add(item['description/body'].casefold())
+                        added.append(item)
         if not dry_run and added:
             save_corpus(current + added, path)
     finally:
@@ -403,7 +473,12 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
               "period_start": period if mode == "weekly" else None,
               "weekly_already_added": dict(weekly_saved),
               "total_after": len(current) + (0 if dry_run else len(added)),
-              "errors": errors, "complete": all(counts[c] >= expected[c] for c in CATEGORIES)}
+              "errors": errors,
+              "target_met": all(counts[c] >= expected[c] for c in CATEGORIES),
+              "complete": (all(original[c] + counts[c] == quotas[c] for c in CATEGORIES)
+                           and len(current) + len(added) == target
+                           and len({r['source'] for r in current + added}) >= 3 if mode == 'init'
+                           else all(weekly_saved[c] + counts[c] >= 1 for c in CATEGORIES))}
     if not dry_run and added:
         log_path.parent.mkdir(parents=True, exist_ok=True)
         with log_path.open("a", encoding="utf-8") as stream:
