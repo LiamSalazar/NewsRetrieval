@@ -44,7 +44,7 @@ WIKINEWS = {
     "tecnologia": "Category:Science and technology",
 }
 API = "https://en.wikinews.org/w/api.php"
-HEADERS = {"User-Agent": "SchoolNewsRetrieval/1.0 (educational project; https://github.com/LiamSalazar/QuantMahoraga)"}
+HEADERS = {"User-Agent": "Global Voices / EFF news collector (academic research;"}
 GV_LICENSE = "https://creativecommons.org/licenses/by/3.0/"
 # Global Voices dice CC BY; revisar licencia concreta del artículo antes de republicarlo.
 WIKINEWS_CC25 = "https://creativecommons.org/licenses/by/2.5/"

@@ -3,7 +3,4 @@ __pycache__/
 .venv/
 .pytest_cache/
 *.tmp
-results/vectors.joblib
 *.tsv.bak
-*.tsv
-
