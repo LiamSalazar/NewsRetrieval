@@ -30,12 +30,12 @@ Sin incorporaciones no cambia el corpus, la copia de seguridad ni la bitácora. 
 
 El workflow conserva viernes a las 16:00 UTC (10:00 CDMX), ejecución manual y exclusión de ejecuciones concurrentes. Instala dependencias/modelo, prueba y actualiza; su paso existente de guardado publica los cambios mediante GitHub Actions. Durante esta intervención no se ejecutó ese paso ni se hicieron commits o pushes.
 
-## Corpus verificado el 15 de octubre de 2026
+## Corpus verificado el 16 de octubre de 2026
 
 | Medio | Finanzas | Deportes | Tecnología | Total |
 |---|---:|---:|---:|---:|
-| Global Voices | 64 | 69 | 48 | 181 |
-| Wikinews | 603 | 598 | 579 | 1,780 |
+| Global Voices | 64 | 69 | 47 | 180 |
+| Wikinews | 603 | 598 | 580 | 1,781 |
 | EFF Deeplinks | 0 | 0 | 39 | 39 |
 | Total | 667 | 667 | 666 | 2,000 |
 
@@ -43,7 +43,7 @@ El workflow conserva viernes a las 16:00 UTC (10:00 CDMX), ejecución manual y e
 |---|---|---|
 | Finanzas | 2005-07-13 | 2026-10-14 |
 | Deportes | 2006-06-10 | 2026-09-05 |
-| Tecnología | 2004-11-16 | 2026-10-15 |
+| Tecnología | 2004-11-16 | 2026-10-16 |
 
 Es un corpus histórico y actual; finanzas incluye economía y negocios. Las categorías proceden de feeds temáticos y categorías editoriales de Wikinews. En su categoría amplia «Science and technology» se exige además vocabulario tecnológico; es un filtro léxico, no una clasificación manual exhaustiva.
 
@@ -54,14 +54,14 @@ Se conservaron exactamente los IDs de 1,672 artículos; se sustituyeron 328 art�
 Se comprobaron por HTTP las tres políticas oficiales (200). Se almacenan autor, fuente, URL, licencia y enlace de licencia por noticia; no se descargan imágenes ni se sortean restricciones de acceso.
 
 - **Global Voices:** resúmenes de RSS de economía/negocios, deportes y tecnología, [CC BY 3.0 y política de atribución](https://globalvoices.org/about/global-voices-attribution-policy/). Se conservan autor y enlace; se rechazan republicaciones y avisos particulares detectados en el contenido/derechos del feed. Se respeta la pausa de diez segundos solicitada por su `robots.txt`.
-- **Wikinews inglés:** texto introductorio del wikitext público, sin imágenes, tablas ni apartado de fuentes. Su [política oficial](https://en.wikinews.org/wiki/Wikinews:Copyright) permite atribuir a Wikinews. En este corpus hay 64 textos de dominio público, 1,701 CC BY 2.5 y 15 CC BY 4.0. Las marcas explícitas del artículo prevalecen sobre la regla por fecha. Solo se aceptan páginas publicadas, sin marcas de infracción. Es un [archivo de solo lectura desde mayo de 2026](https://en.wikinews.org/wiki/Wikinews:Closure_of_Wikinews), no una fuente semanal.
+- **Wikinews inglés:** texto introductorio del wikitext público, sin imágenes, tablas ni apartado de fuentes. Su [política oficial](https://en.wikinews.org/wiki/Wikinews:Copyright) permite atribuir a Wikinews. En este corpus hay 66 textos de dominio público, 1,701 CC BY 2.5 y 14 CC BY 4.0. Las marcas explícitas del artículo prevalecen sobre la regla por fecha. Solo se aceptan páginas publicadas, sin marcas de infracción. Es un [archivo de solo lectura desde mayo de 2026](https://en.wikinews.org/wiki/Wikinews:Closure_of_Wikinews), no una fuente semanal.
 - **EFF Deeplinks:** medio editorial independiente sobre tecnología y derechos digitales, obtenido mediante [RSS oficial](https://www.eff.org/rss/updates.xml). Su [política](https://www.eff.org/copyright) autoriza reutilización y adaptación de material original bajo CC BY 4.0. Se excluyen republicaciones detectadas, entradas promocionales/podcasts y bloques HTML de citas de terceros; no se extiende esa licencia a materiales ajenos.
 
 Los textos originales quedan en `news_raw_corpus.tsv`. La versión normalizada y los vectores son transformaciones para NLP; esta documentación identifica esos cambios y conserva la atribución. Los filtros de derechos son conservadores y dependen de los avisos publicados por las fuentes; no constituyen una auditoría individual de todos los derechos de terceros.
 
 ### Actualización real
 
-Se ejecutaron `init`, `update --dry-run`, `update` y su repetición sobre el corpus definitivo. Resultado semanal: **0 finanzas, 0 deportes, 0 tecnología**, con faltantes 10/10/10 frente a la meta. Las noticias recientes admisibles de finanzas/tecnología ya estaban almacenadas; el feed deportivo más reciente es del 5 de septiembre, fuera de la ventana. Cinco avisos de exclusión por derechos aparecen en el informe; no hubo errores HTTP en esta ejecución. No se sustituyeron faltantes por noticias antiguas. Hashes y tiempos de modificación de los archivos de adquisición permanecieron iguales.
+La reconstrucción del 16 de octubre partió de los 1,672 IDs retenidos y añadió 328 registros mediante el colector existente (142 Global Voices, 39 EFF y 147 Wikinews). Se ejecutaron `update --dry-run`, `update` y su repetición en la adquisición previa. Resultado semanal: **0 finanzas, 0 deportes, 0 tecnología**, con faltantes 10/10/10 frente a la meta. Las noticias recientes admisibles de finanzas/tecnología ya estaban almacenadas; el feed deportivo más reciente es del 5 de septiembre, fuera de la ventana. Cinco avisos de exclusión por derechos aparecen en el informe; no hubo errores HTTP en esta ejecución. No se sustituyeron faltantes por noticias antiguas. Hashes y tiempos de modificación de los archivos de adquisición permanecieron iguales.
 
 Los casos de incorporaciones positivas parciales, acumulación semanal y apertura del siguiente viernes se verifican con datos simulados en las pruebas unitarias. No se atribuyen esas incorporaciones a la actualización HTTP real. La disponibilidad deportiva semanal sigue dependiendo de Global Voices y no está garantizada.
 
@@ -85,10 +85,10 @@ Se generan **tres matrices por cada fila de esta tabla**, es decir, las doce com
 
 | Contenido | N-gramas | Frecuencia | Binaria | TF-IDF |
 |---|---|---|---|---|
-| Título | 1 | 2000 × 4772 | 2000 × 4772 | 2000 × 4772 |
-| Título | 2 | 2000 × 11392 | 2000 × 11392 | 2000 × 11392 |
-| Cuerpo | 1 | 2000 × 28266 | 2000 × 28266 | 2000 × 28266 |
-| Cuerpo | 2 | 2000 × 281917 | 2000 × 281917 | 2000 × 281917 |
+| Título | 1 | 2000 × 4763 | 2000 × 4763 | 2000 × 4763 |
+| Título | 2 | 2000 × 11371 | 2000 × 11371 | 2000 × 11371 |
+| Cuerpo | 1 | 2000 × 28213 | 2000 × 28213 | 2000 × 28213 |
+| Cuerpo | 2 | 2000 × 281416 | 2000 × 281416 | 2000 × 281416 |
 
 `results/vectors.joblib` contiene un diccionario con `ids`, `documents`, `spaces`, versiones del modelo y hash lógico del corpus. Cada espacio, por ejemplo `body_1_tfidf`, tiene `vectorizer` y `matrix` CSR. Frecuencia/binaria usan CountVectorizer; TF-IDF usa TfidfVectorizer. Los n-gramas son exclusivamente `(1,1)` o `(2,2)`, sobre los tokens ya normalizados; se conservan también tokens de un carácter. El archivo (~53 MiB) está generado localmente y excluido de Git; se reconstruye con `process`.
 
@@ -98,14 +98,17 @@ Configuración predeterminada, resultados ordenados por coseno:
 
 | Consulta | Primer resultado | Puntuación |
 |---|---|---:|
-| European Union semiconductor production Chips Act 43 billion | EU agrees €43 billion Chips Act to boost semiconductor production | 0.407940 |
-| chips investment markets | EU agrees €43 billion Chips Act to boost semiconductor production | 0.253131 |
+| European Union semiconductor production Chips Act 43 billion | EU agrees €43 billion Chips Act to boost semiconductor production | 0.407626 |
+| chips investment markets | EU agrees €43 billion Chips Act to boost semiconductor production | 0.253310 |
 | zzzxxyyqqvv | Sin coincidencias; diez documentos con cero | 0.000000 |
+
+
+SHA-256 entregados: `data/news_raw_corpus.tsv` feb5de58a8d3508f145e395894d72fe21a1fc293aafdb8ee7fea84e78b3b30a4; `data/news_normalized_corpus.tsv` 8ce7337832bbfaace2dd8bc3c5ac43cc2baab0bb74a81cfaf930dcdcea830d60; `results/vectors.joblib` 79eb122ee802d414caaeafd31606f1aab533cac108186c7a79c3c27227e39f9d.
 
 Los treinta resultados con ID, título, URL y puntuación están en [results/validation_report.json](results/validation_report.json), junto con fechas por año, dimensiones, vocabularios, políticas HTTP, ejemplos y resultados de adquisición. Estos ejemplos son pruebas funcionales, no el benchmark formal de quince consultas.
 
 ## Verificación y límites
 
-Las 23 pruebas unitarias pasan y usan fixtures y no realizan tráfico HTTP. Cubren extracción, licencias, fechas, cuotas, deduplicación, escrituras, idioma, POS, lemas, stopwords selectivas, números, doce espacios, persistencia y las configuraciones de búsqueda. La integración ejecutada por separado verificó las 2,000 filas, metadatos/IDs, las doce matrices dispersas, valores enteros/binarios/TF-IDF, transformación tras recarga y las tres consultas reales. Dos ejecuciones completas produjeron el mismo SHA-256 del TSV normalizado y del archivo de vectores. Se validó el YAML del workflow y sus comandos localmente; no se ejecutó un job alojado en GitHub.
+Las 23 pruebas unitarias pasan y usan fixtures sin tráfico HTTP. El procesamiento del corpus definitivo regeneró el TSV normalizado y las doce matrices VSM; los IDs coinciden entre el TSV original, el normalizado y `vectors.joblib`. Los hashes SHA-256 actuales de los tres archivos están arriba y en `results/validation_report.json`. El workflow no se modificó.
 
 Quedan para otra iteración el benchmark y sus métricas. La principal limitación externa actual es la ausencia de novedades deportivas dentro de la ventana semanal; los faltantes se informan, no se ocultan.
