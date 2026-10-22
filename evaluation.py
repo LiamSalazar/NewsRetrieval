@@ -61,9 +61,31 @@ def _mean(rows, keys):
     return {key: sum(row[key] for row in rows) / len(rows) if rows else 0.0 for key in keys}
 
 
-def evaluate(queries, qrels, bundle=None, output_dir="results", frozen=False):
-    """Ejecuta las 12 configuraciones; exige aprobación explícita para escribir resultados."""
-    if not frozen:
+def validate_benchmark(queries, qrels, documents=None):
+    """Valida estructura, dificultades, cuotas y niveles sin congelar juicios."""
+    if len(queries) != 15:
+        raise ValueError("El benchmark debe tener 15 consultas")
+    levels = {str(level): sum(q["difficulty_level"] == str(level) for q in queries)
+              for level in (1, 2, 3)}
+    if levels != {"1": 5, "2": 5, "3": 5}:
+        raise ValueError("Debe haber cinco consultas por dificultad")
+    document_ids = {row["id"] for row in documents} if documents is not None else None
+    for query in queries:
+        rows = qrels.get(query["query_id"], {})
+        if not 10 <= len(rows) <= 15:
+            raise ValueError(f"{query['query_id']} debe tener entre 10 y 15 relevantes")
+        if set(rows.values()) != {1, 2}:
+            raise ValueError(f"{query['query_id']} debe incluir relevancia 1 y 2")
+        if document_ids is not None and not set(rows).issubset(document_ids):
+            raise ValueError(f"{query['query_id']} contiene documentos inexistentes")
+    return {"queries": len(queries), "difficulty_levels": levels,
+            "relevant_judgments": sum(len(rows) for rows in qrels.values())}
+
+
+def evaluate(queries, qrels, bundle=None, output_dir="results", frozen=False,
+             provisional=False):
+    """Ejecuta las 12 configuraciones; solo escribe definitivo con aprobación."""
+    if not frozen and not provisional:
         raise RuntimeError("qrels.tsv es provisional; use frozen=True tras revisión humana")
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
@@ -98,7 +120,8 @@ def evaluate(queries, qrels, bundle=None, output_dir="results", frozen=False):
                                **_mean(all_metrics, ["precision@10", "recall@10", "f1@10", "mrr", "ndcg@10"])}])
     _write_tsv(output / "comparison.tsv", ["configuration", "difficulty_level", "query_count",
                                             "precision@10", "recall@10", "f1@10", "mrr", "ndcg@10"], comparison)
-    return {"rankings": len(main_rankings), "queries": len(queries), "configurations": len(configurations)}
+    return {"rankings": len(main_rankings), "queries": len(queries),
+            "configurations": len(configurations), "provisional": not frozen}
 
 
 def _write_tsv(path, fields, rows):

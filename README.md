@@ -10,6 +10,7 @@ pip install -r requirements.txt
 python -m unittest -v test_project
 python main.py
 python main.py --benchmark
+python main.py --benchmark --provisional
 ```
 
 `main.py` valida el corpus fijo. Si `data/news_raw_corpus.tsv` no existe, ejecuta la adquisición inicial mediante RSS/Atom y la API de MediaWiki. Si existe, debe contener exactamente 2,000 registros válidos; un corpus incompleto o inválido se informa y no se sobrescribe.
@@ -38,6 +39,8 @@ El corpus normalizado mantiene los campos originales y añade `language`, `norma
 
 `data/queries.tsv` contiene 15 consultas en inglés: tres formulaciones (easy=1, medium=2, hard=3) para cinco necesidades informativas. `data/candidates_review.tsv` documenta candidatos, extractos del corpus original y relevancias propuestas. `data/qrels.tsv` contiene 10 juicios por consulta, pero está marcado como provisional y requiere revisión humana.
 
-El comando `python main.py --benchmark` valida los archivos sin calcular resultados definitivos. Después de revisar y congelar humanamente los qrels, `python main.py --benchmark --frozen` ejecuta las 15 consultas en las 12 configuraciones y escribe `results/rankings.tsv`, `results/metrics.tsv` y `results/comparison.tsv`. Las métricas son Precision@10, Recall@10, F1@10, MRR y nDCG@10 con ganancia graduada `2^relevance - 1`. Las etiquetas humanas nunca se modifican usando resultados del VSM.
+El comando `python main.py --benchmark` valida los archivos sin calcular resultados definitivos. `python main.py --benchmark --provisional` permite probar las 180 búsquedas y escribe únicamente en `results/provisional/`. Después de revisar y congelar humanamente los qrels, `python main.py --benchmark --frozen` ejecuta las 15 consultas en las 12 configuraciones y escribe `results/rankings.tsv`, `results/metrics.tsv` y `results/comparison.tsv`. Las métricas son Precision@10, Recall@10, F1@10, MRR y nDCG@10 con ganancia graduada `2^relevance - 1`. Las etiquetas humanas nunca se modifican usando resultados del VSM.
+
+Sin argumentos, `python main.py` muestra un menú para consultas libres, validación del benchmark, consulta del resumen comparativo y salida. La aprobación exacta consiste en revisar `data/candidates_review.tsv`, corregir `data/qrels.tsv` si procede, retirar la marca `PROVISIONAL` y ejecutar `python main.py --benchmark --frozen`.
 
 Las cinco necesidades son: comercio internacional y relaciones económicas; precios de energía y sus efectos; fútbol como fenómeno político/social; eventos y controversias del cricket; y vigilancia tecnológica, privacidad y supervisión pública. Las métricas no se presentan como definitivas mientras `qrels.tsv` siga provisional.

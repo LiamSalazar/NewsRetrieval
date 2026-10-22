@@ -313,7 +313,7 @@ class EvaluationTests(unittest.TestCase):
         from evaluation import load_benchmark
         queries, qrels = load_benchmark()
         self.assertEqual(len(queries), 15)
-        self.assertEqual({len(qrels[q['query_id']]) for q in queries}, {10})
+        self.assertTrue(all(10 <= len(qrels[q['query_id']]) <= 15 for q in queries))
 
 
 if __name__ == '__main__':
