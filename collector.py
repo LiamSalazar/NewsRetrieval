@@ -13,24 +13,21 @@ import shutil
 import time
 import xml.etree.ElementTree as ET
 from collections import Counter
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from pathlib import Path
-from zoneinfo import ZoneInfo
 from urllib.parse import quote, urlencode, urlsplit, urlunsplit, parse_qsl
 
 import requests
 
 ROOT = Path(__file__).resolve().parent
 CORPUS = ROOT / "data" / "news_raw_corpus.tsv"
-LOG = ROOT / "results" / "collection_log.jsonl"
 FIELDS = ["id", "title", "description/body", "source", "category", "date",
           "url", "retrieved_at", "author", "license", "license_url"]
 CATEGORIES = ("finanzas", "deportes", "tecnologia")
 
 # Tres feeds temáticos publicados en el directorio oficial de Global Voices.
-# No garantizan diez noticias nuevas por categoría cada semana.
 FEEDS = {
     "finanzas": ["https://globalvoices.org/-/topics/economics-business/feed/"],
     "deportes": ["https://globalvoices.org/-/topics/sport/feed/"],
@@ -386,32 +383,30 @@ def validate_corpus(rows):
         if len(values) != len(set(values)):
             raise ValueError(f'Duplicados en {field}')
     for row in rows:
-        if any(not row.get(field) for field in FIELDS) or row['category'] not in CATEGORIES:
+        if (any(not row.get(field) for field in FIELDS)
+                or row['category'] not in CATEGORIES
+                or row['source'] not in {'Wikinews', 'Global Voices', 'EFF'}
+                or not canonical_url(row['url'])
+                or not canonical_url(row['license_url'])):
             raise ValueError('Registro incompleto o categoría inválida')
 
 
-def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=False,
-                 session=None, path=CORPUS, max_batches=80, now=None, log_path=None):
-    """Devuelve informe; no inventa cuotas. init: objetivo total; weekly: novedades.
+def collect_news(target=2000, session=None, path=CORPUS, max_batches=80, now=None):
+    """Adquiere el corpus inicial una sola vez.
 
-    session permite pruebas sin tráfico real. dry_run no escribe archivos.
+    Si el archivo ya existe, solo se valida: nunca se consulta Internet ni se
+    reemplaza un corpus existente desde esta función.
     """
-    if mode not in {"init", "weekly"}:
-        raise ValueError("mode debe ser init o weekly")
-    if target < 1 or not 1 <= per_category <= 10 or days < 1 or max_batches < 1:
-        raise ValueError("per_category debe estar entre 1 y 10; target, days y max_batches deben ser positivos")
+    if target != 2000 or max_batches < 1:
+        raise ValueError("target debe ser 2000 y max_batches debe ser positivo")
     now = now or datetime.now(timezone.utc)
-    local = now.astimezone(ZoneInfo("America/Mexico_City"))
-    # Una cuota compartida desde el viernes 00:00 hasta el siguiente jueves.
-    period = (local.date() - timedelta(days=(local.weekday() - 4) % 7)).isoformat()
-    before = (now - timedelta(days=days)).date().isoformat()
-    log_path = log_path or (LOG if path == CORPUS else path.with_suffix(".jsonl"))
-    weekly_saved = Counter()
-    if mode == "weekly" and log_path.exists():
-        for line in log_path.read_text(encoding="utf-8").splitlines():
-            entry = json.loads(line)
-            if entry.get("mode") == "weekly" and entry.get("period_start") == period:
-                weekly_saved.update(entry["per_category_added"])
+    if path.exists():
+        current = read_corpus(path)
+        validate_corpus(current)
+        if len(current) != target:
+            raise ValueError(f"El corpus contiene {len(current)} noticias; se requieren {target}")
+        return {"mode": "initial", "already_saved": len(current), "added": 0,
+                "total_after": len(current), "complete": True, "errors": []}
     current = read_corpus(path)
     validate_corpus(current)
     present = {r["id"] for r in current}
@@ -419,10 +414,8 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
     titles = {r['title'].casefold() for r in current}
     bodies = {r['description/body'].casefold() for r in current}
     original = Counter(r["category"] for r in current)
-    quotas = ({k: target // 3 + (i < target % 3) for i, k in enumerate(CATEGORIES)}
-              if mode == "init" else {k: per_category for k in CATEGORIES})
-    expected = {c: max(0, quotas[c] - (original[c] if mode == "init" else weekly_saved[c]))
-                for c in CATEGORIES}
+    quotas = {k: target // 3 + (i < target % 3) for i, k in enumerate(CATEGORIES)}
+    expected = {c: max(0, quotas[c] - original[c]) for c in CATEGORIES}
     errors, added = [], []
     client = session or requests.Session()
     try:
@@ -432,15 +425,13 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
             if not needed:
                 continue
             feeds = fetch_feeds(client, category, errors)
-            if mode == 'init' and needed > len(feeds):
+            if needed > len(feeds):
                 for page in range(2, min(5, max_batches) + 1):
                     feeds.extend(fetch_feeds(client, category, errors, page=page))
             feeds.sort(key=lambda a: a['date'], reverse=True)
             for item in feeds:
                 if have >= needed:
                     break
-                if mode == "weekly" and not before <= item["date"] <= now.date().isoformat():
-                    continue
                 if (item['id'] not in present and canonical_url(item['url']) not in urls
                         and item['title'].casefold() not in titles and item['description/body'].casefold() not in bodies):
                     present.add(item["id"])
@@ -449,7 +440,7 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
                     bodies.add(item['description/body'].casefold())
                     added.append(item)
                     have += 1
-            if mode == "init" and have < needed:
+            if have < needed:
                 for item in fetch_archive(client, category, needed - have, present, errors,
                                           max_batches=max_batches):
                     if (canonical_url(item['url']) not in urls and item['title'].casefold() not in titles
@@ -458,29 +449,22 @@ def collect_news(mode="weekly", target=2000, per_category=10, days=8, dry_run=Fa
                         titles.add(item['title'].casefold())
                         bodies.add(item['description/body'].casefold())
                         added.append(item)
-        if not dry_run and added:
+        if len(current) + len(added) == target:
             save_corpus(current + added, path)
     finally:
         if session is None:
             client.close()
     counts = Counter(r["category"] for r in added)
-    report = {"mode": mode, "dry_run": dry_run, "executed_at": now.isoformat(),
+    report = {"mode": "initial", "executed_at": now.isoformat(),
               "already_saved": len(current), "added": len(added),
               "per_category_added": {c: counts[c] for c in CATEGORIES},
               "per_category_expected": expected,
               "per_category_missing": {c: max(0, expected[c] - counts[c]) for c in CATEGORIES},
               "per_source_added": dict(Counter(r["source"] for r in added)),
-              "period_start": period if mode == "weekly" else None,
-              "weekly_already_added": dict(weekly_saved),
-              "total_after": len(current) + (0 if dry_run else len(added)),
+              "total_after": len(current) + len(added),
               "errors": errors,
               "target_met": all(counts[c] >= expected[c] for c in CATEGORIES),
               "complete": (all(original[c] + counts[c] == quotas[c] for c in CATEGORIES)
                            and len(current) + len(added) == target
-                           and len({r['source'] for r in current + added}) >= 3 if mode == 'init'
-                           else all(weekly_saved[c] + counts[c] >= 1 for c in CATEGORIES))}
-    if not dry_run and added:
-        log_path.parent.mkdir(parents=True, exist_ok=True)
-        with log_path.open("a", encoding="utf-8") as stream:
-            stream.write(json.dumps(report, ensure_ascii=False) + "\n")
+                           and len({r['source'] for r in current + added}) >= 3)}
     return report

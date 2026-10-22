@@ -2,7 +2,6 @@
 import csv
 import tempfile
 import unittest
-from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -119,40 +118,6 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(len(rows), 2)
         self.assertEqual(client.calls[2][1]["cmcontinue"], "next")
 
-    def test_weekly_dry_run_and_idempotence(self):
-        with tempfile.TemporaryDirectory() as d:
-            file = Path(d) / "news.tsv"
-            now = datetime(2026, 10, 15, tzinfo=timezone.utc)
-            # Tres feeds, cada uno devuelve un ejemplo en el mismo URL; sólo se guarda uno.
-            with patch.object(c, "FEEDS", {k: [f"https://globalvoices.org/{k}/feed/"] for k in c.CATEGORIES}), \
-                 patch.object(c, "LOG", Path(d) / "log.jsonl"):
-                dry = c.collect_news("weekly", per_category=1, dry_run=True, path=file,
-                                     now=now, session=Client([Response({}, RSS)] * 3))
-                self.assertFalse(file.exists())
-                self.assertEqual(dry["added"], 1)
-                run = c.collect_news("weekly", per_category=1, path=file,
-                                     now=now, session=Client([Response({}, RSS)] * 3))
-                self.assertEqual(run["added"], 1)
-                self.assertEqual(len(c.read_corpus(file)), 1)
-                twice = c.collect_news("weekly", per_category=1, path=file,
-                                       now=now, session=Client([Response({}, RSS)] * 3))
-                self.assertEqual(twice["added"], 0)
-
-    def test_init_uses_archive_for_remaining_quota(self):
-        with tempfile.TemporaryDirectory() as d:
-            file = Path(d) / "news.tsv"
-            item = c.prepare("Relevant news", "Several sentences of text here", "Wikinews",
-                             "finanzas", "2024-10-12", "https://en.wikinews.org/wiki/Example",
-                             "Wikinews", "CC BY", c.WIKINEWS_CC25)
-            with patch.object(c, "fetch_feeds", return_value=[]), \
-                 patch.object(c, "fetch_archive", side_effect=lambda session, category, wanted, ids,
-                                                           errors, max_batches=80: [item] if category == "finanzas" else []), \
-                 patch.object(c, "LOG", Path(d) / "log.jsonl"):
-                result = c.collect_news("init", target=3, path=file, session=Client([]))
-            self.assertEqual(result["added"], 1)
-            self.assertFalse(result["complete"])
-            self.assertEqual(len(c.read_corpus(file)), 1)
-
     def test_wikitext_keeps_names_and_removes_media(self):
         text = """{{date|October 12, 2024}}
 [[File:Photo.jpg|thumb|Photo by [[User:Photographer|Name]] {{image|Someone}}]]
@@ -176,32 +141,6 @@ A source"""
         self.assertEqual(list(c.rss_records(rss, "finanzas", errors)), [])
         self.assertIn("derechos", errors[0])
 
-    def test_weekly_shared_quota_and_next_friday(self):
-        with tempfile.TemporaryDirectory() as d:
-            file = Path(d) / "news.tsv"
-            log = Path(d) / "log.jsonl"
-            def feeds(client, category, errors):
-                return [c.prepare(f"News {category} {i}", f"Authentic fixture text {category} {i}", "Global Voices", category,
-                                  "2026-10-14", f"https://globalvoices.org/{category}/{i}",
-                                  "Writer", "CC BY 3.0", c.GV_LICENSE) for i in range(5)]
-            with patch.object(c, "fetch_feeds", side_effect=feeds):
-                args = dict(per_category=2, path=file, log_path=log, session=Client([]))
-                first = c.collect_news(now=datetime(2026, 10, 15, tzinfo=timezone.utc), **args)
-                self.assertEqual(first["added"], 6)
-                original = (file.read_bytes(), log.read_bytes())
-                again = c.collect_news(now=datetime(2026, 10, 15, tzinfo=timezone.utc), **args)
-                self.assertEqual(again["added"], 0)
-                self.assertTrue(again["complete"])
-                self.assertEqual(original, (file.read_bytes(), log.read_bytes()))
-                # Viernes local (16 UTC) abre una cuota nueva; dry-run no la consume.
-                dry = c.collect_news(now=datetime(2026, 10, 16, 16, tzinfo=timezone.utc),
-                                     dry_run=True, **args)
-                self.assertEqual(dry["added"], 6)
-                self.assertEqual(original, (file.read_bytes(), log.read_bytes()))
-                next_week = c.collect_news(now=datetime(2026, 10, 16, 16, tzinfo=timezone.utc), **args)
-                self.assertEqual(next_week["added"], 6)
-                self.assertEqual(len(c.read_corpus(file)), 12)
-
     def test_reject_unpublished_archive_and_invalid_limits(self):
         page = {"ns": 0, "title": "Unpublished", "revisions":
                 [{"slots": {"main": {"content": WIKITEXT.replace("{{publish}}", "{{develop}}")}}}]}
@@ -210,7 +149,7 @@ A source"""
         page["revisions"][0]["slots"]["main"]["content"] = WIKITEXT
         self.assertIsNone(c.extract_wikinews(page, "deportes"))
         with self.assertRaises(ValueError):
-            c.collect_news(dry_run=True, max_batches=0)
+            c.collect_news(max_batches=0)
         self.assertEqual(c.canonical_url("https://[invalid"), "")
 
     def test_columns_and_tsv(self):
@@ -256,33 +195,6 @@ class NewExtractionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 c.save_corpus([row, dict(row, id='different')], path)
             self.assertEqual(path.read_bytes(), original)
-
-    def test_partial_week_quota_history_and_old_dates(self):
-        with tempfile.TemporaryDirectory() as d:
-            path = Path(d) / 'raw.tsv'
-            log = Path(d) / 'log.jsonl'
-            log.write_text('{"mode":"init","period_start":"2026-10-09","per_category_added":{"finanzas":667}}\n')
-            def feeds(client, category, errors):
-                return [c.prepare(f'News {category} {i}', f'Real fixture {category} {i}',
-                                  'Global Voices', category, '2026-10-14' if i else '2024-01-01',
-                                  f'https://globalvoices.org/{category}/{i}', 'Writer', 'CC BY 3.0', c.GV_LICENSE)
-                        for i in range(4)]
-            with patch.object(c, 'fetch_feeds', side_effect=feeds):
-                args = dict(path=path, log_path=log, now=datetime(2026,10,15,tzinfo=timezone.utc), session=Client([]))
-                report = c.collect_news(**args)
-                self.assertEqual(list(report['per_category_added'].values()), [3,3,3])
-                self.assertTrue(report['complete'])
-                self.assertFalse(report['target_met'])
-                self.assertEqual(list(report['per_category_missing'].values()), [7,7,7])
-                original = {p.name: p.read_bytes() for p in Path(d).iterdir()}
-                again = c.collect_news(**args)
-                self.assertEqual(again['added'], 0)
-                self.assertEqual(again['weekly_already_added'], dict.fromkeys(c.CATEGORIES,3))
-                self.assertEqual(original, {p.name: p.read_bytes() for p in Path(d).iterdir()})
-                c.collect_news(dry_run=True, **args)
-                self.assertEqual(original, {p.name: p.read_bytes() for p in Path(d).iterdir()})
-            with self.assertRaises(ValueError):
-                c.collect_news(per_category=11, path=path)
 
 
 class RetrievalTests(unittest.TestCase):
