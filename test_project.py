@@ -298,5 +298,23 @@ class RetrievalTests(unittest.TestCase):
                     self.assertGreater(rows[0]['score'],0)
 
 
+class EvaluationTests(unittest.TestCase):
+    def test_known_metrics(self):
+        from evaluation import calculate_metrics
+        relevant = {'a': 2, 'b': 1, 'c': 2}
+        metrics = calculate_metrics([{'id': 'x'}, {'id': 'b'}, {'id': 'a'}], relevant)
+        self.assertAlmostEqual(metrics['precision@10'], 0.2)
+        self.assertAlmostEqual(metrics['recall@10'], 2 / 3)
+        self.assertAlmostEqual(metrics['f1@10'], 2 * 0.2 * (2 / 3) / (0.2 + (2 / 3)))
+        self.assertAlmostEqual(metrics['mrr'], 0.5)
+        self.assertGreater(metrics['ndcg@10'], 0)
+
+    def test_benchmark_files_are_provisional_and_well_formed(self):
+        from evaluation import load_benchmark
+        queries, qrels = load_benchmark()
+        self.assertEqual(len(queries), 15)
+        self.assertEqual({len(qrels[q['query_id']]) for q in queries}, {10})
+
+
 if __name__ == '__main__':
     unittest.main()

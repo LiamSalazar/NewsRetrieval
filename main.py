@@ -4,6 +4,7 @@ import joblib
 import spacy
 
 from collector import CORPUS, collect_news, read_corpus, validate_corpus
+from evaluation import evaluate, load_benchmark
 from retrieval import NORMALIZED, VECTORS, corpus_digest, load_nlp, process_corpus, search_news
 
 
@@ -83,9 +84,24 @@ def main():
     parser.add_argument('--field', choices=['title', 'body'], default=None)
     parser.add_argument('--ngram', type=int, choices=[1, 2], default=None)
     parser.add_argument('--representation', choices=['frequency', 'binary', 'tfidf'], default=None)
+    parser.add_argument('--benchmark', action='store_true',
+                        help='Valida el benchmark; con --frozen ejecuta las 12 configuraciones')
+    parser.add_argument('--frozen', action='store_true',
+                        help='Confirma que los qrels fueron revisados y aprobados')
     args = parser.parse_args()
     try:
         ensure_data()
+        if args.benchmark:
+            queries, qrels = load_benchmark()
+            counts = {query['query_id']: len(qrels.get(query['query_id'], {})) for query in queries}
+            if len(queries) != 15 or set(counts.values()) - set(range(10, 16)):
+                raise ValueError('El benchmark debe tener 15 consultas y 10-15 relevantes por consulta')
+            if not args.frozen:
+                print('Benchmark válido pero provisional: revise y apruebe data/qrels.tsv; no se calcularon métricas.')
+                return 0
+            report = evaluate(queries, qrels, bundle=joblib.load(VECTORS), frozen=True)
+            print(f"Evaluación completada: {report['queries']} consultas, {report['configurations']} configuraciones.")
+            return 0
         search_loop(args.query, args.field, args.ngram, args.representation)
     except (OSError, ValueError, RuntimeError) as exc:
         print(f'Problema: {exc}')
