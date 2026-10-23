@@ -1,0 +1,35 @@
+need_id	document_id	proposed_relevance	justification	confidence
+cricket	N81f5047420b0618bd498	0	Propone reglas generales de ciberseguridad para IA ante legisladores, sin relación con cricket.	alta
+cricket	N8c89ed340f42f17412c6	0	La controversia de género concierne a una boxeadora olímpica, no al cricket.	alta
+cricket	N8c96dbad38a13a2a0870	0	Describe una campaña de relaciones públicas de Facebook contra Google, sin cricket.	alta
+cricket	N8ef6b44c60f5e855bd43	0	La cuestión de seguridad afecta motores del Airbus A380, no una actividad de cricket.	alta
+cricket	N902c6387f8818688d87b	0	Es una crónica de fútbol de la Copa UEFA, no cricket.	alta
+cricket	N90d9b7e49fba03d9e4b6	0	Informa el fin del soporte de Windows 98 y Me, sin cricket.	alta
+cricket	N95628130ca5da6585d91	0	La demanda de Cisco a Apple trata una marca tecnológica, sin relación deportiva.	alta
+cricket	N9847932ced333877c456	1	La disputa sobre derechos de imágenes llevó a agencias a boicotear la temporada de Cricket Australia y afectó acreditaciones de Ashes, aunque la investigación abarca deportes en general.	media
+cricket	N9a221b42930ccd26aa84	0	La cancelación por disturbios políticos corresponde al automovilismo de Fórmula Uno, no cricket.	alta
+cricket	N9b370bd574e98ea97b27	0	La expulsión de Brechin de la Copa escocesa corresponde al fútbol, no cricket.	alta
+cricket	Na11635fbb21212ee7d7c	0	Trata riesgos ambientales de aguas residuales de fracking, sin relación con cricket.	alta
+cricket	Na3c16a180c3224ec9934	0	La disputa contractual de gas entre Egipto e Israel no implica instituciones o acontecimientos de cricket.	alta
+cricket	Nb534fc18b10fc70a6178	0	Analiza quién participa en el debate sobre IA en Ecuador, sin cricket.	alta
+cricket	Nb6d9a16ae5835c74811c	0	Describe una crisis energética bangladesí ligada a una guerra, sin asunto de cricket.	alta
+cricket	Nb75250ae2562beeea5c5	0	El informe sobre sobornos en exportaciones australianas de trigo no guarda relación con cricket.	alta
+cricket	Nba13e916851739a9aa24	0	La investigación del FBI aborda una brecha de seguridad de AT&T, sin cricket.	alta
+cricket	Nba5561e40aa03a8cc0a9	0	La dimisión de una ministra ferroviaria británica no se relaciona con cricket.	alta
+cricket	Nc48fcf1cefbd324d2289	0	La sátira de una banda bosnia sobre inteligencia artificial no trata cricket.	alta
+cricket	Nc4d27aa96d10910f6345	0	La decisión sobre la sede de una final de la Copa Mundial de Rugby corresponde a otro deporte.	alta
+cricket	Nc4e56fc56067b8223405	0	La noticia científica sobre velocidad de la evolución no tiene vínculo con cricket.	alta
+cricket	Nc518fbe10ef21aebf6b0	0	Los controles de baterías peligrosas en computadoras de pasajeros son seguridad aérea, no cricket.	alta
+cricket	Nddf57a4a643d6e6592d4	0	La feria de la industria de seguridad en Taipéi no aborda seguridad o gobernanza de cricket.	alta
+cricket	Ne1072fa533ebfab8dd11	0	Es una crónica del Tour de Francia, deporte distinto del cricket.	alta
+cricket	Ne75a69e278b24844603e	0	Analiza el papel energético de China en el Sur Global, sin cricket.	alta
+cricket	Ned28369a57d6c893b83a	0	La entrevista científica trata vida en atmósferas ricas en hidrógeno, sin cricket.	alta
+cricket	Nefa80dafd4af202f3ff2	0	Es una crónica rutinaria del primer ODI India–Sudáfrica, sin controversia institucional.	alta
+cricket	Nf01b8ee6fc583addebe0	0	La suspensión de ventas del Toyota Corolla responde a seguridad automotriz, no cricket.	alta
+cricket	Nf025b7bb6e916b15204e	0	Examina cómo el temor a ser expuesto afecta a personas LGBTQ+ en línea, sin cricket.	alta
+cricket	Nf2817d577138ad88e1aa	0	Trata restricciones de visados entre India y Bangladesh, sin acontecimiento de cricket.	alta
+cricket	Nf5dd6038bcdcab68698a	0	La condena por sobornos de un funcionario chino no se vincula con cricket.	alta
+cricket	Nf7544c64eddba7970623	0	La tecnología para resolver puntuaciones disputadas se refiere al kendo, no cricket.	alta
+cricket	Nf76c271b71b1a5318222	0	Analiza vigilancia integrada en el paisaje urbano, sin cricket.	alta
+cricket	Nf7bd2e3dce03bf17672c	0	Relata una victoria histórica de Nueva Zelanda sobre Australia y posiciones deportivas, sin controversia institucional sustantiva.	alta
+cricket	Nfc9e7fd914900c04d3c7	0	Evalúa subsidios sociales para grupos indígenas de Nepal, sin relación con cricket.	alta

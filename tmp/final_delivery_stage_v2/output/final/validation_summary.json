@@ -1,0 +1,28 @@
+{
+  "status": "frozen_delegated_analytical_validation",
+  "documents": 2000,
+  "unique_document_ids": 2000,
+  "sources": 3,
+  "normalized_documents": 2000,
+  "aligned_corpus_ids": true,
+  "vector_spaces": 12,
+  "all_vector_rows_2000": true,
+  "queries": 15,
+  "difficulty_distribution": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+  },
+  "qrels": 303,
+  "unique_qrels": 303,
+  "pool_pairs": 975,
+  "query_configuration_runs": 180,
+  "top10_results": 1800,
+  "retrieval_judgments": 1800,
+  "unjudged_returns": 0,
+  "zero_similarity_returns": 660,
+  "comparison_rows": 48,
+  "notebook_cells": 25,
+  "notebook_execution_errors": 0,
+  "qrels_sha256": "513e85157843888076332b50b70d265942f5853224ee56d23ba1466ebb402a59"
+}

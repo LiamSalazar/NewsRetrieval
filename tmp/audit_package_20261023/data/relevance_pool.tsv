@@ -1,0 +1,940 @@
+need_id	document_id	discovery_provenance
+cricket	N0044645bd7a06089fd38	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	N00880bccdebe47050b3e	expansion:2
+cricket	N013bd2d432cec694527a	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency
+cricket	N038a28958c9204a8032a	top20:Q10:title:ngram1:tfidf
+cricket	N03e12d86db78b3ccfe58	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	N056017681d5def15ef4c	top20:Q12:title:ngram1:binary
+cricket	N0818e5e95e01d0b44330	expansion:1 | top20:Q11:body:ngram1:tfidf | top20:Q11:title:ngram1:tfidf
+cricket	N096e5bd6c2781b8226bf	top20:Q10:body:ngram1:binary | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf
+cricket	N0a060a294e800a33bb5b	top20:Q11:title:ngram1:tfidf
+cricket	N0b97168ced88fdc76140	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf
+cricket	N1041c84c9e3c0baf77ba	top20:Q11:title:ngram1:tfidf | top20:Q12:title:ngram1:tfidf
+cricket	N12f5f642f18492c63888	top20:Q12:body:ngram2:binary | top20:Q12:body:ngram2:frequency | top20:Q12:body:ngram2:tfidf
+cricket	N1356eb0737f891739a50	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf | top20:Q11:body:ngram1:binary
+cricket	N16978a51a2d84f75b904	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	N1a73c0e37170153c2570	top20:Q11:title:ngram1:tfidf
+cricket	N1afe2320750dcad6587c	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf
+cricket	N22e7b5405db83e5be01a	top20:Q10:body:ngram1:binary | top20:Q11:body:ngram1:tfidf
+cricket	N2424a5f42dffd5e5daea	expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q12:body:ngram1:tfidf
+cricket	N2446ad3ec403302fb149	expansion:3 | top20:Q11:body:ngram1:frequency | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf | top20:Q12:body:ngram2:binary | top20:Q12:body:ngram2:frequency | top20:Q12:body:ngram2:tfidf
+cricket	N24680b43ff00527192d1	top20:Q12:body:ngram1:binary
+cricket	N27e101136efc81e4a972	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency
+cricket	N2a940ae84d158b0eba97	top20:Q12:title:ngram1:tfidf
+cricket	N2c2869be76281e8e30b1	top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	N332335b9cd6f5839ed39	top20:Q11:body:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf
+cricket	N3746e2ae586b2f0a7864	top20:Q11:body:ngram1:binary
+cricket	N3995f768ba610b663a3a	top20:Q10:body:ngram1:binary
+cricket	N39c3ca1828d410ccf0ca	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency
+cricket	N3a857558150ef5c00cb6	expansion:2
+cricket	N3ab8cfceee25e101b28b	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N3bb63c76d03d44fe4da8	top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	N3be38e34f8b7d984e217	expansion:3
+cricket	N3c3caa4c4353f30ff69b	expansion:1 | expansion:2 | expansion:3 | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	N3c999e7f06d1ac6f0f0d	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:body:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N3d04dfbd20d5899a7be7	top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	N3e32942fd9f309924a81	expansion:3 | top20:Q11:body:ngram1:frequency | top20:Q12:body:ngram1:frequency
+cricket	N3eaae6f2fc9044b20873	expansion:1
+cricket	N3efeda4857fbfa3823c0	top20:Q10:title:ngram1:tfidf
+cricket	N3fcab8d78a95a0f44a8b	expansion:2
+cricket	N40c3bbdedb64be2b7862	muestra_no_recuperada_estratificada_v1
+cricket	N4355005340e2c5b83e61	expansion:1
+cricket	N43faef634ecfbaef0391	top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency
+cricket	N46a8185a4030d9d4a069	auditoria_o_negativo_sospechoso | expansion:3 | qrels_provisional_positive | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:tfidf
+cricket	N47ce076bd2ebb79f273c	top20:Q11:body:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf
+cricket	N47f4378cca8c6fbdd273	expansion:3 | top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency
+cricket	N47fc8fca09a041afe5bd	top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf
+cricket	N48ab0ec2266773cc9bff	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N48b03d1d9130ca76555e	top20:Q12:title:ngram1:tfidf
+cricket	N4df2daf47154dc0d1424	top20:Q12:body:ngram1:frequency
+cricket	N4e602d93ae83a819f60e	expansion:2 | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	N4f59aa97b4d71474b578	expansion:3
+cricket	N523afa9789bc6c23c340	top20:Q10:body:ngram1:binary
+cricket	N52f43bf97dc21171aa8b	expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q10:body:ngram1:tfidf | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N54bb2b9bb4e2051f4805	top20:Q11:body:ngram1:binary
+cricket	N5c6ac9c52b0674c1d696	top20:Q10:body:ngram1:binary
+cricket	N5f9ce263e530d6fa61bc	expansion:3 | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:tfidf
+cricket	N61f0e85606d6f84f093b	top20:Q10:title:ngram1:tfidf
+cricket	N61fc960b5abb9a0d397a	muestra_no_recuperada_estratificada_v1
+cricket	N63955836dcc0bba6cb1a	top20:Q11:body:ngram1:binary
+cricket	N65e81b182a681c855c54	expansion:3
+cricket	N672592537d3e2ba00c62	expansion:1 | expansion:2 | expansion:3 | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:tfidf | top20:Q12:body:ngram1:tfidf
+cricket	N6859ae1de8e0568ac216	top20:Q10:body:ngram1:binary
+cricket	N68a8d8ba02398c6be97f	top20:Q11:title:ngram1:tfidf
+cricket	N6f71fff4214abc690bf3	top20:Q11:title:ngram1:tfidf
+cricket	N6fbbf60f137b452cfa28	auditoria_independiente | auditoria_o_negativo_sospechoso | qrels_provisional_positive
+cricket	N7047081f0bace7a9546f	top20:Q11:body:ngram1:frequency
+cricket	N726e5a034789f3acef92	expansion:2 | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q10:title:ngram1:tfidf
+cricket	N73a0e94537438a656b26	expansion:2
+cricket	N751fb6c751f45138636b	top20:Q10:title:ngram1:tfidf
+cricket	N76a5b42f919d740e395e	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N77c8abce741535b13718	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency
+cricket	N77f0f5927db93a573bf3	expansion:2 | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf
+cricket	N789ca8a96461646b764a	top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:tfidf
+cricket	N7b61fecf9468a71d0e98	expansion:2
+cricket	N7d5953cad9ba7debf827	top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	N7f9a31c7d486608276b0	top20:Q11:body:ngram1:binary
+cricket	N807c7fd7e84df4677a7f	top20:Q12:body:ngram1:tfidf | top20:Q12:title:ngram1:tfidf
+cricket	N81d666077c6c69476720	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N81f5047420b0618bd498	top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf
+cricket	N82d3d6c6b9f938cb911a	top20:Q12:title:ngram1:tfidf
+cricket	N85b6a21718c6cc3c5b4e	top20:Q12:body:ngram1:frequency
+cricket	N8b7cddaf6fc0d22fdc8c	top20:Q11:body:ngram1:binary
+cricket	N8c09fb781b3273a89c66	top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:tfidf
+cricket	N8c89ed340f42f17412c6	expansion:3 | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf
+cricket	N8c96dbad38a13a2a0870	top20:Q12:body:ngram1:binary
+cricket	N8e87b1a5b70dc38a7270	expansion:1
+cricket	N8ef6b44c60f5e855bd43	top20:Q10:body:ngram1:frequency | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf
+cricket	N902c6387f8818688d87b	top20:Q12:title:ngram1:tfidf
+cricket	N90d9b7e49fba03d9e4b6	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q11:body:ngram2:binary | top20:Q11:body:ngram2:frequency | top20:Q11:body:ngram2:tfidf | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram2:binary | top20:Q12:body:ngram2:frequency | top20:Q12:body:ngram2:tfidf
+cricket	N91841c2ed8a1d97104c4	top20:Q12:title:ngram1:tfidf
+cricket	N92cca1afd9cd56ca1e74	expansion:3 | top20:Q10:body:ngram1:frequency
+cricket	N955da7a50f6dcf2a86b3	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	N95628130ca5da6585d91	top20:Q10:body:ngram1:binary
+cricket	N95bace0ef01ab739c7c4	top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:tfidf
+cricket	N96d024f8b4405d211c03	muestra_no_recuperada_estratificada_v1
+cricket	N9847932ced333877c456	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	N98c3ea213a8a28e75243	top20:Q12:body:ngram1:binary
+cricket	N9a221b42930ccd26aa84	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:tfidf
+cricket	N9b083a5b1fa4dbbac9da	muestra_no_recuperada_estratificada_v1
+cricket	N9b370bd574e98ea97b27	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf
+cricket	Na11635fbb21212ee7d7c	top20:Q11:title:ngram1:tfidf
+cricket	Na2aa6f4dbab146cddd3e	top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	Na3c16a180c3224ec9934	expansion:2 | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q10:body:ngram2:binary | top20:Q10:body:ngram2:frequency | top20:Q10:body:ngram2:tfidf
+cricket	Na74458ec6e0738239a74	expansion:1
+cricket	Na752c3b986b923895d0e	expansion:2
+cricket	Na91b2a59972cdd058940	top20:Q11:title:ngram1:tfidf | top20:Q12:title:ngram1:tfidf
+cricket	Nab65c8fa00248bcb1387	expansion:1 | top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf
+cricket	Nacc8fc8530fc0f5be9f5	top20:Q12:title:ngram1:tfidf
+cricket	Nae8058db074523a6a4d6	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency
+cricket	Nb03eeac47dc39528c5e2	top20:Q12:body:ngram1:frequency
+cricket	Nb534fc18b10fc70a6178	expansion:1 | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	Nb6d9a16ae5835c74811c	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	Nb75250ae2562beeea5c5	expansion:1 | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram2:binary | top20:Q12:body:ngram2:frequency | top20:Q12:body:ngram2:tfidf
+cricket	Nb753e83732613be9d004	muestra_no_recuperada_estratificada_v1
+cricket	Nba13e916851739a9aa24	top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf
+cricket	Nba5561e40aa03a8cc0a9	top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:tfidf
+cricket	Nbeb5c1b0b65c79c6728a	top20:Q11:body:ngram1:binary
+cricket	Nc48fcf1cefbd324d2289	top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency
+cricket	Nc4d27aa96d10910f6345	top20:Q12:title:ngram1:tfidf
+cricket	Nc4e56fc56067b8223405	top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf
+cricket	Nc518fbe10ef21aebf6b0	expansion:1 | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf
+cricket	Nc7f83d7642923cbbdd95	muestra_no_recuperada_estratificada_v1
+cricket	Ncb384be212c8be08d9b9	expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf | top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q12:body:ngram1:tfidf
+cricket	Nce0dc9e659d5e9924bf9	qrels_provisional_positive | revision_previa
+cricket	Nce7ca2e7cd7be80c7e93	top20:Q11:body:ngram1:binary
+cricket	Nced7e9797cf24856d0e4	top20:Q10:title:ngram1:tfidf
+cricket	Nd42905da52a2e40451cb	expansion:3
+cricket	Nd53002e06b6bf5b2e2aa	expansion:3 | top20:Q11:body:ngram1:tfidf
+cricket	Nddf57a4a643d6e6592d4	expansion:2 | top20:Q10:body:ngram1:frequency | top20:Q11:body:ngram1:frequency | top20:Q11:body:ngram1:tfidf
+cricket	Ne0b8b941092c4c505aef	top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	Ne1072fa533ebfab8dd11	expansion:2 | top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:tfidf
+cricket	Ne2c2cd376116bbe5742b	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency
+cricket	Ne75a69e278b24844603e	top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	Ne8de8b8780d0aa4db284	top20:Q12:title:ngram1:binary
+cricket	Ned28369a57d6c893b83a	top20:Q12:body:ngram1:frequency | top20:Q12:body:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	Ned762306ebc4cef40f39	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | top20:Q10:body:ngram1:tfidf | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:body:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	Nee4d3fa87cfd9eab2e48	expansion:1 | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency
+cricket	Nefa80dafd4af202f3ff2	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	Nf01b8ee6fc583addebe0	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q12:body:ngram1:binary
+cricket	Nf025b7bb6e916b15204e	top20:Q12:body:ngram1:binary | top20:Q12:body:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	Nf2817d577138ad88e1aa	top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:frequency | top20:Q10:body:ngram1:tfidf
+cricket	Nf5dd6038bcdcab68698a	top20:Q12:title:ngram1:tfidf
+cricket	Nf61a5d15d56a98823d46	auditoria_o_negativo_sospechoso | qrels_provisional_positive
+cricket	Nf68a8fabaed54bbd6b85	auditoria_independiente | qrels_provisional_positive | revision_previa | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:title:ngram1:binary | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	Nf7544c64eddba7970623	top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q10:title:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q11:title:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency | top20:Q12:title:ngram1:tfidf
+cricket	Nf76c271b71b1a5318222	top20:Q11:body:ngram1:binary | top20:Q11:body:ngram1:frequency | top20:Q12:body:ngram1:binary
+cricket	Nf7bd2e3dce03bf17672c	expansion:1 | expansion:2 | expansion:3 | top20:Q10:body:ngram1:tfidf | top20:Q10:title:ngram1:binary | top20:Q10:title:ngram1:frequency | top20:Q11:body:ngram1:tfidf | top20:Q11:title:ngram1:binary | top20:Q11:title:ngram1:frequency | top20:Q12:body:ngram1:tfidf | top20:Q12:title:ngram1:binary | top20:Q12:title:ngram1:frequency
+cricket	Nf7ee9e9d196704e8a15f	top20:Q10:title:ngram1:tfidf
+cricket	Nf815726d6957146c2f4c	expansion:1
+cricket	Nfc4d0072b6fcd38b21e7	top20:Q10:title:ngram1:tfidf
+cricket	Nfc9e7fd914900c04d3c7	expansion:1 | top20:Q10:body:ngram1:binary | top20:Q10:body:ngram1:tfidf
+cricket	Nfd5789d92a14d16c3d9a	expansion:1
+energy	N022681ee9530b90ba5e2	top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	N024f838bbb34527034fb	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q06:body:ngram1:frequency
+energy	N041ba1f1bd6051491c77	top20:Q04:body:ngram1:frequency
+energy	N0546cc6a13bab95de1cc	expansion:3
+energy	N085db6264d833bc557a8	expansion:1 | top20:Q04:body:ngram1:frequency
+energy	N090e81878874b2849759	expansion:2 | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf
+energy	N0a370f6bece1558a0bb2	expansion:1 | expansion:2 | expansion:3 | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N0b6ef37c6249be390af2	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N0b7dca731a735582ed42	expansion:1
+energy	N0bea6bb9f4b1cb8345dd	expansion:3
+energy	N0f34fc85246ff49cb383	top20:Q06:body:ngram2:binary | top20:Q06:body:ngram2:frequency | top20:Q06:body:ngram2:tfidf
+energy	N0f96981ae1db1a5362d6	muestra_no_recuperada_estratificada_v1
+energy	N104276fbb692f7123f7d	top20:Q06:body:ngram2:binary | top20:Q06:body:ngram2:frequency | top20:Q06:body:ngram2:tfidf
+energy	N15c7d0c67c4e505cde3e	expansion:3
+energy	N17e9806689418b2b52b6	top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	N18514254f35848c61f2e	top20:Q05:body:ngram1:binary
+energy	N1ae2ef79084f4e696b40	top20:Q06:body:ngram1:binary
+energy	N201414d6fa448b96091f	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N2021193f1367e4bbfd71	expansion:2 | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:tfidf
+energy	N212a3a5e53db705deef7	top20:Q05:body:ngram1:binary
+energy	N21da9c7fb09f7795af1e	expansion:1 | top20:Q04:body:ngram1:tfidf
+energy	N228007e66e1ba91965b3	top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	N257d91842d98092e8dc0	top20:Q04:body:ngram1:binary
+energy	N284042882b3b6949c9df	expansion:1 | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf | top20:Q06:body:ngram1:binary
+energy	N28b293c58ec1d7720846	top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf
+energy	N2969a0d07d07058fe99a	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N29a0b29420616318a00e	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency
+energy	N29c70a121aaad10b35d7	top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf
+energy	N2a3988f9d050479c986f	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N2ad5da320d295655ed2e	top20:Q05:body:ngram1:binary
+energy	N2af7b17bdacaa6e43ec6	expansion:3 | qrels_provisional_positive | revision_previa
+energy	N2f163c48e878f988317e	expansion:2 | top20:Q05:body:ngram1:tfidf
+energy	N30e731c97777938b725c	top20:Q06:body:ngram2:binary | top20:Q06:body:ngram2:frequency | top20:Q06:body:ngram2:tfidf
+energy	N31fced952ff25247d269	top20:Q06:body:ngram1:binary
+energy	N324d69ce68444f604b5d	top20:Q05:body:ngram1:binary
+energy	N32cf6e0d73cbcfea086e	auditoria_independiente | qrels_provisional_positive | revision_previa | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N362d35089bbee01302e6	auditoria_independiente | expansion:2 | qrels_provisional_positive | revision_previa | top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf | top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	N369c75c61c090f34d853	top20:Q05:body:ngram1:frequency
+energy	N378386d97c90fb3b520d	expansion:3
+energy	N3a239cc6004ac80a4798	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N3b12554d5730107572f5	top20:Q05:title:ngram1:tfidf
+energy	N3ba8d1221e13a044a903	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N3bd0375aed03853fd0d0	top20:Q06:body:ngram1:binary
+energy	N3be38e34f8b7d984e217	top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:tfidf
+energy	N3da8a56ee9ee6503a824	auditoria_independiente | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency
+energy	N419092a8c95f1f7abb55	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N424c1c6c396612b116a5	top20:Q06:title:ngram1:tfidf
+energy	N436b901f8321056ed36e	top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	N442125aa7f0e81088a6a	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N4852e778b63b6520b275	top20:Q05:title:ngram1:tfidf
+energy	N4c3460d86018cbe468dd	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N4cbcf992cfb9009c12a6	expansion:1 | expansion:3 | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N4ef0ca2205558cc537bc	top20:Q05:body:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N4ff224eaa3d31c8fd134	top20:Q05:title:ngram1:tfidf
+energy	N56a7bd39ad669b884cae	expansion:1 | qrels_provisional_positive | revision_previa | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf | top20:Q06:body:ngram1:tfidf
+energy	N58320b2a30e5d4515a90	top20:Q04:title:ngram1:tfidf
+energy	N589bf969b05c15f2883a	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N5936c4cffa73de1d0cd2	top20:Q05:body:ngram1:binary
+energy	N5b29aeb04957cac34b4c	qrels_provisional_positive | revision_previa
+energy	N5d05fdfb017a40511c6a	top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	N5fbe78b1e2531db39cca	top20:Q06:body:ngram1:frequency
+energy	N606b727d5b78fcc7827f	muestra_no_recuperada_estratificada_v1
+energy	N6191db485e21eb68ef02	top20:Q04:body:ngram1:tfidf
+energy	N61fc960b5abb9a0d397a	top20:Q04:body:ngram2:binary | top20:Q04:body:ngram2:frequency | top20:Q04:body:ngram2:tfidf
+energy	N63416be2941153c1b37d	expansion:2 | qrels_provisional_positive | revision_previa | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N64f14996acf3be3f20bf	top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N66ba7491cd24213c657b	top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N66c37fa87c3904149f0f	top20:Q04:body:ngram2:binary | top20:Q04:body:ngram2:frequency | top20:Q04:body:ngram2:tfidf
+energy	N6a5541a339dd623597ad	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N6d5dabafd07ffc1e2b8c	top20:Q06:body:ngram2:binary | top20:Q06:body:ngram2:frequency | top20:Q06:body:ngram2:tfidf
+energy	N77e74354cb4ae332c665	expansion:3
+energy	N7835793017091df1109c	top20:Q05:body:ngram1:frequency
+energy	N789ca8a96461646b764a	muestra_no_recuperada_estratificada_v1
+energy	N7981bb8be586c18eb3d1	expansion:3
+energy	N7b40c8a937fb41ccdf52	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	N7bdce0b65c60351b6efb	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency
+energy	N7bde45da0ef5a9e00f7e	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N7db3e8b2fa1d43da44f7	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency
+energy	N7f9a31c7d486608276b0	top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	N81f5047420b0618bd498	muestra_no_recuperada_estratificada_v1
+energy	N822419fcdaf47c1a8c94	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N840cf2cf6a9d4976b8bf	top20:Q04:title:ngram1:tfidf
+energy	N8558ef67e8864b21fa04	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N868c6f4dccc48ff04e38	top20:Q05:body:ngram1:binary
+energy	N86bacb989508e07fd036	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency
+energy	N8aec9b51f9bc3f2b515a	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf | top20:Q06:title:ngram1:tfidf
+energy	N8ee0929d2792b53eede6	top20:Q06:title:ngram1:frequency
+energy	N8fa681b7241545e38e46	expansion:3
+energy	N91c6e09e59f02a17f4ee	expansion:3 | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	N95bace0ef01ab739c7c4	top20:Q06:body:ngram1:binary
+energy	N970f120b2c4f3a6ae073	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N976725ebc08b7fe9ed1f	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	N97c2e9b0ae7d8e6e56e1	expansion:1 | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:body:ngram2:binary | top20:Q04:body:ngram2:frequency | top20:Q04:body:ngram2:tfidf | top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf | top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	N99ad09f5eec724a5620e	top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	N9b083a5b1fa4dbbac9da	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency
+energy	N9d9734f909be1304aa8c	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency
+energy	N9db5aaa64632dd51380f	top20:Q06:body:ngram1:binary
+energy	Na210ae5067cd4f6da3b5	expansion:1 | expansion:2 | qrels_provisional_positive | revision_previa | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:body:ngram2:binary | top20:Q04:body:ngram2:frequency | top20:Q04:body:ngram2:tfidf | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q04:title:ngram2:binary | top20:Q04:title:ngram2:frequency | top20:Q04:title:ngram2:tfidf | top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf | top20:Q06:title:ngram1:binary
+energy	Na2cb0a1d823b53b2a128	top20:Q04:title:ngram1:tfidf | top20:Q06:title:ngram1:tfidf
+energy	Na3c16a180c3224ec9934	top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q06:body:ngram1:binary
+energy	Na3f0a1a9a3fe238caf0a	expansion:3
+energy	Na3f9a58e68bc3a8e9716	top20:Q04:title:ngram1:tfidf
+energy	Na5fd2e6fdf734dd8f186	expansion:2
+energy	Na61c9c1c41800f2a5977	expansion:1
+energy	Na6813ef63597b0be0959	top20:Q05:body:ngram1:tfidf
+energy	Na6f7cec411cd15b9c17d	muestra_no_recuperada_estratificada_v1
+energy	Na93a56197c25fac3c361	top20:Q06:body:ngram1:frequency | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	Nad189eb3143202cf08e1	expansion:3
+energy	Nad26b04d95b0fa9814ec	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	Nae164567d2e60c04066d	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency
+energy	Naea3db6419113dec98b9	top20:Q04:body:ngram1:binary
+energy	Nb106d6a3e2cafa93513e	top20:Q04:body:ngram1:binary
+energy	Nb4d64341116a35d9725a	top20:Q05:body:ngram1:binary
+energy	Nb5f272c4739b008af414	top20:Q06:title:ngram1:tfidf
+energy	Nb6cff60b46df027329cd	top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:tfidf | top20:Q06:body:ngram1:tfidf
+energy	Nb6d9a16ae5835c74811c	auditoria_o_negativo_sospechoso | expansion:2 | qrels_provisional_positive | top20:Q05:body:ngram1:frequency
+energy	Nb744e63b1da77bec8d89	expansion:2
+energy	Nba5561e40aa03a8cc0a9	top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:tfidf
+energy	Nba99a871ece7a60e96d4	top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Nbb6ea981d4a8a88c3791	top20:Q05:body:ngram1:binary | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	Nbb95c6b0626ba223f871	auditoria_o_negativo_sospechoso | expansion:1 | expansion:3 | qrels_provisional_positive | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	Nbef88d896185af052f43	top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:title:ngram1:tfidf
+energy	Nbfabf1e483f413a26117	expansion:3 | top20:Q04:body:ngram1:frequency | top20:Q04:title:ngram1:tfidf
+energy	Nbfd89e0902581e91dd97	expansion:1 | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:body:ngram2:binary | top20:Q04:body:ngram2:frequency | top20:Q04:body:ngram2:tfidf | top20:Q05:body:ngram1:tfidf | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Nc02982ff0ffca30433ed	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	Nc0a591476902474194da	top20:Q06:title:ngram1:tfidf
+energy	Nc5bc2e58b608ce969bd5	top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency
+energy	Nc7f83d7642923cbbdd95	top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf
+energy	Nc8019a1e851ce49d02f8	top20:Q04:body:ngram1:binary | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	Nc8ef11b54b1451d86839	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	Nc93c46ec6969b9b02758	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	Nca15fc07b25ccfe4b72a	top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:tfidf
+energy	Ncac756d9227dc4fff979	expansion:2
+energy	Nce658f21fe27f174b4f1	expansion:2 | expansion:3 | top20:Q04:body:ngram1:tfidf | top20:Q05:body:ngram1:binary
+energy	Nd00f4a574528048de1f5	expansion:2
+energy	Nd43cb049bb104799e27e	expansion:2 | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf
+energy	Nd453ee7b0190c113715d	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q06:body:ngram1:binary
+energy	Nd6c78289ce6793f17836	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | qrels_provisional_positive | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q05:body:ngram1:tfidf | top20:Q06:body:ngram1:frequency
+energy	Nd8ba048d277f77a07996	top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	Ndacb0c1861b384de9e38	top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency | top20:Q04:title:ngram1:tfidf | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	Ndc8799527e8a2194f526	expansion:1 | expansion:2 | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf
+energy	Nddc712ff4d86df14a2c4	top20:Q05:body:ngram1:frequency
+energy	Nde33bd36dbb6891bec06	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Ndf25bc8617b275af6798	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Ndf754ac11111bf7ab401	top20:Q06:body:ngram1:binary
+energy	Ndfc5ff43f3361ea0ef1a	top20:Q06:body:ngram1:binary
+energy	Ne21000ebd6fc22b37927	auditoria_o_negativo_sospechoso | expansion:1 | qrels_provisional_positive | top20:Q04:body:ngram1:binary | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf | top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Ne73771705fe605c54b2e	expansion:1
+energy	Ne75a69e278b24844603e	expansion:2 | top20:Q04:body:ngram1:binary
+energy	Nebecb238ca5faae22d26	top20:Q05:body:ngram1:binary
+energy	Nec75b0b78d5491b08f9b	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q05:title:ngram1:tfidf
+energy	Nf20308362c3303bdb30f	top20:Q04:title:ngram1:tfidf | top20:Q06:body:ngram1:binary | top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Nf21f42f4944983b17b6d	top20:Q05:body:ngram1:binary
+energy	Nf2817d577138ad88e1aa	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency | top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency
+energy	Nf330579fd923d78a54aa	top20:Q06:title:ngram1:binary | top20:Q06:title:ngram1:frequency | top20:Q06:title:ngram1:tfidf
+energy	Nf3989ceb32a87507e038	top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	Nf63e3518406b630325c9	expansion:3
+energy	Nf6498c1b357e3651b22c	expansion:3
+energy	Nf6c17d10b48053ad8c70	top20:Q05:title:ngram1:binary | top20:Q05:title:ngram1:frequency
+energy	Nf7ee9e9d196704e8a15f	expansion:2
+energy	Nfb3539bf0113406e0127	top20:Q06:body:ngram1:frequency | top20:Q06:body:ngram1:tfidf
+energy	Nfc1773512b7852e00d96	expansion:2 | top20:Q05:body:ngram1:binary | top20:Q05:body:ngram1:frequency | top20:Q05:body:ngram1:tfidf | top20:Q05:body:ngram2:binary | top20:Q05:body:ngram2:frequency | top20:Q05:body:ngram2:tfidf
+energy	Nfc3b989ed2bb0dca0092	expansion:1 | top20:Q04:body:ngram1:frequency | top20:Q04:body:ngram1:tfidf
+energy	Nfd2a87dc09addffb3f80	expansion:1 | expansion:3
+energy	Nfd5789d92a14d16c3d9a	muestra_no_recuperada_estratificada_v1
+energy	Nfe14828ecc9d18a9d641	top20:Q04:body:ngram1:binary
+energy	Nfeb81a77ff76b552498d	expansion:1 | top20:Q04:title:ngram1:binary | top20:Q04:title:ngram1:frequency
+football	N0044645bd7a06089fd38	top20:Q07:body:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N013bd2d432cec694527a	expansion:3 | top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf
+football	N0271c63877bda1f35396	expansion:2
+football	N038a28958c9204a8032a	top20:Q07:title:ngram1:tfidf | top20:Q09:title:ngram1:tfidf
+football	N0598ede14c97b4a454d7	top20:Q09:body:ngram1:binary
+football	N0722bd7f8d743e2d7100	top20:Q09:body:ngram1:tfidf
+football	N0786a81dda8a5b421e04	top20:Q08:body:ngram1:binary
+football	N085a3e5613a25770afc8	top20:Q07:body:ngram1:tfidf
+football	N088ef9bd21434e7211ab	top20:Q07:body:ngram1:frequency | top20:Q07:title:ngram1:frequency
+football	N0a084491727c273576ee	top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	N0ab225dc41bac7f77b97	auditoria_o_negativo_sospechoso | qrels_provisional_positive | top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf | top20:Q07:title:ngram1:tfidf | top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:frequency
+football	N0b97168ced88fdc76140	qrels_provisional_positive | revision_previa | top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	N0d15e26cca1f6b6c0b50	top20:Q07:body:ngram1:binary
+football	N0dc4835f866a5ea72eac	top20:Q09:body:ngram1:frequency
+football	N0e9da7ce86d1246a6948	top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	N0ed705f5b130729c8e7e	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:tfidf
+football	N0effbe5348cd1b0c349b	top20:Q09:body:ngram1:frequency
+football	N1339f695c6b64861233a	top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	N1354bca8cd88e479f64c	top20:Q07:title:ngram1:frequency
+football	N1356eb0737f891739a50	top20:Q09:body:ngram1:binary | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N15032c6b883a9a24b97a	top20:Q08:title:ngram1:tfidf
+football	N1570499e47fa4fd3b5fc	expansion:1 | expansion:2 | top20:Q08:body:ngram1:tfidf
+football	N15ab784279f1b0578ea2	top20:Q07:title:ngram1:frequency
+football	N164ac915ee08e1a913eb	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	N1662e494daa96619947d	top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	N16978a51a2d84f75b904	top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:tfidf | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N17d2541582ec63262e64	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	N188a0a32d07331534f66	expansion:2
+football	N199265886827685a6921	expansion:1 | expansion:3 | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf | top20:Q08:body:ngram1:binary
+football	N1a2ca6e4c46db22b7f8f	top20:Q09:body:ngram1:frequency
+football	N1a52e7db426043cbd142	expansion:1
+football	N1b705550a7a61720820e	top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:tfidf
+football	N1b725dc4630e2022cebd	expansion:1
+football	N1d258f5a9471896238e7	top20:Q08:body:ngram1:frequency
+football	N1f1a30a91a58c7037d92	top20:Q09:body:ngram1:frequency
+football	N1f2ad5cf2c532adfbc33	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	N2021193f1367e4bbfd71	top20:Q09:body:ngram1:binary
+football	N203dcffc76a635bb758c	top20:Q08:body:ngram1:binary
+football	N2070c1d6e2de2b2d49b7	top20:Q07:body:ngram1:frequency
+football	N20fb508352d2ca32cddc	top20:Q09:body:ngram1:tfidf | top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	N21da9c7fb09f7795af1e	muestra_no_recuperada_estratificada_v1
+football	N232c13853c818b3f1a36	top20:Q08:body:ngram1:tfidf
+football	N2446ad3ec403302fb149	expansion:1 | top20:Q09:body:ngram1:tfidf
+football	N24680b43ff00527192d1	top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	N265b8a4c4fb23e3d50b8	top20:Q08:title:ngram1:tfidf
+football	N277fa3a10c30f2110bcb	top20:Q08:body:ngram1:frequency
+football	N27e101136efc81e4a972	qrels_provisional_positive | revision_previa | top20:Q09:title:ngram1:tfidf
+football	N2920f3fd3548c584b6d0	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	N2b48b5724a835773eb65	top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	N2b5cd342cd832be472b0	top20:Q07:body:ngram1:binary | top20:Q07:title:ngram1:binary | top20:Q08:title:ngram1:tfidf | top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	N2e2e0995cb5238eb0b1a	top20:Q08:body:ngram1:tfidf | top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	N2f3f05942ef8485456fc	expansion:2
+football	N2ff911615482fa218140	top20:Q07:title:ngram1:frequency
+football	N31255f68568e193c37a9	top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	N3133f475a6328c4f4742	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	N31ef90ffd66005568561	top20:Q09:body:ngram1:frequency
+football	N32ce5935ea12d5f319ca	expansion:1
+football	N32f297e4d04dccd0b099	expansion:3
+football	N33b2cf7b229509920843	top20:Q07:title:ngram1:binary | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	N356061e9114a323ea3b2	expansion:1
+football	N3754f342ca5fadd62b09	top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:tfidf
+football	N383f7425309e0098c012	top20:Q08:title:ngram1:tfidf
+football	N388eab8f2cfe889adef1	top20:Q09:body:ngram1:frequency
+football	N39c3ca1828d410ccf0ca	expansion:2 | top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:tfidf | top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	N3b845ed89658690f201f	top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	N3bb63c76d03d44fe4da8	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	N3c999e7f06d1ac6f0f0d	top20:Q08:body:ngram1:binary
+football	N3e32942fd9f309924a81	expansion:3 | top20:Q07:body:ngram1:tfidf | top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	N3fe439f5259475a511f3	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	N43faef634ecfbaef0391	top20:Q07:body:ngram1:binary
+football	N46d3375adfb354337104	expansion:1 | expansion:3 | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf
+football	N47f4378cca8c6fbdd273	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	N48b03d1d9130ca76555e	top20:Q07:title:ngram1:tfidf
+football	N49b39c846d77d35c5b2b	expansion:2
+football	N4b2e9e5df2d005388292	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	N4d1f813e10c20d127677	top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	N4e7a4a9a840c2d5f33e9	expansion:3
+football	N4ebf3aad34dcb72d930a	expansion:2 | top20:Q08:body:ngram1:tfidf
+football	N4efb8e2608cb8b34ea12	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	N4ff0f9e398c3b2ce0f2e	top20:Q08:title:ngram1:frequency
+football	N5264521d774301dba75f	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	N533f77c53082b78af4c1	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	N53b9223e6730f1b5c52a	muestra_no_recuperada_estratificada_v1
+football	N54251c5b76f586404bbc	top20:Q07:title:ngram1:binary | top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	N54367756a22503cb9987	qrels_provisional_positive | revision_previa
+football	N54bb2b9bb4e2051f4805	muestra_no_recuperada_estratificada_v1
+football	N55fefae41a05a3b2dd79	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	N5790fa3f5f8fdbdad2ce	expansion:3 | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf
+football	N5c6ac9c52b0674c1d696	top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:tfidf
+football	N5ef878c0f3e3e9d69101	expansion:2 | top20:Q07:body:ngram1:tfidf | top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:tfidf
+football	N601a0a0abfca4e3b7b79	top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf
+football	N60751649e95a9ce77082	top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	N6142bc2c3f427379f2f4	expansion:1 | expansion:2 | top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf | top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	N61fb8fe55d180c5a2e2f	top20:Q09:title:ngram1:tfidf
+football	N63416be2941153c1b37d	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	N65be6fecc0a5ec24fb96	top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:tfidf
+football	N66ad0be43bd1487fca7a	top20:Q08:title:ngram1:tfidf
+football	N695d456be1160caa3e15	muestra_no_recuperada_estratificada_v1
+football	N6a7de4da9283111ad2f7	top20:Q07:body:ngram1:binary
+football	N6b22c8c2865211665841	expansion:2 | top20:Q08:body:ngram1:tfidf
+football	N6c6e41848cbfef766494	top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	N715b5dcdec697060455c	top20:Q07:body:ngram1:binary
+football	N71bec2e10a29fe5f2699	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	N726e5a034789f3acef92	expansion:3 | top20:Q07:body:ngram1:binary | top20:Q07:title:ngram1:tfidf | top20:Q09:body:ngram1:frequency
+football	N73388f00c668b16a4b0d	top20:Q08:title:ngram1:binary
+football	N751fb6c751f45138636b	top20:Q07:title:ngram1:tfidf
+football	N75ebbc6819901c17db35	qrels_provisional_positive | revision_previa | top20:Q07:body:ngram1:binary
+football	N77c8abce741535b13718	top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:frequency | top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:frequency | top20:Q09:body:ngram1:binary
+football	N77f0f5927db93a573bf3	top20:Q07:body:ngram1:tfidf
+football	N79934d265bd3cbd79e4a	top20:Q09:body:ngram1:binary
+football	N79b1209bec62f0b187ec	top20:Q08:body:ngram1:tfidf
+football	N7c829ba48b03d7a74716	expansion:1 | top20:Q07:body:ngram1:frequency | top20:Q07:title:ngram1:frequency | top20:Q09:body:ngram1:binary
+football	N7d5953cad9ba7debf827	top20:Q08:title:ngram1:tfidf
+football	N7f9a31c7d486608276b0	auditoria_independiente | qrels_provisional_positive | revision_previa | top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:frequency
+football	N80e71db0ee2504d79498	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	N8114f4fd98b96312a7f5	top20:Q08:body:ngram1:binary
+football	N822419fcdaf47c1a8c94	expansion:3
+football	N8681820feaef5bb9f785	expansion:1 | expansion:2 | top20:Q08:body:ngram1:tfidf
+football	N86bd6e9c62eed7678855	top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:tfidf
+football	N87134ebe4076dc4e81e1	expansion:2
+football	N881b8792d1d082e1c995	top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:tfidf
+football	N88f459631acf9ee109ed	top20:Q09:body:ngram1:frequency
+football	N89c6f739f975aa155b76	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N8b8bd1608a4d81baa608	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	N8c1ae30a6e1240421aa5	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N8c1f853b04cce1a21e24	top20:Q07:title:ngram1:tfidf
+football	N8c89ed340f42f17412c6	expansion:1 | top20:Q07:body:ngram1:tfidf
+football	N8c96dbad38a13a2a0870	expansion:3
+football	N8db1a25880cdf732a3a9	expansion:3
+football	N8ef6b44c60f5e855bd43	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	N913d0d2a91c6247cbef5	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N9294d0913e1e87229b73	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	N93cb442a4c051a1ed3ea	top20:Q08:title:ngram1:tfidf
+football	N94455788e841f7c576df	top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:frequency
+football	N955da7a50f6dcf2a86b3	top20:Q08:body:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	N95e157dcc6cd6b4b065a	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N975e355e1fca7e40f27b	expansion:1 | expansion:3 | top20:Q07:title:ngram1:frequency
+football	N9847932ced333877c456	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	N98d8cae71609ab8f2885	top20:Q08:body:ngram1:frequency
+football	N99b736a40da27b029bda	top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	N9a221b42930ccd26aa84	top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf | top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:tfidf
+football	N9a99b063b8ab19548224	top20:Q07:body:ngram1:binary
+football	N9c0756ffb766fbc5dff1	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	Na1042bd3d0a97c2a3ee7	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	Na19d411d8c3915287038	top20:Q07:body:ngram1:frequency
+football	Na343d4b94f9d8c18850f	top20:Q07:body:ngram1:tfidf
+football	Na4befa98df45a78f3157	top20:Q08:body:ngram1:binary
+football	Na5fd2e6fdf734dd8f186	top20:Q08:title:ngram1:tfidf
+football	Na6a1cb85512fe91e82cb	top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	Na7a55d7bc7405f2a329a	top20:Q09:body:ngram1:binary
+football	Na8eb11b663397fc6546c	qrels_provisional_positive | revision_previa | top20:Q07:title:ngram1:binary
+football	Na91b2a59972cdd058940	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Naa8dfc42a2d3bfbcb3f2	top20:Q08:body:ngram1:binary
+football	Nac28d4faa522f55f392a	top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	Nad2d1e2534e86ccd6f88	top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf | top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:tfidf
+football	Nadc95c3f5866131b458e	top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	Nae8058db074523a6a4d6	top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:tfidf | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	Naf5fe3c68f86d4bc63ca	expansion:2 | top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	Naf87793c3456aed1e802	top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	Nb0026077d00c87106edf	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Nb20373cccf20b06adaab	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	Nb3f24e39ee8b055098ec	top20:Q08:body:ngram1:frequency
+football	Nb47a0d1b96def08c4a6b	top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:frequency
+football	Nb52ef31d6f481a85dba5	muestra_no_recuperada_estratificada_v1
+football	Nb534fc18b10fc70a6178	top20:Q09:body:ngram1:tfidf
+football	Nb6cff60b46df027329cd	top20:Q09:title:ngram1:tfidf
+football	Nb6d9a16ae5835c74811c	expansion:3 | top20:Q09:body:ngram1:tfidf
+football	Nb9500fc0e8563b48c91d	top20:Q07:body:ngram1:binary
+football	Nba5561e40aa03a8cc0a9	expansion:2
+football	Nbe93e9b46c9999919f33	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency
+football	Nc48fcf1cefbd324d2289	top20:Q07:body:ngram1:binary
+football	Nc58a99178391cbcb572a	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	Nc6acedd77483fabd4ef1	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Nc7e96734b3863e50b3f5	expansion:3
+football	Nc8019a1e851ce49d02f8	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Nc8f4410ed74606f7e178	top20:Q08:body:ngram1:frequency
+football	Nc99c7273fea7d32dfc59	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Ncb2efe1cee545ca1fcad	top20:Q08:body:ngram1:binary
+football	Ncb384be212c8be08d9b9	expansion:2 | top20:Q07:body:ngram1:tfidf
+football	Ncc6c8a4469b392cd85dd	top20:Q07:title:ngram1:binary | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	Ncce353d3b1d43016c212	top20:Q09:body:ngram1:binary
+football	Nced7e9797cf24856d0e4	top20:Q07:title:ngram1:binary
+football	Nd2faf92b3bbbb7b1820e	top20:Q08:body:ngram1:frequency
+football	Nd366c7d6b30f1655bbd9	top20:Q07:title:ngram1:frequency
+football	Nd37b610189b61ed850ba	expansion:3
+football	Nd44329d491e6a40ec27d	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+football	Nd5d8863f80323786df7f	expansion:1 | top20:Q09:body:ngram1:binary
+football	Nd7027803af3bcaa71ea2	top20:Q09:body:ngram1:binary
+football	Nd800e900d88516a52683	top20:Q09:body:ngram1:binary
+football	Nd8e4c72cbae72e845e39	top20:Q08:body:ngram2:binary | top20:Q08:body:ngram2:frequency | top20:Q08:body:ngram2:tfidf
+football	Nd927359d6e36c44c6aac	expansion:1 | expansion:3 | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf | top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf
+football	Nd9a4553834c9b8a625f6	top20:Q08:body:ngram1:binary
+football	Nd9ed5349f246ce71a4ba	qrels_provisional_positive | revision_previa
+football	Ndaaaf20e3eb129e43e9e	auditoria_o_negativo_sospechoso | qrels_provisional_positive | top20:Q08:body:ngram1:frequency
+football	Ndc50817b14873e4f8dcd	top20:Q07:body:ngram1:binary
+football	Ndd760b2a36075ab3f293	top20:Q07:title:ngram1:binary
+football	Nddf57b0189cde84f314c	auditoria_o_negativo_sospechoso | qrels_provisional_positive | top20:Q07:body:ngram1:binary
+football	Nde3a8795b7947c274014	expansion:3
+football	Nded884d926b68745cbe4	expansion:1 | top20:Q07:title:ngram1:frequency
+football	Ndf4fcb3299779d55e801	expansion:2 | top20:Q08:body:ngram1:tfidf
+football	Ndf754ac11111bf7ab401	qrels_provisional_positive | revision_previa
+football	Ne0bb64115b2cb69b6fbb	auditoria_independiente | expansion:1 | top20:Q07:body:ngram1:binary | top20:Q07:title:ngram1:binary | top20:Q09:body:ngram1:binary
+football	Ne0c67efa56959afcc525	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	Ne21babb2a54f28a0f720	expansion:1 | expansion:2 | qrels_provisional_positive | revision_previa | top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf | top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Ne2c1802a9ffac04433d4	expansion:3
+football	Ne2c2cd376116bbe5742b	top20:Q08:body:ngram1:binary | top20:Q08:body:ngram1:frequency
+football	Ne340df4e8c34d8657294	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf
+football	Ne73771705fe605c54b2e	top20:Q09:title:ngram1:tfidf
+football	Ne862788db81387ae3827	expansion:3 | top20:Q08:body:ngram1:binary
+football	Necc0904864cb8c122841	top20:Q09:title:ngram1:tfidf
+football	Ned762306ebc4cef40f39	top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	Nee4d3fa87cfd9eab2e48	expansion:2 | top20:Q07:body:ngram1:binary | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf
+football	Nee51361257fdd5cd53ba	top20:Q07:title:ngram1:binary
+football	Neea76782e39b15a64005	top20:Q09:body:ngram1:binary
+football	Nef8d714235161d11c226	top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:frequency | top20:Q09:body:ngram1:tfidf
+football	Nf01b8ee6fc583addebe0	top20:Q08:body:ngram1:binary
+football	Nf025b7bb6e916b15204e	expansion:2 | top20:Q08:body:ngram1:tfidf
+football	Nf1afa3281663e9f76bc6	muestra_no_recuperada_estratificada_v1
+football	Nf260c97ca3ea95de846d	top20:Q07:title:ngram1:frequency
+football	Nf41c8b689f7474bbaaa7	expansion:1 | expansion:2
+football	Nf439ac37e545b8900344	top20:Q09:title:ngram1:tfidf
+football	Nf63e3518406b630325c9	top20:Q08:body:ngram1:binary
+football	Nf76c271b71b1a5318222	top20:Q09:body:ngram1:binary | top20:Q09:body:ngram1:tfidf | top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency | top20:Q09:title:ngram1:tfidf | top20:Q09:title:ngram2:binary | top20:Q09:title:ngram2:frequency | top20:Q09:title:ngram2:tfidf
+football	Nf7e2f57b1361e9256a1e	top20:Q07:body:ngram1:frequency
+football	Nf7e4f06a2c9b14b64fb2	top20:Q07:body:ngram1:frequency
+football	Nfc4d0072b6fcd38b21e7	qrels_provisional_positive | revision_previa | top20:Q07:title:ngram1:binary | top20:Q07:title:ngram1:frequency | top20:Q07:title:ngram1:tfidf | top20:Q07:title:ngram2:binary | top20:Q07:title:ngram2:frequency | top20:Q07:title:ngram2:tfidf
+football	Nfce3ebb9363e0d5f8dd9	expansion:1 | expansion:3 | top20:Q07:body:ngram1:frequency | top20:Q07:body:ngram1:tfidf | top20:Q08:body:ngram1:frequency | top20:Q08:body:ngram1:tfidf
+football	Nfd0cb020b5e8f0edfe7b	top20:Q08:title:ngram1:binary | top20:Q08:title:ngram1:frequency | top20:Q08:title:ngram1:tfidf
+football	Nfd2282a169f170fc286f	top20:Q09:title:ngram1:binary | top20:Q09:title:ngram1:frequency
+football	Nfed3535e54a1bb9547f6	top20:Q09:body:ngram1:frequency
+football	Nffce84fa4d5b6ae539ec	top20:Q09:body:ngram2:binary | top20:Q09:body:ngram2:frequency | top20:Q09:body:ngram2:tfidf
+surveillance	N0011c109cfb67b5061b8	expansion:3
+surveillance	N011b59c8b489319720a7	muestra_no_recuperada_estratificada_v1
+surveillance	N0248a078e2c93ad82386	top20:Q13:title:ngram1:tfidf
+surveillance	N04c5bfe11d4b19772fb8	top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf
+surveillance	N051030b00da79066a62d	top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	N0598ede14c97b4a454d7	top20:Q15:body:ngram1:binary | top20:Q15:body:ngram1:tfidf
+surveillance	N067c55f3ab4d13725c08	auditoria_o_negativo_sospechoso | expansion:1 | qrels_provisional_positive | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf
+surveillance	N0818e5e95e01d0b44330	top20:Q15:body:ngram2:binary | top20:Q15:body:ngram2:frequency | top20:Q15:body:ngram2:tfidf
+surveillance	N0975a070eab121babc9d	expansion:1 | qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:tfidf
+surveillance	N0c20c0c063ff58d40e7c	top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf
+surveillance	N0c3785f764fa0ef3d7fc	top20:Q15:body:ngram1:frequency
+surveillance	N0dd84251f42de084d0a0	top20:Q15:body:ngram1:tfidf | top20:Q15:body:ngram2:binary | top20:Q15:body:ngram2:frequency | top20:Q15:body:ngram2:tfidf
+surveillance	N0e51be6b141319f50e36	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | qrels_provisional_positive | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:tfidf | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf | top20:Q14:title:ngram2:binary | top20:Q14:title:ngram2:frequency | top20:Q14:title:ngram2:tfidf
+surveillance	N1041c84c9e3c0baf77ba	top20:Q14:body:ngram1:binary
+surveillance	N12f5f642f18492c63888	expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf | top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q15:title:ngram1:tfidf
+surveillance	N1339f695c6b64861233a	top20:Q13:body:ngram1:binary | top20:Q14:body:ngram2:binary | top20:Q14:body:ngram2:frequency | top20:Q14:body:ngram2:tfidf
+surveillance	N140048a327891f282156	expansion:1 | top20:Q14:body:ngram1:tfidf | top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf | top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	N15302879a91a8fe9f437	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	N16978a51a2d84f75b904	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q15:body:ngram1:binary
+surveillance	N17d2541582ec63262e64	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	N1a52e7db426043cbd142	top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf
+surveillance	N1c25c92e597ecc5319de	top20:Q15:body:ngram1:binary
+surveillance	N1c7fab28f59af309ffd7	expansion:2 | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	N2077f4a2eddad67ed834	expansion:1 | top20:Q14:body:ngram1:tfidf | top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	N232ef17f506ddd0536ea	expansion:3 | top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf | top20:Q15:body:ngram2:binary | top20:Q15:body:ngram2:frequency | top20:Q15:body:ngram2:tfidf
+surveillance	N2446ad3ec403302fb149	top20:Q14:body:ngram1:frequency
+surveillance	N25f71955497640b7a2dc	expansion:1 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:tfidf | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf | top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	N2619ead88abca94f49e5	expansion:3
+surveillance	N265b8a4c4fb23e3d50b8	expansion:1 | top20:Q14:body:ngram1:tfidf | top20:Q14:title:ngram1:tfidf
+surveillance	N29abaa32b1b0e42cadc7	top20:Q15:body:ngram1:frequency
+surveillance	N2cb71bf05cf7fceab4d3	top20:Q14:title:ngram1:tfidf
+surveillance	N2f0e3d124700474a55a3	muestra_no_recuperada_estratificada_v1
+surveillance	N2f163c48e878f988317e	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf | top20:Q15:title:ngram1:binary
+surveillance	N2f3f05942ef8485456fc	top20:Q13:body:ngram1:frequency | top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	N2f98406fe60e87aa895a	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	N2fe0da7252b6df39f374	top20:Q15:title:ngram1:tfidf
+surveillance	N318aa6952b490b0a4b01	top20:Q15:title:ngram1:tfidf
+surveillance	N32ce5935ea12d5f319ca	top20:Q13:body:ngram1:frequency
+surveillance	N32d1f4bf9e3e3f112f99	top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf
+surveillance	N32e661c6f934cd0f0501	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	N32f297e4d04dccd0b099	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	N33b2cf7b229509920843	top20:Q15:body:ngram1:binary | top20:Q15:body:ngram1:frequency
+surveillance	N33c6d33203f5065542b0	expansion:3
+surveillance	N34bc25d8d1df9763cd47	top20:Q14:body:ngram1:frequency
+surveillance	N3727b3df128489e7ff05	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N3746e2ae586b2f0a7864	expansion:2
+surveillance	N379504ca259535bb0ed8	top20:Q14:body:ngram1:binary
+surveillance	N383f7425309e0098c012	expansion:2 | top20:Q15:title:ngram1:tfidf
+surveillance	N39c3ca1828d410ccf0ca	top20:Q15:title:ngram1:frequency
+surveillance	N3a06ed85c80521400f2b	expansion:3
+surveillance	N3a0ee614dc1b84538217	auditoria_independiente | expansion:2 | top20:Q13:body:ngram1:tfidf
+surveillance	N3a5aa1eedd6d08a071af	top20:Q13:title:ngram1:tfidf
+surveillance	N3bb63c76d03d44fe4da8	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N3e32942fd9f309924a81	expansion:2
+surveillance	N3e3d4ba3e523f9b64dff	top20:Q15:body:ngram1:binary
+surveillance	N407ce56672cfa057a9f3	expansion:1 | expansion:2 | qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q14:body:ngram2:binary | top20:Q14:body:ngram2:frequency | top20:Q14:body:ngram2:tfidf
+surveillance	N42e31e963fe276500156	top20:Q14:title:ngram1:tfidf
+surveillance	N464bc76a6a29dcb06885	top20:Q15:body:ngram1:binary
+surveillance	N46f163b12322b76f0c97	top20:Q14:body:ngram1:binary
+surveillance	N47f4378cca8c6fbdd273	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	N489c16c34bbca4403e05	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	N4aee88420c35b76e41d8	top20:Q15:title:ngram1:tfidf
+surveillance	N4b2e9e5df2d005388292	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	N4ce2d7b939dc2d80d197	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	N4e1554d8ec70687dab2d	auditoria_independiente
+surveillance	N4e5fdf477c5d3c83bc08	top20:Q15:body:ngram1:binary | top20:Q15:title:ngram1:tfidf
+surveillance	N4e7a4a9a840c2d5f33e9	expansion:1 | top20:Q14:body:ngram1:tfidf
+surveillance	N506499c4355f5d416ead	top20:Q13:title:ngram1:tfidf
+surveillance	N517d9d76a1512a759465	top20:Q15:body:ngram1:binary
+surveillance	N5264521d774301dba75f	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf | top20:Q15:body:ngram1:binary | top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	N52b87fb7b958b70e3db0	expansion:3
+surveillance	N53f11cc6efc01a60e5d8	top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf
+surveillance	N54367756a22503cb9987	top20:Q15:title:ngram1:tfidf
+surveillance	N545e8e6d3c19b5124635	top20:Q13:title:ngram1:tfidf
+surveillance	N549af3c7ece13e828c4d	top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	N54c1ae2462aea640f1f9	top20:Q15:body:ngram1:binary
+surveillance	N56076c7cf1b03857b57e	expansion:2 | top20:Q14:body:ngram1:binary
+surveillance	N563937b369e72c2ac51c	top20:Q15:body:ngram1:frequency
+surveillance	N563fbb9042865e43c0ec	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:tfidf
+surveillance	N58d2d3db4fafd6712c3b	top20:Q15:body:ngram1:frequency
+surveillance	N59dcea27dfccaa58da8d	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N5c0127d37f1c55c1e2fc	top20:Q15:title:ngram1:binary
+surveillance	N5c27860756efdacda0bd	top20:Q15:body:ngram1:tfidf
+surveillance	N5eb3ca6a0673fbdd3a99	top20:Q15:body:ngram1:binary
+surveillance	N5ef878c0f3e3e9d69101	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	N63416be2941153c1b37d	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	N65224854a64a90519d85	expansion:3
+surveillance	N65ed535071ab36e9b54c	top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	N66c37fa87c3904149f0f	muestra_no_recuperada_estratificada_v1
+surveillance	N6792edef1c5cf04cab31	expansion:3
+surveillance	N6910c66a68b4e0f99e31	top20:Q15:title:ngram1:tfidf
+surveillance	N6a7de4da9283111ad2f7	top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf
+surveillance	N6b22c8c2865211665841	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	N6f44a3860a61b1fb7f60	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N6f82d49fdeb8eeb16f39	top20:Q14:body:ngram1:binary
+surveillance	N6f87a799a62e2aa67140	muestreo_externo_cobertura_v1
+surveillance	N7047081f0bace7a9546f	top20:Q15:body:ngram1:tfidf
+surveillance	N715b5dcdec697060455c	top20:Q15:body:ngram1:binary
+surveillance	N725021550d90ececb1e8	top20:Q15:body:ngram1:binary
+surveillance	N726e5a034789f3acef92	top20:Q13:title:ngram1:tfidf | top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	N73388f00c668b16a4b0d	top20:Q13:title:ngram1:binary
+surveillance	N74d69b46d19503597663	top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	N7710707d844339259e65	expansion:3
+surveillance	N774bc2255428a0f5dff5	top20:Q15:body:ngram1:frequency
+surveillance	N77c8abce741535b13718	top20:Q14:body:ngram1:binary
+surveillance	N789ca8a96461646b764a	expansion:1
+surveillance	N7bb52e0b51a67d884772	expansion:1 | qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf | top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	N7bdce0b65c60351b6efb	top20:Q15:body:ngram1:binary
+surveillance	N7cb8c47f561104c25d4d	expansion:3
+surveillance	N7d5953cad9ba7debf827	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N7db3e8b2fa1d43da44f7	top20:Q15:body:ngram1:tfidf
+surveillance	N8002e77bdcfaa28419f1	qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:binary | top20:Q13:title:ngram1:tfidf
+surveillance	N801975c28a5db8726726	top20:Q15:title:ngram1:tfidf
+surveillance	N81ac7ea5cb15367691b2	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N822419fcdaf47c1a8c94	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	N87134ebe4076dc4e81e1	top20:Q13:body:ngram1:frequency
+surveillance	N8a9aa01ba55c134f1e57	expansion:3 | qrels_provisional_positive | revision_previa | top20:Q14:body:ngram1:binary
+surveillance	N8b94e0c4c12444585f29	top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	N8c1ae30a6e1240421aa5	top20:Q15:title:ngram1:binary
+surveillance	N8cfcd8b42cb3f99e4ff4	top20:Q15:body:ngram1:frequency
+surveillance	N8e87b1a5b70dc38a7270	expansion:3 | top20:Q15:body:ngram1:binary | top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	N90fe72381638fb0d0d2c	expansion:3
+surveillance	N9144eaec6a7a826754a2	top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	N921fcc9bef43bfa91694	expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	N95bace0ef01ab739c7c4	top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	N969cee0ff4444292306e	auditoria_independiente | auditoria_o_negativo_sospechoso | expansion:1 | qrels_provisional_positive | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:tfidf | top20:Q13:title:ngram1:tfidf | top20:Q14:body:ngram1:binary
+surveillance	N96e255b0f82c443609f0	expansion:1 | qrels_provisional_positive | revision_previa | top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	N97577c88abc904823c44	top20:Q15:body:ngram1:tfidf | top20:Q15:body:ngram2:binary | top20:Q15:body:ngram2:frequency | top20:Q15:body:ngram2:tfidf
+surveillance	N976725ebc08b7fe9ed1f	top20:Q14:body:ngram2:binary | top20:Q14:body:ngram2:frequency | top20:Q14:body:ngram2:tfidf
+surveillance	N98260c628e288233d7a0	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	N9885a75f0ba3c19c0bb7	top20:Q14:title:ngram1:tfidf
+surveillance	N98ce021fd45984326451	top20:Q13:title:ngram1:frequency
+surveillance	N9d9c3eb4e2b3e5ef24d9	expansion:2 | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:tfidf | top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	N9dc97ad6caec1604b9ae	top20:Q15:body:ngram1:tfidf
+surveillance	N9ed9f8377a6071c43695	top20:Q13:body:ngram1:binary
+surveillance	N9ef405924359fb2b24a1	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	Na1042bd3d0a97c2a3ee7	top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	Na221c668239f7f48bef1	top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency
+surveillance	Na22632a499e1cdb8e20b	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	Na2ffe5433424aa69c9bb	muestra_no_recuperada_estratificada_v1
+surveillance	Na5ba4302853ef42c2eff	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	Na74458ec6e0738239a74	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	Na772ab86c915a036c617	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | qrels_provisional_positive | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:tfidf | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf | top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	Na7aed8172392f6200163	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	Na97b9b9aa0dab5251124	revision_previa
+surveillance	Nacd85b3c0c8067d75ba1	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	Nad2d1e2534e86ccd6f88	top20:Q15:title:ngram1:tfidf
+surveillance	Nae164567d2e60c04066d	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	Naea3db6419113dec98b9	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency
+surveillance	Naf02ddc4f02134af315f	expansion:3
+surveillance	Nb0026077d00c87106edf	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	Nb3586a47ac3f99cf2a95	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	Nb47a0d1b96def08c4a6b	top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency
+surveillance	Nb52ef31d6f481a85dba5	expansion:1 | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf
+surveillance	Nb534fc18b10fc70a6178	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	Nb5f272c4739b008af414	top20:Q13:title:ngram1:tfidf
+surveillance	Nb63c999185a925b49f1c	top20:Q15:body:ngram1:frequency
+surveillance	Nb6d9a16ae5835c74811c	top20:Q15:body:ngram1:binary
+surveillance	Nb782889d3831893d1529	top20:Q15:title:ngram1:frequency
+surveillance	Nb879095ed5dae4c7d003	top20:Q15:body:ngram1:binary
+surveillance	Nb9500fc0e8563b48c91d	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	Nba76ef8b7afb34885bd5	expansion:2 | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	Nbb56d73db583ebf338cc	top20:Q13:title:ngram1:tfidf
+surveillance	Nbb82966e0bd28bb1c593	expansion:2 | top20:Q14:body:ngram1:frequency
+surveillance	Nbe795c61cb879f8ab6c6	expansion:2
+surveillance	Nbe93e9b46c9999919f33	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	Nc3fe272fe6269ef14a9a	top20:Q14:title:ngram1:tfidf
+surveillance	Nc54010c4ec9f2f0affe1	top20:Q15:body:ngram1:frequency
+surveillance	Nc75441a1e8f9b90ea09e	expansion:1 | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q13:title:ngram1:tfidf
+surveillance	Nc946f97344b6528596be	top20:Q15:body:ngram1:tfidf | top20:Q15:title:ngram1:tfidf
+surveillance	Ncb2efe1cee545ca1fcad	top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency
+surveillance	Nccaff2abb695d9717c53	top20:Q14:body:ngram1:binary
+surveillance	Nce22e97e45dcdd22abd8	top20:Q14:body:ngram1:frequency
+surveillance	Ncfafeb67eb16fc27f03a	top20:Q15:body:ngram2:binary | top20:Q15:body:ngram2:frequency | top20:Q15:body:ngram2:tfidf
+surveillance	Nd1d52e7399ecf2b196f9	expansion:3
+surveillance	Nd53de0f1c873158136b1	top20:Q13:body:ngram1:frequency
+surveillance	Nd57a8987881456e87039	muestra_no_recuperada_estratificada_v1
+surveillance	Nd5cc544cd6b85a9bce5f	auditoria_o_negativo_sospechoso | expansion:1 | qrels_provisional_positive | top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf
+surveillance	Nd7fd5cb287bbfa9a0c00	top20:Q15:body:ngram1:tfidf
+surveillance	Nd96004b71171145d4aab	top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf
+surveillance	Nda710fee7429b42259f1	top20:Q15:body:ngram1:frequency
+surveillance	Ndb90770c1491cb876f74	top20:Q15:title:ngram1:tfidf
+surveillance	Ndbbad4210622d54f182f	top20:Q14:title:ngram1:tfidf
+surveillance	Ndc50817b14873e4f8dcd	expansion:2
+surveillance	Ndcf2809f91c968d32407	top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf | top20:Q15:body:ngram1:frequency | top20:Q15:body:ngram1:tfidf
+surveillance	Ndf25bc8617b275af6798	top20:Q15:title:ngram1:frequency
+surveillance	Ndf754ac11111bf7ab401	muestra_no_recuperada_estratificada_v1
+surveillance	Ndfc5ff43f3361ea0ef1a	expansion:3 | top20:Q15:body:ngram1:tfidf | top20:Q15:body:ngram2:binary | top20:Q15:body:ngram2:frequency | top20:Q15:body:ngram2:tfidf
+surveillance	Ne261c8a00cc6d0d8d814	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency | top20:Q15:title:ngram1:tfidf
+surveillance	Ne2c2cd376116bbe5742b	top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	Ne34e0dc7defcdadb7acf	top20:Q14:body:ngram1:binary | top20:Q14:title:ngram1:tfidf
+surveillance	Ne4d4b4eedda88346fc44	top20:Q14:title:ngram1:tfidf
+surveillance	Ne5c93b3b7757519e9753	top20:Q14:body:ngram1:binary
+surveillance	Nedb9a5ce132dbd4edef4	top20:Q13:body:ngram1:frequency | top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	Nee6523dc2c9c5f31ad13	auditoria_independiente | expansion:1 | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	Nf1afa3281663e9f76bc6	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	Nf44c9c06a50a6fe6cc69	expansion:2 | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf
+surveillance	Nf53b8e35c7c424a7ceb3	expansion:2 | top20:Q14:body:ngram1:tfidf
+surveillance	Nf61a5d15d56a98823d46	top20:Q15:title:ngram1:binary | top20:Q15:title:ngram1:frequency
+surveillance	Nf63e3518406b630325c9	expansion:1 | top20:Q13:body:ngram1:binary | top20:Q13:body:ngram1:frequency | top20:Q13:body:ngram1:tfidf | top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf
+surveillance	Nf73c867d09a6f25d1611	top20:Q15:body:ngram1:binary
+surveillance	Nf7544c64eddba7970623	top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency
+surveillance	Nf76c271b71b1a5318222	expansion:2 | top20:Q13:title:ngram1:binary | top20:Q13:title:ngram1:frequency | top20:Q13:title:ngram1:tfidf | top20:Q14:body:ngram1:binary | top20:Q14:body:ngram1:frequency | top20:Q14:body:ngram1:tfidf | top20:Q15:body:ngram1:binary
+surveillance	Nf7f5e5e6a44d276d1d23	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+surveillance	Nf815726d6957146c2f4c	top20:Q14:body:ngram2:binary | top20:Q14:body:ngram2:frequency | top20:Q14:body:ngram2:tfidf
+surveillance	Nfaa4ef47598270e9a354	top20:Q13:body:ngram2:binary | top20:Q13:body:ngram2:frequency | top20:Q13:body:ngram2:tfidf
+surveillance	Nfc3b989ed2bb0dca0092	top20:Q13:body:ngram1:frequency
+surveillance	Nfd92504c3959408187e7	top20:Q15:body:ngram1:binary
+surveillance	Nfe693ca1155cb0ea0f75	top20:Q14:title:ngram1:binary | top20:Q14:title:ngram1:frequency | top20:Q14:title:ngram1:tfidf
+trade	N013bd2d432cec694527a	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:frequency
+trade	N04124f9786f492df8100	top20:Q03:title:ngram1:tfidf
+trade	N051030b00da79066a62d	expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	N0598892381df3bc21db3	expansion:2
+trade	N067c55f3ab4d13725c08	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf
+trade	N0722bd7f8d743e2d7100	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency
+trade	N075011d335170ec04625	top20:Q03:body:ngram1:binary
+trade	N096e5bd6c2781b8226bf	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N0b7dca731a735582ed42	auditoria_independiente | expansion:1 | expansion:2 | expansion:3 | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	N0cc74978d10832ae9b08	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	N0d22be060a483d37deeb	top20:Q03:body:ngram1:binary
+trade	N0ed705f5b130729c8e7e	muestra_no_recuperada_estratificada_v1
+trade	N0fd36f720202de200248	top20:Q02:body:ngram1:binary
+trade	N104276fbb692f7123f7d	top20:Q03:body:ngram1:binary
+trade	N1570499e47fa4fd3b5fc	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N16978a51a2d84f75b904	top20:Q02:title:ngram1:binary
+trade	N17d2541582ec63262e64	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N18746980228e823b6be9	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N188a0a32d07331534f66	expansion:1
+trade	N1af1bcc171e60c04daba	expansion:1 | top20:Q02:body:ngram1:tfidf | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:tfidf
+trade	N1b9a9444c3b59a8b9888	top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf
+trade	N1f248b8a2cfa78a455e2	top20:Q01:body:ngram1:binary | top20:Q01:title:ngram1:tfidf
+trade	N2021193f1367e4bbfd71	top20:Q01:body:ngram1:binary
+trade	N2070c1d6e2de2b2d49b7	expansion:2 | expansion:3
+trade	N24f265bd1305da6cbdb7	top20:Q01:body:ngram1:frequency
+trade	N262f76bbc79782535ccc	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:frequency
+trade	N27e101136efc81e4a972	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency
+trade	N2c7de5dd82c8cf6955b0	top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf
+trade	N2d3a1cef5cea1361fb72	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | qrels_provisional_positive | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N2f3f05942ef8485456fc	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf | top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N303ffe251d0eb545a9e2	top20:Q03:body:ngram1:frequency
+trade	N32a71e25e34b998886ed	top20:Q03:body:ngram1:binary
+trade	N32bfd3056a134076739a	auditoria_o_negativo_sospechoso | qrels_provisional_positive | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N32f297e4d04dccd0b099	top20:Q01:body:ngram1:binary
+trade	N330790994f262b4d1217	expansion:1 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency
+trade	N33c6d33203f5065542b0	muestra_no_recuperada_estratificada_v1
+trade	N36a9825e599865925670	top20:Q02:body:ngram2:binary | top20:Q02:body:ngram2:frequency | top20:Q02:body:ngram2:tfidf
+trade	N379504ca259535bb0ed8	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N3a0f1d6240b44aad9474	top20:Q02:body:ngram1:frequency
+trade	N3bbefc699a914be14246	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N3bd0375aed03853fd0d0	top20:Q03:body:ngram1:frequency | top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N3c3caa4c4353f30ff69b	expansion:3
+trade	N3cb6804f01c2a6834443	qrels_provisional_positive | revision_previa
+trade	N3d65d483369431c3ab26	expansion:3 | top20:Q01:title:ngram1:tfidf
+trade	N3f28c2427d7287bd37fd	expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	N43887a410ad31250dc0e	top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf | top20:Q03:title:ngram1:tfidf
+trade	N44165369665216a94b4e	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N4504645c84a64e6e6a68	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:tfidf | top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N464bc76a6a29dcb06885	muestreo_externo_cobertura_v1
+trade	N46d3375adfb354337104	top20:Q03:body:ngram1:tfidf
+trade	N47f4378cca8c6fbdd273	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency
+trade	N4b2e9e5df2d005388292	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N4b669c9c4b61b14cde01	top20:Q02:body:ngram1:frequency
+trade	N4de6f3afa6a583fea541	top20:Q01:body:ngram1:binary | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N4e5fdf477c5d3c83bc08	top20:Q03:title:ngram1:tfidf
+trade	N4e7a4a9a840c2d5f33e9	auditoria_independiente | expansion:2
+trade	N4fc364155b4e18516687	expansion:2
+trade	N523afa9789bc6c23c340	top20:Q01:body:ngram1:binary
+trade	N538f7cc01377a9f06b01	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N53f11cc6efc01a60e5d8	top20:Q01:title:ngram1:tfidf
+trade	N582d5515d9188a857354	top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf
+trade	N5936c4cffa73de1d0cd2	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N5c27860756efdacda0bd	top20:Q03:body:ngram1:tfidf
+trade	N5c648dae6e29d1b8fe36	expansion:3 | top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:tfidf
+trade	N5caa0ad89d6f0b141f37	muestra_no_recuperada_estratificada_v1
+trade	N5e367e721f43d0b74f4e	expansion:1 | expansion:3 | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N5ef878c0f3e3e9d69101	top20:Q02:body:ngram1:binary
+trade	N60751649e95a9ce77082	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf | top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N63416be2941153c1b37d	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N657fc896897741868d39	expansion:2 | expansion:3 | top20:Q03:body:ngram1:frequency
+trade	N6701cbaf971faf40f6f5	top20:Q02:body:ngram1:binary
+trade	N6910c66a68b4e0f99e31	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:frequency
+trade	N6b4f5e001ccdfa2b591c	top20:Q03:body:ngram1:tfidf
+trade	N6c455b5f07b869229c8b	top20:Q03:body:ngram1:frequency
+trade	N6ce71319d93284056283	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N6e9cac67e02b46673ea3	top20:Q03:body:ngram1:frequency
+trade	N7023f85ab72d4f9fdcb9	top20:Q03:title:ngram1:tfidf
+trade	N7123a913505c0e5187ad	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N73388f00c668b16a4b0d	top20:Q02:body:ngram1:binary | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N77d4ea5ecf03c97ca4b6	top20:Q03:title:ngram1:tfidf
+trade	N77e74354cb4ae332c665	top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	N77f0f5927db93a573bf3	top20:Q01:body:ngram1:binary | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N7835793017091df1109c	top20:Q03:body:ngram1:tfidf | top20:Q03:body:ngram2:binary | top20:Q03:body:ngram2:frequency | top20:Q03:body:ngram2:tfidf
+trade	N7972180e8cd7effb6e07	expansion:1 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf
+trade	N7981bb8be586c18eb3d1	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N7ad1c78b8c2778b15e1c	top20:Q03:title:ngram1:tfidf
+trade	N7c829ba48b03d7a74716	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:tfidf
+trade	N7db3e8b2fa1d43da44f7	auditoria_o_negativo_sospechoso | expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency
+trade	N8002e77bdcfaa28419f1	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf | top20:Q03:body:ngram2:binary | top20:Q03:body:ngram2:frequency | top20:Q03:body:ngram2:tfidf | top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N822419fcdaf47c1a8c94	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N82d3d6c6b9f938cb911a	top20:Q01:title:ngram1:tfidf
+trade	N868c6f4dccc48ff04e38	auditoria_o_negativo_sospechoso | qrels_provisional_positive | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf
+trade	N87134ebe4076dc4e81e1	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf
+trade	N881b8792d1d082e1c995	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N8a45bb38d44180f277c8	expansion:1 | top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:tfidf
+trade	N8b0fb2cc9d56d7503a32	top20:Q02:body:ngram1:frequency
+trade	N8b562e211fd1319d7225	expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf | top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf
+trade	N8c09fb781b3273a89c66	top20:Q01:title:ngram1:tfidf
+trade	N8d766f7ada6e74958288	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	N8e0ca7067153d5e8fe69	expansion:2 | qrels_provisional_positive | revision_previa | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N90f7e3c6d318972b7bb0	top20:Q03:title:ngram1:tfidf
+trade	N90fe72381638fb0d0d2c	expansion:1
+trade	N91841c2ed8a1d97104c4	muestra_no_recuperada_estratificada_v1
+trade	N918cbb85298248d972de	muestra_no_recuperada_estratificada_v1
+trade	N91c6e09e59f02a17f4ee	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N921fcc9bef43bfa91694	top20:Q03:body:ngram1:frequency
+trade	N970f120b2c4f3a6ae073	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N97577c88abc904823c44	top20:Q03:body:ngram1:tfidf
+trade	N97b459b694050399198c	expansion:2
+trade	N98ce021fd45984326451	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	N9940e42274821a232fef	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	N9b083a5b1fa4dbbac9da	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:tfidf | top20:Q02:body:ngram2:binary | top20:Q02:body:ngram2:frequency | top20:Q02:body:ngram2:tfidf
+trade	N9b370bd574e98ea97b27	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	N9e4230ec946d7e649cf2	expansion:2 | expansion:3 | top20:Q01:body:ngram1:tfidf
+trade	N9ef405924359fb2b24a1	expansion:3 | top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:tfidf
+trade	Na04a4656d4dead124cca	top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	Na402623bd6eba7ee1614	expansion:2 | qrels_provisional_positive | revision_previa
+trade	Na74458ec6e0738239a74	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Na8cd367270c76500d02e	top20:Q03:body:ngram1:binary
+trade	Na91b2a59972cdd058940	top20:Q02:title:ngram1:frequency
+trade	Nab266f7908a007c66323	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf
+trade	Nb0026077d00c87106edf	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Nb4134fff0116705bbea5	top20:Q01:body:ngram1:binary
+trade	Nb47a0d1b96def08c4a6b	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:frequency
+trade	Nb52ef31d6f481a85dba5	top20:Q03:body:ngram1:binary
+trade	Nb6d9a16ae5835c74811c	top20:Q02:body:ngram1:tfidf
+trade	Nb744e63b1da77bec8d89	expansion:1 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:tfidf
+trade	Nb75250ae2562beeea5c5	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf
+trade	Nbb56d73db583ebf338cc	top20:Q02:title:ngram1:tfidf
+trade	Nbe93e9b46c9999919f33	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Nc0a591476902474194da	top20:Q02:body:ngram1:binary
+trade	Nc0d2f746f1bfbcb87b8c	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf
+trade	Nc3f38412f74c93a3a4cc	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	Nc663997b117673a3f790	top20:Q03:title:ngram1:tfidf
+trade	Nc787fc7d91591316b561	expansion:2 | expansion:3
+trade	Nc8ef11b54b1451d86839	expansion:1 | top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	Nc946f97344b6528596be	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf | top20:Q03:body:ngram2:binary | top20:Q03:body:ngram2:frequency | top20:Q03:body:ngram2:tfidf | top20:Q03:title:ngram1:tfidf
+trade	Ncad052b6f6efa4ac89d0	top20:Q01:body:ngram1:frequency
+trade	Ncb2efe1cee545ca1fcad	top20:Q02:body:ngram1:binary
+trade	Ncb384be212c8be08d9b9	expansion:1
+trade	Nce7ca2e7cd7be80c7e93	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf
+trade	Nd00f4a574528048de1f5	expansion:1 | expansion:2 | expansion:3 | qrels_provisional_positive | revision_previa | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf | top20:Q02:body:ngram1:tfidf
+trade	Nd0fb1f345ee33d888615	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	Nd381625f7b03d271b017	top20:Q03:body:ngram1:frequency
+trade	Nd44329d491e6a40ec27d	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	Nd453ee7b0190c113715d	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency
+trade	Nd53de0f1c873158136b1	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency
+trade	Nd5d8863f80323786df7f	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency
+trade	Nd8ba048d277f77a07996	top20:Q02:body:ngram1:tfidf | top20:Q02:body:ngram2:binary | top20:Q02:body:ngram2:frequency | top20:Q02:body:ngram2:tfidf
+trade	Nd8c5d06a02916a18deb4	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency
+trade	Nd927359d6e36c44c6aac	top20:Q01:body:ngram1:binary
+trade	Ndb09afb77d42a4ab52aa	muestra_no_recuperada_estratificada_v1
+trade	Nddf57b0189cde84f314c	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:tfidf
+trade	Ndec0fa9bb58fb1c5c368	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf
+trade	Ndfc5ff43f3361ea0ef1a	expansion:1 | top20:Q01:body:ngram1:tfidf
+trade	Ne12512c0758ed65a2ff9	expansion:3 | top20:Q02:body:ngram1:binary
+trade	Ne13eb55edf540c62dcca	top20:Q03:body:ngram1:frequency | top20:Q03:body:ngram1:tfidf
+trade	Ne2c1802a9ffac04433d4	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:frequency
+trade	Ne2c2cd376116bbe5742b	top20:Q02:body:ngram1:binary | top20:Q02:body:ngram1:frequency
+trade	Ne340df4e8c34d8657294	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:tfidf
+trade	Ne3bb456df33587835833	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:tfidf
+trade	Ne776bb7ab155be4eab48	top20:Q01:body:ngram2:binary | top20:Q01:body:ngram2:frequency | top20:Q01:body:ngram2:tfidf
+trade	Nea40d9de95d7c074e738	auditoria_independiente | expansion:1 | expansion:2 | expansion:3 | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf | top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q02:body:ngram1:tfidf
+trade	Neaaba06937c6ef359cf8	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:tfidf
+trade	Neb2ae6763e95354cdcd6	top20:Q02:title:ngram1:frequency
+trade	Neb7804e6e1e9001a003f	top20:Q02:body:ngram1:binary
+trade	Necc0904864cb8c122841	expansion:2
+trade	Ned74658a98bc155a8736	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Nedb9a5ce132dbd4edef4	top20:Q02:body:ngram1:frequency | top20:Q02:body:ngram1:tfidf | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Nee6f118074ca52cd6c6d	top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency | top20:Q01:body:ngram1:tfidf
+trade	Nf01b8ee6fc583addebe0	top20:Q03:title:ngram1:binary | top20:Q03:title:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	Nf02aa7da6b6e6cc38c00	top20:Q02:body:ngram1:frequency | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Nf0c68377fbc0e4900610	expansion:3 | top20:Q02:body:ngram1:tfidf | top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:tfidf
+trade	Nf2817d577138ad88e1aa	top20:Q01:body:ngram1:binary | top20:Q01:body:ngram1:frequency
+trade	Nf439ac37e545b8900344	top20:Q03:body:ngram1:binary | top20:Q03:body:ngram1:tfidf
+trade	Nf53b8e35c7c424a7ceb3	top20:Q03:body:ngram1:frequency
+trade	Nf7544c64eddba7970623	top20:Q01:title:ngram1:binary | top20:Q01:title:ngram1:frequency | top20:Q01:title:ngram1:tfidf
+trade	Nfb5191ac2bf96ede3c20	top20:Q02:body:ngram1:frequency
+trade	Nfc3b989ed2bb0dca0092	top20:Q02:title:ngram1:binary | top20:Q02:title:ngram1:frequency | top20:Q02:title:ngram1:tfidf
+trade	Nfd5789d92a14d16c3d9a	top20:Q03:body:ngram1:frequency | top20:Q03:title:ngram1:tfidf
+trade	Nfeb81a77ff76b552498d	top20:Q02:body:ngram1:binary

@@ -1,0 +1,29 @@
+COMANDO: C:\Users\salaz\AppData\Local\Programs\Python\Python311\python.exe -m unittest -v test_project
+CÓDIGO DE SALIDA: 0
+
+test_benchmark_files_are_provisional_and_well_formed (test_project.EvaluationTests.test_benchmark_files_are_provisional_and_well_formed) ... ok
+test_known_metrics (test_project.EvaluationTests.test_known_metrics) ... ok
+test_archive_article_and_license (test_project.ExtractionTests.test_archive_article_and_license) ... ok
+test_archive_pagination_and_uniqueness (test_project.ExtractionTests.test_archive_pagination_and_uniqueness) ... ok
+test_atom_feed (test_project.ExtractionTests.test_atom_feed) ... ok
+test_columns_and_tsv (test_project.ExtractionTests.test_columns_and_tsv) ... ok
+test_explicit_archive_license_overrides_date (test_project.ExtractionTests.test_explicit_archive_license_overrides_date) ... ok
+test_incomplete_tsv_is_not_silently_overwritten (test_project.ExtractionTests.test_incomplete_tsv_is_not_silently_overwritten) ... ok
+test_reject_invalid_article (test_project.ExtractionTests.test_reject_invalid_article) ... ok
+test_reject_unpublished_archive_and_invalid_limits (test_project.ExtractionTests.test_reject_unpublished_archive_and_invalid_limits) ... ok
+test_republished_summary_is_not_given_default_license (test_project.ExtractionTests.test_republished_summary_is_not_given_default_license) ... ok
+test_rss_and_attribution (test_project.ExtractionTests.test_rss_and_attribution) ... ok
+test_wikitext_keeps_names_and_removes_media (test_project.ExtractionTests.test_wikitext_keeps_names_and_removes_media) ... ok
+test_basic_science_is_not_automatically_technology (test_project.NewExtractionTests.test_basic_science_is_not_automatically_technology) ... ok
+test_eff_attribution_and_third_party_exclusion (test_project.NewExtractionTests.test_eff_attribution_and_third_party_exclusion) ... ok
+test_validation_prevents_overwriting_duplicates (test_project.NewExtractionTests.test_validation_prevents_overwriting_duplicates) ... ok
+test_language_validation (test_project.RetrievalTests.test_language_validation) ... ok
+test_normalized_ids_metadata_and_raw_preservation (test_project.RetrievalTests.test_normalized_ids_metadata_and_raw_preservation) ... ok
+test_pos_lemmas_and_selective_stopwords (test_project.RetrievalTests.test_pos_lemmas_and_selective_stopwords) ... ok
+test_search_high_partial_zero_and_all_configurations (test_project.RetrievalTests.test_search_high_partial_zero_and_all_configurations) ... ok
+test_twelve_sparse_spaces_and_persistence (test_project.RetrievalTests.test_twelve_sparse_spaces_and_persistence) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 2.442s
+
+OK

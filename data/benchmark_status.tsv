@@ -1,0 +1,2 @@
+artifact	status	approval_scope	note
+qrels.tsv	frozen_delegated_analytical_validation	accepted_for_delegated_analytical_evaluation_not_institutional_human_approval	Referencia ampliada de 303 qrels congelada. Supera 15 positivos en comercio, fútbol y vigilancia para no ocultar documentos relevantes; academic_reference_core.tsv es solo expositivo.

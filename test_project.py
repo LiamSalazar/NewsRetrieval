@@ -1,7 +1,10 @@
 """Pruebas SIN Internet del módulo de extracción (unittest estándar)."""
 import csv
+import math
 import tempfile
 import unittest
+import warnings
+from collections import defaultdict
 from pathlib import Path
 from unittest.mock import patch
 
@@ -307,13 +310,74 @@ class EvaluationTests(unittest.TestCase):
         self.assertAlmostEqual(metrics['recall@10'], 2 / 3)
         self.assertAlmostEqual(metrics['f1@10'], 2 * 0.2 * (2 / 3) / (0.2 + (2 / 3)))
         self.assertAlmostEqual(metrics['mrr'], 0.5)
-        self.assertGreater(metrics['ndcg@10'], 0)
+        dcg = 1 / math.log2(3) + 3 / math.log2(4)
+        idcg = 3 / math.log2(2) + 3 / math.log2(3) + 1 / math.log2(4)
+        self.assertAlmostEqual(metrics['ndcg@10'], dcg / idcg)
 
-    def test_benchmark_files_are_provisional_and_well_formed(self):
-        from evaluation import load_benchmark
+    def test_no_relevant_results_have_zero_metrics(self):
+        from evaluation import calculate_metrics
+        metrics = calculate_metrics([{'id': str(number), 'score': 0.0} for number in range(10)],
+                                    {'a': 2, 'b': 1})
+        self.assertEqual(metrics, {'precision@10': 0.0, 'recall@10': 0.0, 'f1@10': 0.0,
+                                   'mrr': 0.0, 'ndcg@10': 0.0})
+
+    def test_zero_similarity_does_not_determine_relevance(self):
+        from evaluation import calculate_metrics
+        results = [{'id': 'relevant_at_zero', 'score': 0.0}] + [
+            {'id': f'negative_{number}', 'score': 0.0} for number in range(9)]
+        metrics = calculate_metrics(results, {'relevant_at_zero': 2, 'outside': 1})
+        self.assertAlmostEqual(metrics['precision@10'], 0.1)
+        self.assertAlmostEqual(metrics['recall@10'], 0.5)
+        self.assertEqual(metrics['mrr'], 1.0)
+        self.assertGreater(metrics['ndcg@10'], 0.0)
+
+    def test_duplicate_ranked_ids_are_rejected(self):
+        from evaluation import calculate_metrics
+        with self.assertRaises(ValueError):
+            calculate_metrics([{'id': 'same'}, {'id': 'same'}], {'same': 2})
+
+    def test_benchmark_files_are_frozen_expanded_and_well_formed(self):
+        from evaluation import load_benchmark, validate_benchmark
         queries, qrels = load_benchmark()
         self.assertEqual(len(queries), 15)
-        self.assertTrue(all(10 <= len(qrels[q['query_id']]) <= 15 for q in queries))
+        self.assertEqual(sum(len(qrels[q['query_id']]) for q in queries), 303)
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter('always')
+            report = validate_benchmark(queries, qrels)
+        self.assertTrue(report['expanded_reference'])
+        self.assertEqual(set(report['academic_range_exceeded']),
+                         {'Q01', 'Q02', 'Q03', 'Q07', 'Q08', 'Q09', 'Q13', 'Q14', 'Q15'})
+        self.assertTrue(any('Referencia ampliada' in str(item.message) for item in caught))
+
+    def test_final_exports_are_complete_and_mathematically_consistent(self):
+        from evaluation import calculate_metrics, load_benchmark
+        root = Path(__file__).resolve().parent
+        def rows(name):
+            with (root / 'results' / name).open(encoding='utf-8', newline='') as stream:
+                return list(csv.DictReader(stream, delimiter='\t'))
+        judgments = rows('retrieval_judgments.tsv')
+        metrics = rows('metrics_by_query_configuration.tsv')
+        queries, qrels = load_benchmark(root / 'data' / 'queries.tsv', root / 'data' / 'qrels.tsv')
+        self.assertEqual(len(judgments), 1800)
+        self.assertEqual(len(metrics), 180)
+        self.assertFalse(any(row['judgment_status'] == 'unjudged' for row in judgments))
+        grouped = defaultdict(list)
+        for row in judgments:
+            grouped[(row['query_id'], row['configuration'])].append(row)
+        self.assertEqual(len(grouped), 180)
+        metric_map = {(row['query_id'], row['configuration']): row for row in metrics}
+        for key, ranked in grouped.items():
+            ranked.sort(key=lambda row: int(row['rank']))
+            self.assertEqual([int(row['rank']) for row in ranked], list(range(1, 11)))
+            self.assertEqual(len({row['document_id'] for row in ranked}), 10)
+            calculated = calculate_metrics([{'id': row['document_id']} for row in ranked], qrels[key[0]])
+            exported = metric_map[key]
+            hits = sum(int(row['is_relevant']) for row in ranked)
+            self.assertEqual(hits, int(exported['relevant_retrieved']))
+            self.assertEqual(10 - hits, int(exported['irrelevant_retrieved']))
+            self.assertEqual(int(exported['unjudged_retrieved']), 0)
+            for name, value in calculated.items():
+                self.assertAlmostEqual(value, float(exported[name]), places=12)
 
 
 if __name__ == '__main__':

@@ -1,12 +1,22 @@
 """Punto único de ejecución para adquirir, procesar y consultar el corpus."""
 import argparse
 import csv
+from pathlib import Path
 import joblib
 import spacy
 
 from collector import CORPUS, collect_news, read_corpus, validate_corpus
 from evaluation import evaluate, load_benchmark, validate_benchmark
 from retrieval import NORMALIZED, VECTORS, corpus_digest, load_nlp, process_corpus, search_news
+
+
+def benchmark_status():
+    path = Path('data/benchmark_status.tsv')
+    if not path.exists():
+        return ''
+    with path.open(encoding='utf-8-sig', newline='') as stream:
+        row = next(csv.DictReader(stream, delimiter='\t'), {})
+    return row.get('status', '')
 
 
 def corpus_is_current(bundle, rows):
@@ -108,17 +118,17 @@ def interactive_menu():
             search_loop()
         elif option == '2':
             try:
-                confirmation = input('Escriba APROBAR tras revisar qrels.tsv: ').strip()
+                confirmation = input('Escriba EVALUAR para usar la referencia delegada congelada: ').strip()
             except EOFError:
                 return
-            if confirmation == 'APROBAR':
+            if confirmation == 'EVALUAR':
                 queries, qrels = load_benchmark()
                 validate_benchmark(queries, qrels, read_corpus(CORPUS))
                 report = evaluate(queries, qrels, bundle=joblib.load(VECTORS), frozen=True)
                 print(f"Evaluación completada: {report['queries']} consultas, {report['configurations']} configuraciones.")
                 print_metrics_summary()
             else:
-                print('Evaluación no ejecutada; los juicios siguen provisionales.')
+                print('Evaluación no ejecutada.')
         elif option == '3':
             comparison_menu()
         elif option == '4':
@@ -136,24 +146,22 @@ def main():
     parser.add_argument('--benchmark', action='store_true',
                         help='Valida el benchmark; con --frozen ejecuta las 12 configuraciones')
     parser.add_argument('--frozen', action='store_true',
-                        help='Confirma que los qrels fueron revisados y aprobados')
-    parser.add_argument('--provisional', action='store_true',
-                        help='Ejecuta una evaluación separada sin declararla definitiva')
+                        help='Usa la referencia congelada por evaluación analítica delegada')
     args = parser.parse_args()
     try:
         ensure_data()
         if args.benchmark:
             queries, qrels = load_benchmark()
             validate_benchmark(queries, qrels, read_corpus(CORPUS))
-            if not args.frozen and not args.provisional:
-                print('Benchmark válido pero provisional: revise y apruebe data/qrels.tsv; no se calcularon métricas.')
+            if benchmark_status() != 'frozen_delegated_analytical_validation':
+                raise RuntimeError('benchmark_status.tsv no declara la referencia delegada congelada')
+            if not args.frozen:
+                print('Benchmark válido y congelado para evaluación analítica delegada; use --frozen para recalcular resultados.')
                 return 0
-            output_dir = 'results/provisional' if args.provisional and not args.frozen else 'results'
             report = evaluate(queries, qrels, bundle=joblib.load(VECTORS),
-                              output_dir=output_dir, frozen=args.frozen,
-                              provisional=args.provisional and not args.frozen)
+                              output_dir='results', frozen=True)
             print(f"Evaluación completada: {report['queries']} consultas, {report['configurations']} configuraciones.")
-            print_metrics_summary(output_dir + '/metrics.tsv')
+            print_metrics_summary('results/metrics.tsv')
             return 0
         if args.query or any(value is not None for value in (args.field, args.ngram, args.representation)):
             search_loop(args.query, args.field, args.ngram, args.representation)

@@ -1,17 +1,16 @@
 query_id	difficulty_level	query
-Q01	1	trade agreements and economic relations involving countries
-Q02	2	international commerce deals and disputes between governments
-Q03	3	how cross-border economic ties reshape national policy
-Q04	1	oil and electricity prices and their effects on people and business
-Q05	2	energy costs fuel markets and pressure on consumers
-Q06	3	when power becomes expensive how does society absorb the shock
-Q07	1	football stories connected to politics identity or social change
-Q08	2	soccer teams and players involved in public or political issues
-Q09	3	ways the beautiful game reflects struggles beyond the stadium
-Q10	1	cricket controversies governance and internationally significant events
-Q11	2	major institutional disputes and developments in international cricket
-Q12	3	what recent events reveal about the culture and institutions of cricket
-Q13	1	privacy and government surveillance technologies
-Q14	2	police data collection and oversight of tracking systems
-Q15	3	how authorities monitor people and the safeguards being challenged
-
+Q01	1	trade agreements, negotiations, and disputes between countries or economic blocs
+Q02	2	government-to-government commerce pacts, treaty approval, and cross-border tariff conflicts
+Q03	3	how states negotiate, implement, or contest rules governing international exchange
+Q04	1	rising electricity, gas, and fuel bills affecting households, consumers, or businesses
+Q05	2	higher energy charges and fuel costs creating pressure for users and economic activity
+Q06	3	how an increase in the cost of power or transport fuel affects everyday and commercial life
+Q07	1	football events linked to political, diplomatic, social, or cultural controversy
+Q08	2	soccer players, teams, or matches involved in public identity, rights, or government issues
+Q09	3	how the beautiful game becomes part of conflicts and debates beyond sport
+Q10	1	cricket controversies, discipline, safety, governance, and political disputes
+Q11	2	institutional decisions, sanctions, security problems, and public disputes in cricket
+Q12	3	how cricket can expose tensions in sporting institutions and public life
+Q13	1	government surveillance technologies, privacy, and civil rights
+Q14	2	police and public-agency data collection, tracking systems, and oversight
+Q15	3	how authorities monitor people and which safeguards against that monitoring are contested

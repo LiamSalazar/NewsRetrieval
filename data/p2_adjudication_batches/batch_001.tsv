@@ -1,0 +1,36 @@
+need_id	document_id	proposed_relevance	justification	confidence
+energy	N022681ee9530b90ba5e2	0	Informa pérdidas de empleo y recesión estadounidense; no menciona precios de energía, combustible o tarifas.	alta
+energy	N090e81878874b2849759	0	Describe un automóvil catarí de bajas emisiones y recuperación de calor, sin aumento de precios energéticos ni impacto por encarecimiento.	alta
+energy	N0b6ef37c6249be390af2	0	La caída bursátil responde a un aumento del impuesto sobre transacciones, no a costos de energía.	alta
+energy	N0f34fc85246ff49cb383	0	Trata ejecuciones hipotecarias y obligaciones de mantenimiento de viviendas vacías; no aborda precios energéticos.	alta
+energy	N104276fbb692f7123f7d	0	El aterrizaje del Atlantis se aplaza por clima y cuestiones técnicas; el costo logístico citado no deriva de energía cara.	alta
+energy	N17e9806689418b2b52b6	0	Describe oposición comunitaria a mataderos avícolas por sus cargas locales y ambientales, sin tarifas o combustibles más caros.	alta
+energy	N21da9c7fb09f7795af1e	0	Analiza estereotipos de género sobre mujeres en transporte, no el costo de energía o combustible.	alta
+energy	N228007e66e1ba91965b3	0	Explica aceleradores de partículas y sus costos de construcción; no documenta encarecimiento energético para usuarios.	alta
+energy	N284042882b3b6949c9df	2	Alaska Airlines atribuye pérdidas, recorte de vuelos y hasta mil despidos a precios récord del petróleo y al aumento del combustible.	alta
+energy	N28b293c58ec1d7720846	0	Aborda la brecha entre valor e ingresos de creadores africanos en la economía gig, sin relación con energía.	alta
+energy	N2969a0d07d07058fe99a	0	Informa el primer lanzamiento comercial de un satélite indio; no trata precios o asequibilidad energética.	alta
+energy	N29c70a121aaad10b35d7	0	La reflexión general sobre contradicciones de la actividad humana no aporta evidencia sobre precios de energía.	alta
+energy	N30e731c97777938b725c	0	La misión marciana se retrasa por pruebas y ventana orbital; su sobrecosto no procede de combustibles o tarifas.	alta
+energy	N369c75c61c090f34d853	0	Presenta crecimiento de usuarios de telefonía móvil en Moldavia, sin costos energéticos.	alta
+energy	N3a239cc6004ac80a4798	0	Describe el lanzamiento y capacidades de un satélite de telecomunicaciones, no aumentos de energía.	alta
+energy	N3be38e34f8b7d984e217	0	La huelga de autobuses se debe a salarios y condiciones laborales; el gasto de un usuario en taxi no deriva de combustible caro.	alta
+energy	N419092a8c95f1f7abb55	1	Advierte una posible crisis de suministro eléctrico británica y necesidad de nueva capacidad, contexto directo de disponibilidad pero sin alza de tarifa ni efecto económico desarrollado.	media
+energy	N424c1c6c396612b116a5	0	Las pérdidas de aerolíneas se atribuyen a menor demanda, capacidad y seguridad; no se vinculan con una subida del combustible.	alta
+energy	N436b901f8321056ed36e	0	Expone previsiones de recesión, desempleo y estabilidad financiera sin conexión con costos energéticos.	alta
+energy	N442125aa7f0e81088a6a	0	Describe la creación de un byte cuántico y computación experimental, sin precios de energía.	alta
+energy	N4852e778b63b6520b275	0	Informa ventas récord del videojuego Halo 3; no existe asunto energético.	alta
+energy	N4c3460d86018cbe468dd	0	La noticia trata el presupuesto de la Unión Europea y austeridad, no tarifas o combustibles.	alta
+energy	N4cbcf992cfb9009c12a6	0	La inflación descrita se centra en alimentos y política monetaria; la mención secundaria a gasolina no explica consecuencias de un encarecimiento energético.	alta
+energy	N4ff224eaa3d31c8fd134	0	Los despidos de Adam Aircraft se atribuyen a dificultades de financiación y caja, no a costos de energía.	alta
+energy	N589bf969b05c15f2883a	0	El hito de 500 millones de usuarios de Facebook carece de relación con precios energéticos.	alta
+energy	N61fc960b5abb9a0d397a	0	Describe una subasta de espectro móvil 4G y sus beneficios, sin tarifas energéticas.	alta
+energy	N64f14996acf3be3f20bf	0	Relata la retirada de Bill Gates de la gestión de Microsoft, sin asunto energético.	alta
+energy	N66ba7491cd24213c657b	0	Defiende energía nuclear por emisiones y costos competitivos, pero no documenta una subida de energía ni sus consecuencias.	alta
+energy	N66c37fa87c3904149f0f	0	Explica la adopción del euro y controles de precios generales en Chipre y Malta, no encarecimiento energético.	alta
+energy	N6d5dabafd07ffc1e2b8c	0	Detalla inversión pública australiana para reducir emisiones, sin subida de facturas o combustibles.	alta
+energy	N7b40c8a937fb41ccdf52	0	Presenta crecimiento del empleo brasileño por sectores, sin evidencia de costos energéticos.	alta
+energy	N7bde45da0ef5a9e00f7e	0	Resume beneficios y servicios de telecomunicaciones de Kordia, no precios de energía.	alta
+energy	N7f9a31c7d486608276b0	0	El resumen trata los efectos de la crisis de seguridad haitiana sobre el fútbol, sin energía o combustibles.	alta
+energy	N822419fcdaf47c1a8c94	0	Las pérdidas de negocios de Beirut se deben a protestas y cierres de calles, no al encarecimiento energético.	alta
+energy	N868c6f4dccc48ff04e38	1	APEC señala que los altos precios del petróleo perjudican a las economías y acuerda eficiencia y diversificación, aunque no desarrolla efectos concretos en usuarios.	media

@@ -1,0 +1,41 @@
+need_id	document_id	proposed_relevance	justification	confidence
+surveillance	N73388f00c668b16a4b0d	0	Los gobiernos ordenan cortes de internet para frenar protestas, pero el texto no describe recopilación o seguimiento de información personal.	alta
+surveillance	N74d69b46d19503597663	0	El proyecto Stardust@home busca partículas cósmicas, no datos sobre personas.	alta
+surveillance	N774bc2255428a0f5dff5	0	La entrevista sobre el agujero negro más cercano es astronomía, sin vigilancia.	alta
+surveillance	N77c8abce741535b13718	0	El perfil de un periodista de fútbol indonesio no aborda vigilancia pública.	alta
+surveillance	N7d5953cad9ba7debf827	0	El lanzamiento de Internet Explorer 7 y sus funciones de seguridad no documenta seguimiento estatal.	alta
+surveillance	N81ac7ea5cb15367691b2	0	El lanzamiento indio de satélites comerciales no indica vigilancia de personas ni implicaciones de privacidad.	alta
+surveillance	N87134ebe4076dc4e81e1	0	La privatización de Telstra es política económica, no vigilancia tecnológica.	alta
+surveillance	N8e87b1a5b70dc38a7270	0	La prohibición francesa de Skype en universidades responde a seguridad de red, sin seguimiento público concreto de individuos.	alta
+surveillance	N9144eaec6a7a826754a2	0	La entrevista con la directora de Wikimedia trata la organización y conocimiento libre, no una práctica estatal de vigilancia.	alta
+surveillance	N95bace0ef01ab739c7c4	0	El piquete de transportistas en una disputa contractual laboral no tiene contenido de vigilancia.	alta
+surveillance	N97577c88abc904823c44	0	El récord empresarial de transmisión inalámbrica es tecnología de comunicaciones, no seguimiento de personas.	alta
+surveillance	N976725ebc08b7fe9ed1f	0	La prueba de urinarios públicos en Canberra no implica recopilación tecnológica de información personal.	alta
+surveillance	N9d9c3eb4e2b3e5ef24d9	0	Google recopiló datos de redes Wi-Fi mediante Street View, pero la práctica fue empresarial privada; autoridades aparecen como reguladores.	alta
+surveillance	N9ef405924359fb2b24a1	0	La exclusión palestina de la economía digital trata acceso y plataformas, sin práctica pública concreta de vigilancia.	alta
+surveillance	Na1042bd3d0a97c2a3ee7	0	La entrevista con el Partido Pirata sueco aborda intercambio de archivos y política digital, no vigilancia pública concreta.	alta
+surveillance	Na221c668239f7f48bef1	0	Una avería que retrasa declaraciones fiscales canadienses no documenta seguimiento o privacidad.	alta
+surveillance	Na22632a499e1cdb8e20b	0	La demostración de un robot controlado por señales cerebrales es investigación privada, no vigilancia estatal.	alta
+surveillance	Nacd85b3c0c8067d75ba1	0	Facebook comparte tecnología de servidores; no se describe recopilación de personas por una autoridad.	alta
+surveillance	Nae164567d2e60c04066d	0	Los costos ambientales de centros de datos asiáticos no tratan vigilancia pública.	alta
+surveillance	Nb0026077d00c87106edf	0	El desbloqueo de Wikipedia en China es censura y acceso, sin sistema de recopilación o seguimiento descrito.	alta
+surveillance	Nb47a0d1b96def08c4a6b	0	La política de financiación climática en Asia del Sur no guarda relación con vigilancia.	alta
+surveillance	Nb52ef31d6f481a85dba5	0	El obituario elogia una trayectoria general en privacidad y contra la vigilancia, pero no documenta una práctica pública concreta.	alta
+surveillance	Nb534fc18b10fc70a6178	0	El análisis de voces sobre IA en Ecuador no identifica vigilancia ejercida por autoridades.	alta
+surveillance	Nb782889d3831893d1529	0	La disculpa de un presentador por comentarios sobre un asesinato no contiene vigilancia tecnológica.	alta
+surveillance	Nb9500fc0e8563b48c91d	0	La presentación de tecnología multimedia de Apple no documenta seguimiento público.	alta
+surveillance	Nba76ef8b7afb34885bd5	1	El ensayo sobre soberanía digital discute programas estatales de vigilancia no responsables, control ciudadano de datos y prohibición de puertas traseras, aunque su foco es más amplio.	media
+surveillance	Nbb56d73db583ebf338cc	0	El pacto nuclear civil India–Estados Unidos es cooperación energética, no vigilancia de personas.	alta
+surveillance	Nc54010c4ec9f2f0affe1	0	La llegada de la antorcha olímpica a Londres es un acontecimiento deportivo, sin vigilancia.	alta
+surveillance	Nc75441a1e8f9b90ea09e	0	Menciona de forma general abusos y vigilancia posibilitados por IA, pero no aporta una práctica pública concreta evaluable.	alta
+surveillance	Nc946f97344b6528596be	0	El concurso para nombrar un módulo espacial no tiene relación con privacidad o seguimiento.	alta
+surveillance	Ncb2efe1cee545ca1fcad	0	Las reformas de contratación laboral Bangladesh–Malasia y costos migratorios no documentan vigilancia pública.	alta
+surveillance	Nce22e97e45dcdd22abd8	0	La cobertura lingüística insuficiente de moderación de contenidos por IA es una cuestión privada de plataformas, no vigilancia estatal.	alta
+surveillance	Ncfafeb67eb16fc27f03a	0	La posible vía rápida de Islandia hacia la UE es integración política, sin vigilancia.	alta
+surveillance	Nd96004b71171145d4aab	0	La declaración de EFF sobre una orden ejecutiva de IA discute política tecnológica general, sin práctica concreta de vigilancia pública en el texto disponible.	alta
+surveillance	Ndb90770c1491cb876f74	0	Las reparaciones del transporte de Chicago son infraestructura urbana, no seguimiento de personas.	alta
+surveillance	Ndcf2809f91c968d32407	2	La entrevista examina monitoreo gubernamental de correos, mensajería y VoIP, escuchas de la NSA sin orden y exigencias estatales de datos a buscadores.	alta
+surveillance	Ndf25bc8617b275af6798	0	La advertencia sobre fallas de la red eléctrica norteamericana no trata recopilación de datos personales.	alta
+surveillance	Ndfc5ff43f3361ea0ef1a	0	El acuerdo australiano-chino sobre uranio es comercio energético, sin vigilancia de personas.	alta
+surveillance	Ne2c2cd376116bbe5742b	0	La crítica al discurso de IA en salud pública salvadoreña no documenta seguimiento tecnológico por autoridades.	alta
+surveillance	Ne4d4b4eedda88346fc44	0	El lanzamiento del telescopio Euclid es observación astronómica, no vigilancia de individuos.	alta

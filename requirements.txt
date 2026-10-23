@@ -1,6 +1,8 @@
-requests>=2.31,<3
-spacy==3.8.16
-scikit-learn==1.9.1
-joblib==1.6.0
+requests==2.32.3
+spacy==3.8.5
+scikit-learn==1.6.1
+joblib==1.5.0
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
-reportlab>=4,<6
+nbformat==5.10.4
+nbclient==0.10.2
+ipykernel==6.29.5

@@ -1,0 +1,29 @@
+{
+  "frozen_at_utc": "2026-10-23T16:12:55.046390+00:00",
+  "status": "frozen_delegated_analytical_validation",
+  "approval_scope": "accepted_for_delegated_analytical_evaluation_not_institutional_human_approval",
+  "input_archive": "NewsRetrieval_entradas_cierre_Sol_High_2026-10-23.zip",
+  "input_archive_sha256": null,
+  "input_archive_verification": "unavailable_in_workspace; local 303-row candidate reference validated under explicit user authorization",
+  "local_candidate_source_sha256": "7ba6e78077bf339f51241eb19f52ac170b68da16e1a8b8f7d83f6a41fbbfda47",
+  "previous_qrels_rows": 195,
+  "previous_qrels_sha256": "71394f670bc92c278c4ea853bc554e1111204a769193c30e400becefea0457ad",
+  "previous_qrels_backup": "external_private_backup/qrels_pre_freeze_195.tsv (not included in public delivery)",
+  "frozen_qrels_rows": 303,
+  "frozen_qrels_sha256": "513e85157843888076332b50b70d265942f5853224ee56d23ba1466ebb402a59",
+  "corpus_sha256": "82ea7d58c1a457f8bf23822735e5b4d41354fad0b7b82bd929b769017ebc1f6f",
+  "pool_rows_after_top10_zero_adjudication": 975,
+  "zero_similarity_pairs_individually_adjudicated": 35,
+  "new_top10_pairs_added_to_pool": 34,
+  "academic_max_exceeded": {
+    "Q01": 28,
+    "Q02": 28,
+    "Q03": 28,
+    "Q07": 20,
+    "Q08": 20,
+    "Q09": 20,
+    "Q13": 25,
+    "Q14": 25,
+    "Q15": 25
+  }
+}

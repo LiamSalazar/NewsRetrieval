@@ -1,0 +1,6 @@
+need_id	unique_candidates	discovery_top20	discovery_expansion	discovery_existing_or_audit	discovery_unretrieved_sample	examined_previous_proposals	proposed_0	proposed_1	proposed_2	pending_or_ambiguous	possible_false_negatives	conflicts_with_previous	academic_range_10_15
+trade	181	161	37	18	7	177	153	10	18	0	6	1	above
+energy	167	139	49	13	6	166	153	3	11	0	1	4	within
+football	232	202	50	15	6	230	212	4	16	0	4	6	above
+cricket	151	126	45	10	6	151	137	8	6	0	3	0	within
+surveillance	210	183	52	20	7	205	185	5	20	0	3	3	above

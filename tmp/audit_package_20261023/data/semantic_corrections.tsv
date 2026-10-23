@@ -1,0 +1,14 @@
+need_id	document_id	previous_proposed_relevance	corrected_proposed_relevance	justification	confidence
+energy	N419092a8c95f1f7abb55	1	0	La noticia advierte una futura brecha de capacidad y posibles apagones, pero no establece aumento de tarifas o precios energéticos ni consecuencias derivadas de encarecimiento.	alta
+energy	Nbb6ea981d4a8a88c3791	1	0	La reducción de actividad y empleo deriva de una interrupción física del suministro de gas; el texto no documenta una subida de precio energético.	alta
+energy	Nd43cb049bb104799e27e	1	0	Describe demanda eléctrica de IA, capacidad insuficiente y restricciones de centros de datos, sin incremento de tarifa o combustible ni impacto causado por precios altos.	alta
+energy	Ndc8799527e8a2194f526	1	0	La falta de electricidad fiable limita el acceso africano a IA, pero el resumen no menciona encarecimiento de energía o consecuencias económicas de una subida.	alta
+energy	Ndf25bc8617b275af6798	1	0	El artículo denuncia envejecimiento de la red y riesgo de apagones; no aporta una subida de precios, tarifas o combustible.	alta
+energy	Nf20308362c3303bdb30f	1	0	Los apagones y el costo de internet dificultan adoptar IA, pero no se documenta un aumento de precios de energía ni un efecto económico provocado por ese aumento.	alta
+energy	N5b29aeb04957cac34b4c	1	0	La muerte ocurre tras limitar el servicio por una deuda acumulada, pero el artículo no demuestra un aumento de tarifa o precio energético; es un caso de impago y protección al usuario vulnerable.	alta
+energy	N63416be2941153c1b37d	1	0	La crisis se debe a una interrupción física del suministro de gas tras un incendio; no se documenta encarecimiento de tarifas o combustible.	alta
+energy	Nb6d9a16ae5835c74811c	2	0	El resumen atribuye la crisis a guerra, cadenas de suministro y dependencia importadora, pero no aporta una subida de precios energéticos ni consecuencias causadas por encarecimiento.	alta
+trade	N5e367e721f43d0b74f4e	2	1	Es un acuerdo interestatal concreto para construir una ruta petrolera y tiene efectos económicos, pero no establece reglas generales de comercio como un tratado comercial; su pertinencia es parcial.	media
+cricket	Nf61a5d15d56a98823d46	1	2	La muerte de Phillip Hughes por el impacto de una pelota durante un partido es un problema central y excepcional de seguridad humana en cricket, no una consecuencia secundaria.	alta
+football	N77c8abce741535b13718	1	0	El texto disponible sólo perfila a un periodista y comentarista de fútbol y menciona su aspiración de alfabetización pública; no documenta una consecuencia política, diplomática, social o cultural producida por un acontecimiento futbolístico.	alta
+trade	Ne776bb7ab155be4eab48	1	0	La noticia trata una decisión monetaria unilateral de China sobre el tipo de cambio; aunque menciona presión estadounidense y adhesión a la OMC, no identifica un acuerdo, tratado o regla comercial concreta en negociación o aplicación.	alta
