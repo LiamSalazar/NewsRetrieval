@@ -270,6 +270,7 @@ def evaluate(queries, qrels, bundle=None, output_dir="results", frozen=False,
     _write_tsv(output / "rankings_all_configurations.tsv", ranking_fields, rankings_all)
     _write_tsv(output / "retrieval_judgments.tsv", judgment_fields, judgments)
     _write_tsv(output / "metrics_by_query_configuration.tsv", metric_fields, all_metrics)
+    write_metrics_by_configuration(output / "metrics_by_query_configuration.tsv")
     _write_tsv(output / "comparison.tsv", comparison_fields, comparison)
     mean_main = {"query_id": "MEAN", "difficulty_level": "all",
                  "configuration": MAIN_CONFIGURATION, "field": "body", "ngram": 1,
@@ -409,3 +410,45 @@ def _write_tsv(path, fields, rows):
         writer = csv.DictWriter(stream, fieldnames=fields, delimiter="\t", lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def write_metrics_by_configuration(consolidated_path="results/metrics_by_query_configuration.tsv"):
+    """Desglosa el consolidado en doce TSV íntegros, uno por configuración."""
+    consolidated_path = Path(consolidated_path)
+    with consolidated_path.open(encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream, delimiter="\t")
+        fields = reader.fieldnames
+        rows = list(reader)
+    if not fields or "configuration" not in fields or len(rows) != 180:
+        raise ValueError("El consolidado debe contener 180 evaluaciones y la columna configuration")
+
+    expected = [f"{field}_{ngram}_{representation}"
+                for field, ngram, representation in CONFIGURATIONS]
+    grouped = {configuration: [] for configuration in expected}
+    for row in rows:
+        configuration = row["configuration"]
+        if configuration not in grouped:
+            raise ValueError(f"Configuración inesperada en el consolidado: {configuration}")
+        grouped[configuration].append(row)
+    for configuration, configuration_rows in grouped.items():
+        if (len(configuration_rows) != 15
+                or len({row["query_id"] for row in configuration_rows}) != 15):
+            raise ValueError(f"{configuration} no contiene exactamente las 15 consultas")
+
+    destination = consolidated_path.parent / "evaluation_by_configuration"
+    destination.mkdir(parents=True, exist_ok=True)
+    expected_files = {f"{configuration}.tsv" for configuration in expected}
+    for stale in destination.glob("*.tsv"):
+        if stale.name not in expected_files:
+            stale.unlink()
+    for configuration in expected:
+        _write_tsv(destination / f"{configuration}.tsv", fields, grouped[configuration])
+
+    exported = []
+    for configuration in expected:
+        exported.extend(_read_tsv(destination / f"{configuration}.tsv"))
+    fingerprint = lambda row: tuple(row[field] for field in fields)
+    if (len(exported) != len(rows)
+            or Counter(map(fingerprint, exported)) != Counter(map(fingerprint, rows))):
+        raise RuntimeError("El desglose por configuración no reproduce exactamente el consolidado")
+    return {configuration: len(grouped[configuration]) for configuration in expected}

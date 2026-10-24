@@ -1,0 +1,16 @@
+query_id	difficulty_level	configuration	field	ngram	representation	relevant_retrieved	irrelevant_retrieved	unjudged_retrieved	total_relevant_reference	zero_similarity_results	first_relevant_rank	precision@10	recall@10	f1@10	mrr	ndcg@10
+Q01	1	title_2_tfidf	title	2	tfidf	0	10	0	28	10	0	0.0	0.0	0.0	0.0	0.0
+Q02	2	title_2_tfidf	title	2	tfidf	0	10	0	28	10	0	0.0	0.0	0.0	0.0	0.0
+Q03	3	title_2_tfidf	title	2	tfidf	0	10	0	28	10	0	0.0	0.0	0.0	0.0	0.0
+Q04	1	title_2_tfidf	title	2	tfidf	1	9	0	14	9	1	0.1	0.07142857142857142	0.08333333333333333	1.0	0.22009176629808014
+Q05	2	title_2_tfidf	title	2	tfidf	0	10	0	14	10	0	0.0	0.0	0.0	0.0	0.0
+Q06	3	title_2_tfidf	title	2	tfidf	0	10	0	14	10	0	0.0	0.0	0.0	0.0	0.0
+Q07	1	title_2_tfidf	title	2	tfidf	1	9	0	20	9	1	0.1	0.05	0.06666666666666667	1.0	0.07336392209936005
+Q08	2	title_2_tfidf	title	2	tfidf	0	10	0	20	10	0	0.0	0.0	0.0	0.0	0.0
+Q09	3	title_2_tfidf	title	2	tfidf	0	10	0	20	9	0	0.0	0.0	0.0	0.0	0.0
+Q10	1	title_2_tfidf	title	2	tfidf	0	10	0	14	10	0	0.0	0.0	0.0	0.0	0.0
+Q11	2	title_2_tfidf	title	2	tfidf	0	10	0	14	10	0	0.0	0.0	0.0	0.0	0.0
+Q12	3	title_2_tfidf	title	2	tfidf	0	10	0	14	10	0	0.0	0.0	0.0	0.0	0.0
+Q13	1	title_2_tfidf	title	2	tfidf	6	4	0	25	10	2	0.6	0.24	0.34285714285714286	0.5	0.5806020001118017
+Q14	2	title_2_tfidf	title	2	tfidf	7	3	0	25	9	1	0.7	0.28	0.4	1.0	0.7312625444731047
+Q15	3	title_2_tfidf	title	2	tfidf	6	4	0	25	10	2	0.6	0.24	0.34285714285714286	0.5	0.5806020001118017

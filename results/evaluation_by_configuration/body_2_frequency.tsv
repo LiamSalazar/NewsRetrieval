@@ -1,0 +1,16 @@
+query_id	difficulty_level	configuration	field	ngram	representation	relevant_retrieved	irrelevant_retrieved	unjudged_retrieved	total_relevant_reference	zero_similarity_results	first_relevant_rank	precision@10	recall@10	f1@10	mrr	ndcg@10
+Q01	1	body_2_frequency	body	2	frequency	9	1	0	28	0	1	0.9	0.32142857142857145	0.4736842105263158	1.0	0.7181118083948571
+Q02	2	body_2_frequency	body	2	frequency	0	10	0	28	7	0	0.0	0.0	0.0	0.0	0.0
+Q03	3	body_2_frequency	body	2	frequency	0	10	0	28	7	0	0.0	0.0	0.0	0.0	0.0
+Q04	1	body_2_frequency	body	2	frequency	3	7	0	14	5	1	0.3	0.21428571428571427	0.25	1.0	0.4690000933206747
+Q05	2	body_2_frequency	body	2	frequency	3	7	0	14	0	3	0.3	0.21428571428571427	0.25	0.3333333333333333	0.25469837558210445
+Q06	3	body_2_frequency	body	2	frequency	0	10	0	14	6	0	0.0	0.0	0.0	0.0	0.0
+Q07	1	body_2_frequency	body	2	frequency	0	10	0	20	10	0	0.0	0.0	0.0	0.0	0.0
+Q08	2	body_2_frequency	body	2	frequency	0	10	0	20	3	0	0.0	0.0	0.0	0.0	0.0
+Q09	3	body_2_frequency	body	2	frequency	0	10	0	20	2	0	0.0	0.0	0.0	0.0	0.0
+Q10	1	body_2_frequency	body	2	frequency	0	10	0	14	9	0	0.0	0.0	0.0	0.0	0.0
+Q11	2	body_2_frequency	body	2	frequency	0	10	0	14	9	0	0.0	0.0	0.0	0.0	0.0
+Q12	3	body_2_frequency	body	2	frequency	0	10	0	14	6	0	0.0	0.0	0.0	0.0	0.0
+Q13	1	body_2_frequency	body	2	frequency	6	4	0	25	0	1	0.6	0.24	0.34285714285714286	1.0	0.39619518157190664
+Q14	2	body_2_frequency	body	2	frequency	6	4	0	25	6	4	0.6	0.24	0.34285714285714286	0.25	0.4458567890377042
+Q15	3	body_2_frequency	body	2	frequency	3	7	0	25	4	8	0.3	0.12	0.17142857142857143	0.125	0.19930623359011798

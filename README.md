@@ -92,6 +92,7 @@ La adquisición protegida y la preparación también pueden ejecutarse por separ
 | `results/rankings_all_configurations.tsv` | Top-10 de las 180 combinaciones consulta-configuración. |
 | `results/metrics.tsv` | Métricas por consulta y promedio de la configuración principal. |
 | `results/metrics_by_query_configuration.tsv` | Métricas de las doce configuraciones. |
+| `results/evaluation_by_configuration/` | Métricas separadas en un TSV por configuración. |
 | `results/comparison.tsv` | Resumen comparativo por configuración y dificultad. |
 | `NewsRetrieval_Pipeline.ipynb` | Demostración ejecutada, tablas, gráficas y análisis de errores. |
 | [`docs/NewsRetrieval_Informe_Final.pdf`](docs/NewsRetrieval_Informe_Final.pdf) | Informe académico final. |
