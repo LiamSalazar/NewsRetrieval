@@ -1,4 +1,4 @@
-"""Normalización inglesa, doce espacios dispersos y búsqueda por coseno."""
+
 import csv
 import hashlib
 import re
@@ -16,8 +16,8 @@ from collector import CORPUS, ROOT, plain_text, read_corpus
 
 NORMALIZED = ROOT / 'data' / 'news_normalized_corpus.tsv'
 VECTORS = ROOT / 'results' / 'vectors.joblib'
-# Artículos (DT), preposiciones, conjunciones y pronombres. Otros determinantes
-# (p. ej. cantidades) y stopwords verbales/adverbiales se conservan.
+
+
 STOP_POS = {'ADP', 'CCONJ', 'SCONJ', 'PRON'}
 ENGLISH_WORDS = set('the a an of to in on for with from by and or but that this is are was were has have it its as at be not will which their they he she we'.split())
 
@@ -39,7 +39,7 @@ def clean_text(text):
 
 
 def normalize_text(text):
-    """Mismo procedimiento para cada campo documental y para las consultas."""
+    
     doc = load_nlp()(clean_text(text))
     return ' '.join(token.lemma_.lower().strip() for token in doc
                     if not token.is_space and not token.is_punct and token.tag_ != 'POS'
@@ -50,11 +50,7 @@ def normalize_text(text):
 
 
 def verify_english(row):
-    """Procedencia de ediciones inglesas + comprobación léxica conservadora.
-
-    No es un detector universal: nombres/citas extranjeras breves pueden aparecer
-    dentro de una noticia inglesa. Ante texto sin evidencia suficiente, se aborta.
-    """
+    
     host = urlsplit(row['url']).hostname
     expected = {'Wikinews': 'en.wikinews.org', 'Global Voices': 'globalvoices.org',
                 'EFF': 'www.eff.org'}
@@ -69,7 +65,7 @@ def corpus_digest(rows):
 
 
 def build_vectors(rows, path=VECTORS):
-    """Cada entrada tiene su propio vectorizador ajustado y matriz CSR."""
+    
     if not rows:
         raise ValueError('El corpus está vacío')
     spaces = {}
@@ -99,7 +95,7 @@ def process_corpus(path=CORPUS, normalized_path=NORMALIZED, vectors_path=VECTORS
     rows = read_corpus(path)
     if not rows:
         raise ValueError('El corpus está vacío')
-    # Comprobar TODO el corpus antes de aplicar el modelo o escribir resultados.
+    
     for row in rows:
         verify_english(row)
     normalized = [dict(row, language='en', normalized_title=normalize_text(row['title']),

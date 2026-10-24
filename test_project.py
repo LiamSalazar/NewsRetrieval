@@ -1,4 +1,4 @@
-"""Pruebas SIN Internet del módulo de extracción (unittest estándar)."""
+
 import csv
 import math
 import tempfile

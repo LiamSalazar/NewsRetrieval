@@ -1,4 +1,4 @@
-"""Punto único de ejecución para adquirir, procesar y consultar el corpus."""
+
 import argparse
 import csv
 from pathlib import Path
@@ -53,14 +53,14 @@ def ensure_data():
 
 
 def collect_corpus():
-    """Adquiere el corpus solo si no existe; un corpus fijo nunca se sobrescribe."""
+    
     report = collect_news()
     action = 'validado sin descarga' if report['added'] == 0 else 'adquirido'
     print(f"Corpus {action}: {report['total_after']} noticias.")
 
 
 def prepare_corpus():
-    """Normaliza el corpus fijo y genera sus doce espacios vectoriales."""
+    
     rows = read_corpus(CORPUS)
     validate_corpus(rows)
     if len(rows) != 2000:

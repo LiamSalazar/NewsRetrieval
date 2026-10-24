@@ -1,4 +1,4 @@
-"""Evaluación reproducible y auditoría documental de las doce configuraciones VSM."""
+
 from __future__ import annotations
 
 import csv
@@ -31,7 +31,7 @@ def _read_tsv(path, comments=False):
 
 
 def load_benchmark(queries_path="data/queries.tsv", qrels_path="data/qrels.tsv"):
-    """Carga consultas y la referencia congelada sin modificar sus juicios."""
+    
     queries = _read_tsv(queries_path, comments=True)
     qrels_rows = _read_tsv(qrels_path, comments=True)
     if not queries or set(queries[0]) != {"query_id", "difficulty_level", "query"}:
@@ -58,7 +58,7 @@ def load_benchmark(queries_path="data/queries.tsv", qrels_path="data/qrels.tsv")
 
 
 def validate_benchmark(queries, qrels, documents=None, allow_expanded=True):
-    """Valida integridad y documenta referencias que superan el máximo académico."""
+    
     if len(queries) != 15:
         raise ValueError("El benchmark debe tener 15 consultas")
     levels = {str(level): sum(row["difficulty_level"] == str(level) for row in queries)
@@ -103,7 +103,7 @@ def _document_id(result):
 
 
 def calculate_metrics(results, relevant, k=10):
-    """Calcula P, R, F1, MRR y nDCG con ganancia 2^relevance - 1."""
+    
     ranked = list(results)[:k]
     ids = [_document_id(row) for row in ranked]
     if len(ids) != len(set(ids)):
@@ -162,7 +162,7 @@ def _load_positive_evidence(path="data/qrels_validation_evidence.tsv"):
 
 def evaluate(queries, qrels, bundle=None, output_dir="results", frozen=False,
              provisional=False, review_path="data/pool_human_review.tsv"):
-    """Ejecuta 180 búsquedas y exporta rankings, auditoría y métricas completas."""
+    
     if not frozen and not provisional:
         raise RuntimeError("La evaluación requiere frozen=True o provisional=True")
     output = Path(output_dir)
@@ -413,7 +413,7 @@ def _write_tsv(path, fields, rows):
 
 
 def write_metrics_by_configuration(consolidated_path="results/metrics_by_query_configuration.tsv"):
-    """Desglosa el consolidado en doce TSV íntegros, uno por configuración."""
+    
     consolidated_path = Path(consolidated_path)
     with consolidated_path.open(encoding="utf-8-sig", newline="") as stream:
         reader = csv.DictReader(stream, delimiter="\t")

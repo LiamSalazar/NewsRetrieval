@@ -1,8 +1,4 @@
-"""Adquisición académica de noticias: RSS (actual) y Wikinews (histórico).
 
-Solo recupera textos ofrecidos por fuentes con licencias documentadas.
-No abre artículos arbitrarios, no sortea paywalls ni fabrica registros.
-"""
 
 import csv
 import hashlib
@@ -27,14 +23,14 @@ FIELDS = ["id", "title", "description/body", "source", "category", "date",
           "url", "retrieved_at", "author", "license", "license_url"]
 CATEGORIES = ("finanzas", "deportes", "tecnologia")
 
-# Tres feeds temáticos publicados en el directorio oficial de Global Voices.
+
 FEEDS = {
     "finanzas": ["https://globalvoices.org/-/topics/economics-business/feed/"],
     "deportes": ["https://globalvoices.org/-/topics/sport/feed/"],
     "tecnologia": ["https://globalvoices.org/-/topics/technology/feed/"],
 }
 FEEDS['tecnologia'].append('https://www.eff.org/rss/updates.xml')
-# Archivo HISTÓRICO: cerró para nuevas publicaciones en mayo de 2026.
+
 WIKINEWS = {
     "finanzas": "Category:Economy and business",
     "deportes": "Category:Sports",
@@ -43,12 +39,12 @@ WIKINEWS = {
 API = "https://en.wikinews.org/w/api.php"
 HEADERS = {"User-Agent": "Global Voices / EFF news collector (academic research;"}
 GV_LICENSE = "https://creativecommons.org/licenses/by/3.0/"
-# Global Voices dice CC BY; revisar licencia concreta del artículo antes de republicarlo.
+
 WIKINEWS_CC25 = "https://creativecommons.org/licenses/by/2.5/"
 WIKINEWS_CC40 = "https://creativecommons.org/licenses/by/4.0/"
 _LAST_REQUEST = {}
-# La categoría de Wikinews mezcla ciencia básica y tecnología. Exigir evidencia
-# textual de tecnología evita clasificar biografías o biología general como tal.
+
+
 TECH_TERMS = re.compile(r'\b(?:technolog\w*|comput\w*|internet|software|hardware|digital|'
                         r'cyber\w*|artificial intelligence|robot\w*|semiconductor\w*|'
                         r'telecom\w*|smartphone\w*|mobile phone\w*|wi-fi|websit\w*|'
@@ -59,7 +55,7 @@ TECH_TERMS = re.compile(r'\b(?:technolog\w*|comput\w*|internet|software|hardware
 
 
 class TextOnly(HTMLParser):
-    """Extrae texto de fragmentos HTML de un RSS, sin imágenes/scripts."""
+    
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.parts = []
@@ -89,7 +85,7 @@ def plain_text(value):
 
 
 def published_date(value):
-    """Fecha UTC 'YYYY-MM-DD'; None cuando la fuente no permite determinarla."""
+    
     if not value:
         return None
     value = str(value).strip()
@@ -110,7 +106,7 @@ def published_date(value):
 
 
 def canonical_url(url):
-    """Descarta fragmentos y parámetros comunes de seguimiento, sin inventar URL."""
+    
     try:
         parsed = urlsplit(str(url).strip())
     except ValueError:
@@ -137,10 +133,10 @@ def prepare(title, body, source, category, date, url, author, license_name, lice
 
 
 def get(session, url, params=None):
-    """HTTP limitado; reintenta errores transitorios, nunca elude bloqueos."""
+    
     for attempt in range(3):
         try:
-            # El robots.txt de Global Voices pide diez segundos entre accesos.
+            
             host = urlsplit(url).netloc
             if host == 'globalvoices.org' and isinstance(session, requests.Session):
                 time.sleep(max(0, 10 - (time.monotonic() - _LAST_REQUEST.get(host, 0))))
@@ -168,7 +164,7 @@ def xml_value(node, names):
 
 
 def rss_records(xml_content, category, errors=None, source='Global Voices'):
-    """RSS/Atom autorizados: conserva autor y rechaza derechos particulares."""
+    
     if source not in {'Global Voices', 'EFF'}:
         raise ValueError('Fuente RSS no autorizada')
     root = ET.fromstring(xml_content)
@@ -185,7 +181,7 @@ def rss_records(xml_content, category, errors=None, source='Global Voices'):
         if not link:
             link = next((node.get("href", "") for node in item.findall(f"{atom}link")
                          if node.get("rel", "alternate") == "alternate"), "")
-        # El contenido completo sirve para detectar republicaciones; no se almacena.
+        
         full = plain_text(xml_value(item, [content, f"{atom}content"]) + ' ' + description)
         full = re.sub(r"Originally published on Global Voices", "", full, flags=re.I)
         rights = xml_value(item, [f"{dc}rights", f"{atom}rights"])
@@ -202,7 +198,7 @@ def rss_records(xml_content, category, errors=None, source='Global Voices'):
             if category != 'tecnologia' or '/deeplinks/' not in link or re.search(
                     r'podcast|effector|daf day|organizing in|award winners|welcomes .*board|join us|donate', title, re.I):
                 continue
-            # No conservar bloques citados de terceros ni imágenes del feed.
+            
             description = re.sub(r'(?is)<blockquote\b[^>]*>.*?</blockquote>', ' ', description)
         record = prepare(title, description, source, category, date, link,
                          plain_text(author), 'CC BY 3.0 (resumen de Global Voices)' if source == 'Global Voices'
@@ -231,25 +227,22 @@ def fetch_feeds(session, category, errors, page=1):
 
 
 def wikinews_excerpt(wikitext):
-    """Texto plano introductorio a partir del wikitext (sin medios de terceros).
-
-    Es una limpieza conservadora: no pretende convertir wikitext complejo a HTML.
-    """
-    # El cuerpo precede a apartados de fuentes/enlaces.
+    
+    
     text = re.split(r"(?im)^==+\s*(?:Sources|External links|Related news)\s*==+", wikitext, maxsplit=1)[0]
     text = re.sub(r"(?is)<gallery\b[^>]*>.*?</gallery\s*>", " ", text)
     text = re.sub(r"(?is)<ref\b[^>]*>.*?</ref\s*>|<ref\b[^>]*/>", " ", text)
     text = re.sub(r"(?s)\{\|.*?\|\}", " ", text)
-    # Las plantillas w son enlaces con texto, no metadatos descartables.
+    
     text = re.sub(r"\{\{\s*[wW]\s*\|([^{}]+)\}\}",
                   lambda m: m.group(1).split("|")[-1].strip(), text)
-    # Descartar plantillas (a veces anidadas) y metadatos de la página.
+    
     for _ in range(12):
         updated = re.sub(r"\{\{[^{}]*\}\}", " ", text, flags=re.S)
         if updated == text:
             break
         text = updated
-    # Quitar medios ANTES de convertir enlaces, incluyendo enlaces en sus pies.
+    
     text = re.sub(r"\[\[(?:File|Image|Category):(?:[^\[\]]|\[\[[^\[\]]*\]\])*\]\]",
                   " ", text, flags=re.I)
     text = re.sub(r"\[\[([^\[\]]+)\]\]",
@@ -283,12 +276,12 @@ def extract_wikinews(page, category):
     body = wikinews_excerpt(text)
     if category == 'tecnologia' and not TECH_TERMS.search(page['title'] + ' ' + body):
         return None
-    # Al menos unas cuantas palabras para que sea una noticia recuperable.
+    
     if len(body.split()) < 18 or any(mark in body for mark in ("{{", "}}", "[[", "]]", "{|", "|}")):
         return None
     title = page["title"]
     url = "https://en.wikinews.org/wiki/" + quote(title.replace(" ", "_"), safe="()/,:-")
-    # Una licencia explícita del artículo prevalece sobre la regla por fecha.
+    
     explicit = re.search(r"\{\{\s*Archived-(?:cc-)?(2\.5|4\.0|pd)\s*[|}]", text, re.I)
     version = explicit.group(1).lower() if explicit else None
     if version == "pd" or (not version and date < "2005-09-25"):
@@ -301,10 +294,7 @@ def extract_wikinews(page, category):
 
 
 def fetch_archive(session, category, wanted, existing_ids, errors, max_batches=80):
-    """Consulta páginas públicas de una categoría hasta obtener N noticias únicas.
-
-    Respeta la paginación de MediaWiki; evita consultas por artículo.
-    """
+    
     found = []
     cursor = {}
     reason = f"límite de {max_batches} lotes alcanzado"
@@ -362,7 +352,7 @@ def read_corpus(path=CORPUS):
 
 
 def save_corpus(rows, path=CORPUS):
-    """Escritura atómica: reemplaza el TSV solo cuando está completo."""
+    
     validate_corpus(rows)
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and not path.with_suffix('.tsv.bak').exists():
@@ -377,7 +367,7 @@ def save_corpus(rows, path=CORPUS):
 
 
 def validate_corpus(rows):
-    """Rechaza registros incompletos y duplicados antes del reemplazo atómico."""
+    
     for field in ('id', 'url', 'title', 'description/body'):
         values = [' '.join(row.get(field, '').casefold().split()) for row in rows]
         if len(values) != len(set(values)):
@@ -392,11 +382,7 @@ def validate_corpus(rows):
 
 
 def collect_news(target=2000, session=None, path=CORPUS, max_batches=80, now=None):
-    """Adquiere el corpus inicial una sola vez.
-
-    Si el archivo ya existe, solo se valida: nunca se consulta Internet ni se
-    reemplaza un corpus existente desde esta función.
-    """
+    
     if target != 2000 or max_batches < 1:
         raise ValueError("target debe ser 2000 y max_batches debe ser positivo")
     now = now or datetime.now(timezone.utc)
