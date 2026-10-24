@@ -1,90 +1,115 @@
 # NewsRetrieval
 
-Sistema académico de recuperación léxica sobre 2,000 noticias auténticas en inglés. El proyecto utiliza un modelo de espacio vectorial, doce configuraciones, similitud coseno y un benchmark de quince consultas.
+Sistema de recuperación de noticias que utiliza el Modelo de Espacio Vectorial, similitud coseno y representaciones de frecuencia, binaria y TF-IDF para recuperar y evaluar noticias mediante consultas de lenguaje natural.
 
-## Estado de la referencia
+## Características
 
-`data/qrels.tsv` contiene 303 juicios positivos congelados para **evaluación analítica delegada**. Esta denominación no equivale a aprobación humana individual exhaustiva ni a aprobación institucional. La referencia procede de la adjudicación semántica consolidada y conserva relevancias 1 y 2.
+- Corpus fijo de 2,000 noticias en inglés: 1,781 de Wikinews, 180 de Global Voices y 39 de EFF.
+- Normalización común para documentos y consultas con spaCy: tokenización, etiquetado POS, filtrado selectivo y lematización.
+- Doce configuraciones VSM: título o cuerpo, unigramas o bigramas, y frecuencia, binaria o TF-IDF.
+- Recuperación por similitud coseno con diez resultados y puntuaciones.
+- Benchmark congelado de quince consultas: cinco fáciles, cinco intermedias y cinco difíciles.
+- Precision@10, Recall@10, F1@10, MRR y nDCG@10.
+- Notebook demostrativo completo y ejecutado.
 
-La consigna académica solicita identificar entre 10 y 15 documentos relevantes por consulta. Comercio, fútbol y vigilancia superan el máximo literal porque se conservaron todos los positivos auténticos encontrados: 28, 20 y 25 documentos por consulta, respectivamente. Reducirlos habría ocultado relevancia y alterado el denominador de Recall@10. `data/academic_reference_core.tsv` es únicamente un ejemplo expositivo y nunca sustituye los qrels oficiales.
+## Requisitos
 
-## Instalación y ejecución
+El proyecto fue ejecutado con Python 3.11.5. Las versiones exactas de las bibliotecas están fijadas en `requirements.txt`, incluido el modelo `en_core_web_sm` 3.8.0 de spaCy.
 
-```bash
-python -m venv .venv
-pip install -r requirements.txt
-python -m unittest -v test_project
-python main.py --benchmark
-python main.py --benchmark --frozen
+## Instalación y ejecución en Windows
+
+Desde CMD o PowerShell, dentro de la carpeta del proyecto:
+
+```cmd
+py -m pip install --no-cache-dir -r requirements.txt
+py main.py
 ```
 
-`python main.py --benchmark` valida corpus, consultas y qrels sin recalcular resultados. `--frozen` ejecuta las 180 búsquedas y sobrescribe de forma coherente el único conjunto de resultados finales en `results/`.
+Comandos independientes:
 
-Para una consulta libre:
-
-```bash
-python main.py --query "government surveillance and privacy" --field body --ngram 1 --representation tfidf
+```cmd
+py main.py --collect
+py main.py --prepare
+py main.py --benchmark
+py main.py --benchmark --frozen
+py main.py --query "government surveillance and privacy" --field body --ngram 1 --representation tfidf
+py -m unittest -v test_project
 ```
 
-## Corpus y extracción
+`--collect` conserva el corpus fijo: cuando ya existe, únicamente lo valida y no realiza una descarga. `--prepare` normaliza ese corpus y vuelve a generar las doce matrices.
 
-El corpus fijo conserva 2,000 noticias: 1,781 de Wikinews, 180 de Global Voices y 39 de EFF. Cada registro incluye ID, título, cuerpo o extracto, fuente, categoría, fecha, URL, fecha de recuperación, autor, licencia y URL de licencia.
+## Instalación y ejecución en Linux
 
-- Wikinews: API de MediaWiki y texto introductorio de páginas de la edición inglesa.
-- Global Voices: feeds RSS temáticos, contenido atribuido bajo CC BY 3.0.
-- EFF Deeplinks: feed RSS original bajo CC BY 4.0; se excluye contenido republicado de terceros.
+```bash
+python3 -m pip install --no-cache-dir -r requirements.txt
+python3 main.py
+python3 main.py --collect
+python3 main.py --prepare
+python3 main.py --benchmark
+python3 main.py --benchmark --frozen
+python3 main.py --query "government surveillance and privacy" --field body --ngram 1 --representation tfidf
+python3 -m unittest -v test_project
+```
 
-La extracción inicial aplicó validación, deduplicación por ID, URL, título y cuerpo, comprobación conservadora de idioma y escritura atómica. El notebook usa el corpus persistido y no descarga nuevamente las noticias.
+Si la distribución administra Python externamente y bloquea instalaciones globales, puede crear un entorno aislado con `python3 -m venv .venv`, activarlo y ejecutar allí la instalación. No es un requisito del proyecto.
 
-## Normalización y representaciones
+## Instalación y ejecución en macOS
 
-`retrieval.py` aplica la misma normalización a documentos y consultas: limpieza de HTML y caracteres de control, tokenización y POS tagging con spaCy, eliminación selectiva de artículos, preposiciones, conjunciones y pronombres, y lematización en minúsculas. El corpus normalizado conserva los campos originales y añade `language`, `normalized_title` y `normalized_body`.
+```bash
+python3 -m pip install --no-cache-dir -r requirements.txt
+python3 main.py
+python3 main.py --collect
+python3 main.py --prepare
+python3 main.py --benchmark
+python3 main.py --benchmark --frozen
+python3 main.py --query "government surveillance and privacy" --field body --ngram 1 --representation tfidf
+python3 -m unittest -v test_project
+```
 
-`results/vectors.joblib` almacena doce matrices CSR y sus vectorizadores:
+Estos comandos corresponden a la interfaz multiplataforma del proyecto; la validación final de esta entrega se realizó en Windows.
 
-- Campo: título o cuerpo.
-- Características: unigramas o bigramas.
-- Ponderación: frecuencia, binaria o TF-IDF.
+## Menú principal
 
-No se utilizan embeddings ni modelos semánticos. La recuperación transforma la consulta con el vectorizador correspondiente, calcula similitud coseno y devuelve exactamente diez documentos. Cuando no hay características compartidas pueden aparecer empates con similitud cero; se conservan y se auditan semánticamente.
+`python main.py` abre un menú con estas operaciones:
 
-## Benchmark y auditoría Top-10
+1. Introducir una consulta libre, elegir título o cuerpo, unigramas o bigramas y frecuencia, binaria o TF-IDF; se muestran diez noticias ordenadas y sus puntuaciones.
+2. Ejecutar el benchmark congelado y calcular las cinco métricas.
+3. Mostrar el resumen comparativo de las doce configuraciones.
+4. Salir.
 
-`data/queries.tsv` contiene quince consultas: cinco por dificultad y tres formulaciones para cada necesidad informativa. Las cinco necesidades son comercio internacional, precios de energía, fútbol como fenómeno político/social, controversias del cricket y vigilancia pública.
+La adquisición protegida y la preparación también pueden ejecutarse por separado con `--collect` y `--prepare`. `--benchmark` valida la referencia sin recalcular; al agregar `--frozen` se reproducen las 180 evaluaciones definitivas.
 
-`data/qrels.tsv` contiene solo positivos. Los negativos confirmados y sus justificaciones se mantienen en `data/pool_human_review.tsv`. Los 1,800 resultados Top-10 de la evaluación final están vinculados a uno de esos juicios en `results/retrieval_judgments.tsv`; no quedan devoluciones sin juicio.
+## Archivos del proyecto
 
-Antes de la evaluación final se revisaron individualmente los pares Top-10 que solo aparecían por desempate a similitud cero. La evidencia se conserva en `data/top10_zero_similarity_adjudication.tsv`. La puntuación nunca se utilizó como etiqueta.
+| Ruta | Contenido |
+|---|---|
+| `data/news_raw_corpus.tsv` | Corpus original con texto, fuente, categoría, fecha, URL, recuperación, autor y licencia. |
+| `data/news_normalized_corpus.tsv` | Corpus alineado con títulos y cuerpos normalizados. |
+| `results/vectors.joblib` | Doce matrices dispersas y sus vectorizadores. |
+| `data/queries.tsv` | Quince consultas y sus niveles de dificultad. |
+| `data/qrels.tsv` | 303 juicios positivos congelados con grados 1 y 2. |
+| `results/rankings.tsv` | Top-10 de la configuración principal `body_1_tfidf`. |
+| `results/rankings_all_configurations.tsv` | Top-10 de las 180 combinaciones consulta-configuración. |
+| `results/metrics.tsv` | Métricas por consulta y promedio de la configuración principal. |
+| `results/metrics_by_query_configuration.tsv` | Métricas de las doce configuraciones. |
+| `results/comparison.tsv` | Resumen comparativo por configuración y dificultad. |
+| `NewsRetrieval_Pipeline.ipynb` | Demostración ejecutada, tablas, gráficas y análisis de errores. |
+| [`docs/NewsRetrieval_Informe_Final.pdf`](docs/NewsRetrieval_Informe_Final.pdf) | Informe académico final. |
 
-## Métricas
+Los qrels conservan más de quince documentos positivos en tres necesidades informativas porque se encontraron documentos pertinentes adicionales. No se eliminaron para aparentar el intervalo recomendado. La referencia corresponde a una evaluación analítica delegada, no a una aprobación humana institucional exhaustiva.
 
-Para cada consulta y configuración se calculan:
+## Resultados principales
 
-- Precision@10: positivos recuperados entre diez.
-- Recall@10: positivos recuperados entre todos los qrels de la consulta.
-- F1@10: media armónica de precisión y recall.
-- MRR: rango recíproco del primer positivo.
-- nDCG@10: ganancia graduada `2^relevance - 1`, descuento logarítmico y normalización por el ranking ideal.
+Promedios reales de `body_1_tfidf`:
 
-Las pruebas comprueban ejemplos conocidos, ausencia de positivos, grados mixtos, resultados con score cero, duplicados, consistencia de las 180 evaluaciones y correspondencia matemática entre rankings y métricas.
+| Métrica | Valor |
+|---|---:|
+| Precision@10 | 0.3200 |
+| Recall@10 | 0.1727 |
+| F1@10 | 0.2196 |
+| MRR | 0.5763 |
+| nDCG@10 | 0.3349 |
 
-## Resultados finales
+## Informe académico
 
-- `results/rankings.tsv`: Top-10 de la configuración principal `body_1_tfidf`, con el formato solicitado.
-- `results/rankings_all_configurations.tsv`: 1,800 devoluciones de las doce configuraciones.
-- `results/retrieval_judgments.tsv`: auditoría individual con grado, estado y evidencia.
-- `results/metrics_by_query_configuration.tsv`: 180 filas con conteos y cinco métricas.
-- `results/metrics.tsv`: resultados de `body_1_tfidf` y su promedio.
-- `results/comparison.tsv`: promedios por configuración y dificultad.
-- `results/report_data.json`: datos consolidados para el informe académico.
-- `results/figures/`: cinco gráficas SVG derivadas de la misma ejecución.
-
-`NewsRetrieval_Pipeline.ipynb` demuestra el flujo completo y contiene una función `show_top10(query_id, configuration)` para inspeccionar cualquier combinación.
-
-## Limitaciones
-
-- La validación de relevancia es analítica delegada, no una evaluación humana institucional exhaustiva.
-- El pool no demuestra exhaustividad sobre las 2,000 noticias.
-- La recuperación léxica es sensible a sinónimos, paráfrasis, ambigüedad y vocabulario fuera del índice.
-- Los extractos almacenados pueden contener menos contexto que el artículo completo.
-- Los empates de similitud cero reflejan ausencia de características compartidas, no irrelevancia automática.
+El informe con metodología, resultados, análisis de errores e integrantes está disponible en [`docs/NewsRetrieval_Informe_Final.pdf`](docs/NewsRetrieval_Informe_Final.pdf).

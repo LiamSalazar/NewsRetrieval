@@ -1,5 +1,0 @@
-need_id	document_id	proposed_relevance	confidence	justification
-football	N7f9a31c7d486608276b0	1	media	El texto vincula explícitamente la crisis de seguridad haitiana, el desplazamiento y las muertes con el fútbol nacional, presentado como fuente de esperanza; el nexo social es comprobable aunque el cuerpo disponible no lo desarrolla.
-cricket	N6fbbf60f137b452cfa28	1	media	La nota atribuye a Garfield Sobers un significado público y descolonizador directamente ligado al cricket antillano; constituye relevancia cultural parcial, aunque el breve texto no desarrolla una controversia institucional.
-cricket	Nf68a8fabaed54bbd6b85		baja	El texto sólo anuncia que existen cuestiones clave tras una serie West Indies-Australia, pero no identifica cuáles son; no permite confirmar controversia institucional, disciplinaria, política, de seguridad o cultural.
-surveillance	Nf76c271b71b1a5318222		baja	El texto denuncia tecnologías instaladas sin debate, transparencia ni información sobre el destino de los datos, pero no identifica al operador; no permite confirmar que la vigilancia sea ejercida por una autoridad pública.

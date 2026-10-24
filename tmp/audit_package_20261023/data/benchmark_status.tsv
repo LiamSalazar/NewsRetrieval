@@ -1,2 +1,0 @@
-artifact	status	approval_required	note
-qrels.tsv	provisional_semantic_review	human_review	Juicios positivos curados sin usar rankings ni métricas; la cobertura pendiente no equivale a negativos confirmados. No ejecutar --frozen.

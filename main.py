@@ -52,6 +52,23 @@ def ensure_data():
         print('Corpus y matrices actuales reutilizados.')
 
 
+def collect_corpus():
+    """Adquiere el corpus solo si no existe; un corpus fijo nunca se sobrescribe."""
+    report = collect_news()
+    action = 'validado sin descarga' if report['added'] == 0 else 'adquirido'
+    print(f"Corpus {action}: {report['total_after']} noticias.")
+
+
+def prepare_corpus():
+    """Normaliza el corpus fijo y genera sus doce espacios vectoriales."""
+    rows = read_corpus(CORPUS)
+    validate_corpus(rows)
+    if len(rows) != 2000:
+        raise RuntimeError(f'El corpus contiene {len(rows)} noticias; se requieren 2,000. No se modificó.')
+    spaces = process_corpus()
+    print(f'Preparación completada: {len(rows)} noticias y {len(spaces)} espacios vectoriales.')
+
+
 def ask_choice(prompt, options, default):
     try:
         text = input(f'{prompt} [{"/".join(options)}] (predeterminado: {default}): ').strip().lower()
@@ -64,6 +81,7 @@ def search_loop(first_query=None, first_field='body', first_ngram=1, first_rep='
     bundle = joblib.load(VECTORS)
     direct_query = first_query is not None
     while True:
+        was_direct = direct_query
         try:
             query = first_query if direct_query else input('\nConsulta (o escribe salir): ').strip()
         except EOFError:
@@ -87,6 +105,8 @@ def search_loop(first_query=None, first_field='body', first_ngram=1, first_rep='
         rows = search_news(query, field, int(ngram), representation, bundle=bundle)
         for row in rows:
             print(f"{row['score']:.6f}\t{row['id']}\t{row['title']}\t{row['url']}")
+        if was_direct:
+            return
 
 
 def comparison_menu():
@@ -139,16 +159,27 @@ def interactive_menu():
 
 def main():
     parser = argparse.ArgumentParser(description='News Retrieval')
-    parser.add_argument('--query', help='Ejecuta una consulta directamente')
+    actions = parser.add_mutually_exclusive_group()
+    actions.add_argument('--collect', action='store_true',
+                         help='Adquiere el corpus inicial o valida el corpus fijo existente')
+    actions.add_argument('--prepare', action='store_true',
+                         help='Normaliza el corpus fijo y genera las 12 representaciones VSM')
+    actions.add_argument('--query', help='Ejecuta una consulta directamente')
     parser.add_argument('--field', choices=['title', 'body'], default=None)
     parser.add_argument('--ngram', type=int, choices=[1, 2], default=None)
     parser.add_argument('--representation', choices=['frequency', 'binary', 'tfidf'], default=None)
-    parser.add_argument('--benchmark', action='store_true',
-                        help='Valida el benchmark; con --frozen ejecuta las 12 configuraciones')
+    actions.add_argument('--benchmark', action='store_true',
+                         help='Valida el benchmark; con --frozen ejecuta las 12 configuraciones')
     parser.add_argument('--frozen', action='store_true',
                         help='Usa la referencia congelada por evaluación analítica delegada')
     args = parser.parse_args()
     try:
+        if args.collect:
+            collect_corpus()
+            return 0
+        if args.prepare:
+            prepare_corpus()
+            return 0
         ensure_data()
         if args.benchmark:
             queries, qrels = load_benchmark()
