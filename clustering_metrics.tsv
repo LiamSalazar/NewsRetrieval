@@ -1,0 +1,3 @@
+experiment_id	split	silhouette_euclidean	ari_external	nmi_external	n_clusters_predicted	silhouette_sample_size
+EXP_B_002	dev	0.28094069793250004	0.0028327354778495744	0.012157991835611809	4	300
+test	test	0.2841018390674276	0.013511016842405126	0.04574917130584117	3	300

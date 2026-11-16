@@ -1,0 +1,24 @@
+{
+  "experiment_id": "EXP_B_002",
+  "method": "KMeans",
+  "normalization": "norm_1_baseline",
+  "representation": "vec_freq_1_2",
+  "hyperparameters": {
+    "n_clusters": 4,
+    "n_init": 10,
+    "init": "k-means++",
+    "max_iter": 300,
+    "random_state": 0
+  },
+  "selection_metric": "dev_silhouette_euclidean",
+  "svd": null,
+  "test_metrics": {
+    "experiment_id": "test",
+    "split": "test",
+    "silhouette_euclidean": 0.2841018390674276,
+    "ari_external": 0.013511016842405126,
+    "nmi_external": 0.04574917130584117,
+    "n_clusters_predicted": 3,
+    "silhouette_sample_size": 300
+  }
+}
