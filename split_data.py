@@ -16,7 +16,6 @@ train_df, temp_df = train_test_split(
     random_state=0,
     stratify=df['category']
 )
-
 dev_df, test_df = train_test_split(
     temp_df,
     test_size=0.50,
@@ -24,7 +23,6 @@ dev_df, test_df = train_test_split(
     random_state=0,
     stratify=temp_df['category']
 )
-
 train_df['split'] = 'train'
 dev_df['split'] = 'dev'
 test_df['split'] = 'test'
@@ -34,7 +32,7 @@ labeled_df = labeled_df[['id', 'text', 'category', 'split']].rename(columns={'id
 
 labeled_df.to_csv('labeled_documents.tsv', sep='\t', index=False)
 
-print("Distribución por partición:")
+print("Distribution by split:")
 print(labeled_df['split'].value_counts())
-print("\nDistribución de categorías por partición:")
+print("\nCategory distribution by split:")
 print(pd.crosstab(labeled_df['category'], labeled_df['split']))

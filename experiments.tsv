@@ -1,0 +1,73 @@
+experiment_id	task	normalization	representation	method	hyperparameters	dev_metric	selected
+EXP_A_001	classification	norm_1_baseline	vec_binary_1	MultinomialNB	alpha=1.0	0.8673	False
+EXP_A_002	classification	norm_1_baseline	vec_binary_1	MultinomialNB	alpha=0.1	0.8605	False
+EXP_A_003	classification	norm_1_baseline	vec_binary_1	LogisticRegression	C=1.0, max_iter=1000	0.8251	False
+EXP_A_004	classification	norm_1_baseline	vec_binary_1	LogisticRegression	C=5.0, max_iter=1000	0.8418	False
+EXP_A_005	classification	norm_1_baseline	vec_binary_1	LinearSVC	C=1.0	0.8352	False
+EXP_A_006	classification	norm_1_baseline	vec_binary_1	LinearSVC	C=0.5	0.8352	False
+EXP_A_007	classification	norm_1_baseline	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8709	False
+EXP_A_008	classification	norm_1_baseline	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8807	False
+EXP_A_009	classification	norm_1_baseline	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=1000	0.856	False
+EXP_A_010	classification	norm_1_baseline	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8593	False
+EXP_A_011	classification	norm_1_baseline	vec_freq_1_2	LinearSVC	C=1.0	0.8759	False
+EXP_A_012	classification	norm_1_baseline	vec_freq_1_2	LinearSVC	C=0.5	0.8759	False
+EXP_A_013	classification	norm_1_baseline	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8669	False
+EXP_A_014	classification	norm_1_baseline	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8798	False
+EXP_A_015	classification	norm_1_baseline	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=1000	0.88	False
+EXP_A_016	classification	norm_1_baseline	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=1000	0.8798	False
+EXP_A_017	classification	norm_1_baseline	vec_tfidf_1	LinearSVC	C=1.0	0.8793	False
+EXP_A_018	classification	norm_1_baseline	vec_tfidf_1	LinearSVC	C=0.5	0.8796	False
+EXP_A_019	classification	norm_1_baseline	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8638	False
+EXP_A_020	classification	norm_1_baseline	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8605	False
+EXP_A_021	classification	norm_1_baseline	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8802	False
+EXP_A_022	classification	norm_1_baseline	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8767	False
+EXP_A_023	classification	norm_1_baseline	vec_tfidf_1_2	LinearSVC	C=1.0	0.88	False
+EXP_A_024	classification	norm_1_baseline	vec_tfidf_1_2	LinearSVC	C=0.5	0.8767	False
+EXP_A_025	classification	norm_2_stopwords	vec_binary_1	MultinomialNB	alpha=1.0	0.8637	False
+EXP_A_026	classification	norm_2_stopwords	vec_binary_1	MultinomialNB	alpha=0.1	0.8636	False
+EXP_A_027	classification	norm_2_stopwords	vec_binary_1	LogisticRegression	C=1.0, max_iter=1000	0.8452	False
+EXP_A_028	classification	norm_2_stopwords	vec_binary_1	LogisticRegression	C=5.0, max_iter=1000	0.852	False
+EXP_A_029	classification	norm_2_stopwords	vec_binary_1	LinearSVC	C=1.0	0.8353	False
+EXP_A_030	classification	norm_2_stopwords	vec_binary_1	LinearSVC	C=0.5	0.8353	False
+EXP_A_031	classification	norm_2_stopwords	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8774	False
+EXP_A_032	classification	norm_2_stopwords	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8807	False
+EXP_A_033	classification	norm_2_stopwords	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8792	False
+EXP_A_034	classification	norm_2_stopwords	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8761	False
+EXP_A_035	classification	norm_2_stopwords	vec_freq_1_2	LinearSVC	C=1.0	0.8793	False
+EXP_A_036	classification	norm_2_stopwords	vec_freq_1_2	LinearSVC	C=0.5	0.8825	False
+EXP_A_037	classification	norm_2_stopwords	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8767	False
+EXP_A_038	classification	norm_2_stopwords	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8764	False
+EXP_A_039	classification	norm_2_stopwords	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=1000	0.8832	False
+EXP_A_040	classification	norm_2_stopwords	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=1000	0.8799	False
+EXP_A_041	classification	norm_2_stopwords	vec_tfidf_1	LinearSVC	C=1.0	0.8728	False
+EXP_A_042	classification	norm_2_stopwords	vec_tfidf_1	LinearSVC	C=0.5	0.8763	False
+EXP_A_043	classification	norm_2_stopwords	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8671	False
+EXP_A_044	classification	norm_2_stopwords	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8803	False
+EXP_A_045	classification	norm_2_stopwords	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8834	False
+EXP_A_046	classification	norm_2_stopwords	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8801	False
+EXP_A_047	classification	norm_2_stopwords	vec_tfidf_1_2	LinearSVC	C=1.0	0.8864	False
+EXP_A_048	classification	norm_2_stopwords	vec_tfidf_1_2	LinearSVC	C=0.5	0.8866	True
+EXP_A_049	classification	norm_3_lemma	vec_binary_1	MultinomialNB	alpha=1.0	0.8635	False
+EXP_A_050	classification	norm_3_lemma	vec_binary_1	MultinomialNB	alpha=0.1	0.8571	False
+EXP_A_051	classification	norm_3_lemma	vec_binary_1	LogisticRegression	C=1.0, max_iter=1000	0.8295	False
+EXP_A_052	classification	norm_3_lemma	vec_binary_1	LogisticRegression	C=5.0, max_iter=1000	0.8359	False
+EXP_A_053	classification	norm_3_lemma	vec_binary_1	LinearSVC	C=1.0	0.8356	False
+EXP_A_054	classification	norm_3_lemma	vec_binary_1	LinearSVC	C=0.5	0.8356	False
+EXP_A_055	classification	norm_3_lemma	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8611	False
+EXP_A_056	classification	norm_3_lemma	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8712	False
+EXP_A_057	classification	norm_3_lemma	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8794	False
+EXP_A_058	classification	norm_3_lemma	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8794	False
+EXP_A_059	classification	norm_3_lemma	vec_freq_1_2	LinearSVC	C=1.0	0.8665	False
+EXP_A_060	classification	norm_3_lemma	vec_freq_1_2	LinearSVC	C=0.5	0.8665	False
+EXP_A_061	classification	norm_3_lemma	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8671	False
+EXP_A_062	classification	norm_3_lemma	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8834	False
+EXP_A_063	classification	norm_3_lemma	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=1000	0.8667	False
+EXP_A_064	classification	norm_3_lemma	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=1000	0.8662	False
+EXP_A_065	classification	norm_3_lemma	vec_tfidf_1	LinearSVC	C=1.0	0.8662	False
+EXP_A_066	classification	norm_3_lemma	vec_tfidf_1	LinearSVC	C=0.5	0.8628	False
+EXP_A_067	classification	norm_3_lemma	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8671	False
+EXP_A_068	classification	norm_3_lemma	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8738	False
+EXP_A_069	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8702	False
+EXP_A_070	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8636	False
+EXP_A_071	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=1.0	0.8628	False
+EXP_A_072	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=0.5	0.8662	False

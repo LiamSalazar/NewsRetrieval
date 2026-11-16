@@ -1,0 +1,5 @@
+experiment_id	model	split	accuracy	macro_precision	macro_recall	macro_f1
+EXP_A_062	MultinomialNB	dev	0.8833	0.8834	0.8833	0.8834
+EXP_A_045	LogisticRegression	dev	0.8833	0.8836	0.8833	0.8834
+EXP_A_048	LinearSVC	dev	0.8867	0.8868	0.8867	0.8866
+EXP_A_048	LinearSVC	test	0.8933	0.896	0.8933	0.8937

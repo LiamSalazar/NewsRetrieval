@@ -48,7 +48,6 @@ class TextNormalizer(BaseEstimator, TransformerMixin):
 
 
 def get_preprocessing_configs():
-    """Retorna las 3 configuraciones obligatorias de normalización."""
     return {
         "norm_1_baseline": TextNormalizer(mode="baseline"),
         "norm_2_stopwords": TextNormalizer(mode="clean_stopwords"),
@@ -57,7 +56,6 @@ def get_preprocessing_configs():
 
 
 def get_vectorizer_configs():
-    """Retorna configuraciones de representación: binaria, frecuencia y TF-IDF con n-gramas"""
     return {
         "vec_binary_1": CountVectorizer(binary=True, ngram_range=(1, 1), min_df=2),
         "vec_freq_1_2": CountVectorizer(binary=False, ngram_range=(1, 2), min_df=2),
@@ -67,13 +65,12 @@ def get_vectorizer_configs():
 
 
 if __name__ == "__main__":
-    print("Cargando labeled_documents.tsv")
     df = pd.read_csv("labeled_documents.tsv", sep="\t")
     train_texts = df[df["split"] == "train"]["text"].tolist()
     dev_texts = df[df["split"] == "dev"]["text"].tolist()
 
     sample_text = train_texts[0]
-    print(f"\nTexto original: {sample_text[:120]}...\n")
+    print(f"\nOriginal text: {sample_text[:120]}...\n")
 
     prep_configs = get_preprocessing_configs()
     vec_configs = get_vectorizer_configs()
