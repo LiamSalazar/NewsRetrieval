@@ -1,0 +1,2 @@
+input_rows	retained_labeled_nonempty_rows	dropped_missing_category	dropped_empty_text	random_state	train_ratio	dev_ratio	test_ratio
+2000	2000	0	0	0	0.7	0.15	0.15

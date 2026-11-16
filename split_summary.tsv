@@ -1,0 +1,4 @@
+split	documents
+train	1400
+dev	300
+test	300
