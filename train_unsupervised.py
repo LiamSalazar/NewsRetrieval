@@ -4,7 +4,7 @@ import json
 import joblib
 import numpy as np
 import pandas as pd
-
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from sklearn.cluster import KMeans
 
 from sklearn.metrics import (
@@ -474,6 +474,7 @@ def main():
         index=False
     )
 
+    
     X_train_dev = final_pipe[:-1].transform(
         train_dev_df["text"].astype(str).tolist()
     )
@@ -493,13 +494,13 @@ def main():
         .get_feature_names_out()
     )
 
-    X_all = final_pipe[:-1].transform(
-        df["text"].astype(str).tolist()
-    )
+    # Distancias calculadas exclusivamente con train + dev.
+    # No utilizamos documentos del conjunto test para
+    # seleccionar ejemplos representativos.
 
-    all_distances = (
+    distances_train_dev = (
         final_pipe.named_steps["model"]
-        .transform(X_all)
+        .transform(X_train_dev)
     )
 
     summary_rows = []
@@ -514,32 +515,48 @@ def main():
             np.sum(test_labels == cluster_id)
         )
 
-        top_indices = np.argsort(
+        # Obtener los términos con mayor peso en el centroide.
+        # Se excluyen términos formados únicamente por stopwords.
+
+        ranked_indices = np.argsort(
             centers[cluster_id]
-        )[::-1][:10]
+        )[::-1]
 
-        top_words = [
-            feature_names[i]
-            for i in top_indices
-        ]
+        top_words = []
 
-        all_member_positions = np.where(
-            all_labels == cluster_id
-        )[0]
+        for index in ranked_indices:
 
-        if len(all_member_positions):
+            term = feature_names[index]
 
-            nearest_order = all_member_positions[
+            tokens = term.lower().split()
+
+            if all(
+                token in ENGLISH_STOP_WORDS
+                for token in tokens
+            ):
+                continue
+
+            top_words.append(term)
+
+            if len(top_words) == 10:
+                break
+
+        # Seleccionar los documentos más cercanos al centroide.
+        # Únicamente se consideran documentos de train + dev.
+
+        if len(member_positions):
+
+            nearest_order = member_positions[
                 np.argsort(
-                    all_distances[
-                        all_member_positions,
+                    distances_train_dev[
+                        member_positions,
                         cluster_id
                     ]
                 )
             ][:2]
 
             representative_ids = (
-                df.iloc[nearest_order]["document_id"]
+                train_dev_df.iloc[nearest_order]["document_id"]
                 .astype(str)
                 .tolist()
             )
@@ -549,7 +566,7 @@ def main():
                 safe_text(value, 500)
 
                 for value in (
-                    df.iloc[nearest_order]["text"].tolist()
+                    train_dev_df.iloc[nearest_order]["text"].tolist()
                 )
 
             ]
@@ -562,10 +579,13 @@ def main():
         summary_rows.append({
 
             "cluster_id": cluster_id,
+
             "size_train_dev": int(
                 len(member_positions)
             ),
+
             "size_test": test_size,
+
             "top_10_words": " | ".join(top_words),
 
             "representative_document_ids": (
@@ -577,6 +597,12 @@ def main():
             ),
 
         })
+
+    pd.DataFrame(summary_rows).to_csv(
+        "cluster_summary.tsv",
+        sep="\t",
+        index=False
+    )
 
     pd.DataFrame(summary_rows).to_csv(
         "cluster_summary.tsv",

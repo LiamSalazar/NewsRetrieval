@@ -114,3 +114,69 @@ Promedios reales de `body_1_tfidf`:
 ## Informe académico
 
 El informe con metodología, resultados, análisis de errores e integrantes está disponible en [`docs/NewsRetrieval_Informe_Final.pdf`](docs/NewsRetrieval_Informe_Final.pdf).
+
+
+
+## Stage II — Traditional Machine Learning for NLP
+
+Stage II extends the news retrieval system with supervised
+news classification and unsupervised document clustering.
+
+### Tasks
+
+- Supervised classification using MultinomialNB,
+  LogisticRegression, and LinearSVC.
+- Unsupervised document clustering using K-Means.
+- Comparison of text normalization and vectorization
+  configurations.
+- Model selection using development data.
+- Final evaluation using a held-out test partition.
+
+### Stage II execution
+
+Run the following commands from the repository root:
+
+```bash
+python split_data.py
+python train_classifier.py
+python train_unsupervised.py
+```
+
+### Generated classification files
+
+- labeled_documents.tsv
+- classification_predictions.tsv
+- classification_metrics.tsv
+- classification_per_class_metrics.tsv
+- classification_confusion_matrices.tsv
+- classification_error_analysis.tsv
+
+### Generated clustering files
+
+- clustering_results.tsv
+- clustering_metrics.tsv
+- cluster_summary.tsv
+
+### Experiment tracking
+
+All supervised and K-Means experiments are recorded in:
+
+- experiments.tsv
+
+The best trained models and their metadata are saved
+inside the results/ directory.
+
+### Evaluation protocol
+
+- Train data is used to fit models and vectorizers.
+- Dev data is used for configuration selection.
+- Test data is reserved for final evaluation.
+- Classification uses macro-F1 as its primary selection metric.
+- K-Means configurations are selected using dev silhouette.
+- ARI and NMI are used only for external interpretation.
+
+### Reproducibility
+
+The data split uses random_state=0.
+Software versions and environment information are
+recorded in results/environment_info.json.
