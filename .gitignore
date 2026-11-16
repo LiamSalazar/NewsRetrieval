@@ -13,3 +13,8 @@ output/
 .env.*
 *.pem
 *.key
+venv/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
