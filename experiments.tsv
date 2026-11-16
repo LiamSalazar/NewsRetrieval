@@ -71,3 +71,11 @@ EXP_A_069	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=1.0, ma
 EXP_A_070	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8636	False
 EXP_A_071	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=1.0	0.8628	False
 EXP_A_072	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=0.5	0.8662	False
+EXP_B_001	clustering	norm_3_lemma	tfidf_5000	KMeans	n_clusters=3	0.1722	True
+EXP_B_002	clustering	norm_3_lemma	tfidf_5000	AgglomerativeClustering	n_clusters=3	0.0623	False
+EXP_B_003	topic_modeling	norm_3_lemma	count_5000	LDA	n_components=3	0.0	True
+EXP_B_004	topic_modeling	norm_3_lemma	tfidf_5000	NMF	n_components=3	0.0	False
+EXP_B_001	clustering	norm_3_lemma	tfidf_5000	KMeans	n_clusters=3	0.1722	True
+EXP_B_002	clustering	norm_3_lemma	tfidf_5000	AgglomerativeClustering	n_clusters=3	0.0623	False
+EXP_B_003	topic_modeling	norm_3_lemma	count_5000	LDA	n_components=3	0.0	True
+EXP_B_004	topic_modeling	norm_3_lemma	tfidf_5000	NMF	n_components=3	0.0	False
