@@ -1,4 +1,3 @@
-
 import argparse
 import csv
 from pathlib import Path
@@ -53,14 +52,12 @@ def ensure_data():
 
 
 def collect_corpus():
-    
     report = collect_news()
     action = 'validado sin descarga' if report['added'] == 0 else 'adquirido'
     print(f"Corpus {action}: {report['total_after']} noticias.")
 
 
 def prepare_corpus():
-    
     rows = read_corpus(CORPUS)
     validate_corpus(rows)
     if len(rows) != 2000:
@@ -127,9 +124,86 @@ def print_metrics_summary(path='results/metrics.tsv'):
                                     for key in ('precision@10', 'recall@10', 'f1@10', 'mrr', 'ndcg@10')))
 
 
+def read_tsv(path):
+    file_path = Path(path)
+    if not file_path.exists():
+        return []
+    with file_path.open(encoding='utf-8', newline='') as stream:
+        return list(csv.DictReader(stream, delimiter='\t'))
+
+
+def inspect_supervised():
+    print('\n============================================================')
+    print('          ETAPA II: CLASIFICACIÓN SUPERVISADA (TASK A)       ')
+    print('============================================================')
+    
+    cls_metrics = read_tsv('classification_metrics.tsv')
+    if cls_metrics:
+        print('\nMétricas por modelo y división (Dev y Test):')
+        print(f"{'Experiment ID':<15} | {'Model':<18} | {'Split':<6} | {'Accuracy':<9} | {'Macro-F1':<9}")
+        print('-' * 70)
+        for row in cls_metrics:
+            print(
+                f"{row['experiment_id']:<15} | {row['model']:<18} | {row['split']:<6} | "
+                f"{float(row['accuracy']):.4f}    | {float(row['macro_f1']):.4f}"
+            )
+    else:
+        print('No se encontró classification_metrics.tsv. Ejecuta primero: python train_classifier.py')
+
+    experiments = read_tsv('experiments.tsv')
+    if experiments:
+        supervised_exps = [row for row in experiments if row.get('task') == 'classification']
+        selected = next((row for row in supervised_exps if str(row.get('selected_overall', '')).lower() == 'true'), None)
+        if selected:
+            print('\nConfiguración Ganadora (Overall Winner):')
+            print(f"  • ID de Experimento: {selected['experiment_id']}")
+            print(f"  • Modelo: {selected['method']} ({selected['hyperparameters']})")
+            print(f"  • Normalización: {selected['normalization']}")
+            print(f"  • Representación: {selected['representation']}")
+            print(f"  • Dev Macro-F1: {float(selected['dev_metric']):.4f}")
+
+
+def inspect_unsupervised():
+    print('\n============================================================')
+    print('        ETAPA II: CLUSTERING NO SUPERVISADO (K-MEANS)       ')
+    print('============================================================')
+    
+    clu_metrics = read_tsv('clustering_metrics.tsv')
+    if clu_metrics:
+        print('\nMétricas de evaluación geométrica y externa:')
+        print(f"{'Experiment ID':<15} | {'Split':<6} | {'Silhouette':<10} | {'ARI':<8} | {'NMI':<8} | {'Clusters':<8}")
+        print('-' * 70)
+        for row in clu_metrics:
+            print(
+                f"{row['experiment_id']:<15} | {row['split']:<6} | "
+                f"{float(row['silhouette_euclidean']):.4f}     | {float(row['ari_external']):.4f}   | "
+                f"{float(row['nmi_external']):.4f}   | {row['n_clusters_predicted']}"
+            )
+    else:
+        print('No se encontró clustering_metrics.tsv. Ejecuta primero: python train_unsupervised.py')
+
+    clusters = read_tsv('cluster_summary.tsv')
+    if clusters:
+        print('\nResumen de Clústeres (Top Palabras y Tamaños):')
+        print('-' * 70)
+        for row in clusters:
+            print(f"Clúster ID: {row['cluster_id']} | Train+Dev: {row['size_train_dev']} docs | Test: {row['size_test']} docs")
+            print(f"  • Top 10 palabras: {row['top_10_words']}")
+            print(f"  • IDs Representativos: {row['representative_document_ids']}")
+            print('-' * 70)
+    else:
+        print('No se encontró cluster_summary.tsv. Ejecuta primero: python train_unsupervised.py')
+
+
 def interactive_menu():
     while True:
-        print('\n1. Consulta libre\n2. Ejecutar benchmark aprobado\n3. Ver resumen comparativo\n4. Salir')
+        print('\n=== MENÚ PRINCIPAL ==='
+              '\n1. Consulta libre (Etapa I)'
+              '\n2. Ejecutar benchmark aprobado (Etapa I)'
+              '\n3. Ver resumen comparativo (Etapa I)'
+              '\n4. Ver Clasificación Supervisada (Etapa II)'
+              '\n5. Ver Clustering No Supervisado (Etapa II)'
+              '\n6. Salir')
         try:
             option = input('Opción: ').strip()
         except EOFError:
@@ -152,6 +226,10 @@ def interactive_menu():
         elif option == '3':
             comparison_menu()
         elif option == '4':
+            inspect_supervised()
+        elif option == '5':
+            inspect_unsupervised()
+        elif option == '6':
             return
         else:
             print('Opción inválida.')
@@ -172,6 +250,10 @@ def main():
                          help='Valida el benchmark; con --frozen ejecuta las 12 configuraciones')
     parser.add_argument('--frozen', action='store_true',
                         help='Usa la referencia congelada por evaluación analítica delegada')
+    actions.add_argument('--supervised', action='store_true',
+                         help='Muestra el resumen y métricas de la clasificación supervisada (Etapa II)')
+    actions.add_argument('--unsupervised', action='store_true',
+                         help='Muestra el resumen y métricas del clustering no supervisado (Etapa II)')
     args = parser.parse_args()
     try:
         if args.collect:
@@ -179,6 +261,12 @@ def main():
             return 0
         if args.prepare:
             prepare_corpus()
+            return 0
+        if args.supervised:
+            inspect_supervised()
+            return 0
+        if args.unsupervised:
+            inspect_unsupervised()
             return 0
         ensure_data()
         if args.benchmark:
