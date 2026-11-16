@@ -494,10 +494,6 @@ def main():
         .get_feature_names_out()
     )
 
-    # Distancias calculadas exclusivamente con train + dev.
-    # No utilizamos documentos del conjunto test para
-    # seleccionar ejemplos representativos.
-
     distances_train_dev = (
         final_pipe.named_steps["model"]
         .transform(X_train_dev)
@@ -515,8 +511,6 @@ def main():
             np.sum(test_labels == cluster_id)
         )
 
-        # Obtener los términos con mayor peso en el centroide.
-        # Se excluyen términos formados únicamente por stopwords.
 
         ranked_indices = np.argsort(
             centers[cluster_id]
@@ -541,8 +535,6 @@ def main():
             if len(top_words) == 10:
                 break
 
-        # Seleccionar los documentos más cercanos al centroide.
-        # Únicamente se consideran documentos de train + dev.
 
         if len(member_positions):
 
@@ -597,12 +589,6 @@ def main():
             ),
 
         })
-
-    pd.DataFrame(summary_rows).to_csv(
-        "cluster_summary.tsv",
-        sep="\t",
-        index=False
-    )
 
     pd.DataFrame(summary_rows).to_csv(
         "cluster_summary.tsv",
