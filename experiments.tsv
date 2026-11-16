@@ -1,81 +1,81 @@
-experiment_id	task	normalization	representation	method	hyperparameters	dev_metric	selected
-EXP_A_001	classification	norm_1_baseline	vec_binary_1	MultinomialNB	alpha=1.0	0.8673	False
-EXP_A_002	classification	norm_1_baseline	vec_binary_1	MultinomialNB	alpha=0.1	0.8605	False
-EXP_A_003	classification	norm_1_baseline	vec_binary_1	LogisticRegression	C=1.0, max_iter=1000	0.8251	False
-EXP_A_004	classification	norm_1_baseline	vec_binary_1	LogisticRegression	C=5.0, max_iter=1000	0.8418	False
-EXP_A_005	classification	norm_1_baseline	vec_binary_1	LinearSVC	C=1.0	0.8352	False
-EXP_A_006	classification	norm_1_baseline	vec_binary_1	LinearSVC	C=0.5	0.8352	False
-EXP_A_007	classification	norm_1_baseline	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8709	False
-EXP_A_008	classification	norm_1_baseline	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8807	False
-EXP_A_009	classification	norm_1_baseline	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=1000	0.856	False
-EXP_A_010	classification	norm_1_baseline	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8593	False
-EXP_A_011	classification	norm_1_baseline	vec_freq_1_2	LinearSVC	C=1.0	0.8759	False
-EXP_A_012	classification	norm_1_baseline	vec_freq_1_2	LinearSVC	C=0.5	0.8759	False
-EXP_A_013	classification	norm_1_baseline	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8669	False
-EXP_A_014	classification	norm_1_baseline	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8798	False
-EXP_A_015	classification	norm_1_baseline	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=1000	0.88	False
-EXP_A_016	classification	norm_1_baseline	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=1000	0.8798	False
-EXP_A_017	classification	norm_1_baseline	vec_tfidf_1	LinearSVC	C=1.0	0.8793	False
-EXP_A_018	classification	norm_1_baseline	vec_tfidf_1	LinearSVC	C=0.5	0.8796	False
-EXP_A_019	classification	norm_1_baseline	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8638	False
-EXP_A_020	classification	norm_1_baseline	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8605	False
-EXP_A_021	classification	norm_1_baseline	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8802	False
-EXP_A_022	classification	norm_1_baseline	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8767	False
-EXP_A_023	classification	norm_1_baseline	vec_tfidf_1_2	LinearSVC	C=1.0	0.88	False
-EXP_A_024	classification	norm_1_baseline	vec_tfidf_1_2	LinearSVC	C=0.5	0.8767	False
-EXP_A_025	classification	norm_2_stopwords	vec_binary_1	MultinomialNB	alpha=1.0	0.8637	False
-EXP_A_026	classification	norm_2_stopwords	vec_binary_1	MultinomialNB	alpha=0.1	0.8636	False
-EXP_A_027	classification	norm_2_stopwords	vec_binary_1	LogisticRegression	C=1.0, max_iter=1000	0.8452	False
-EXP_A_028	classification	norm_2_stopwords	vec_binary_1	LogisticRegression	C=5.0, max_iter=1000	0.852	False
-EXP_A_029	classification	norm_2_stopwords	vec_binary_1	LinearSVC	C=1.0	0.8353	False
-EXP_A_030	classification	norm_2_stopwords	vec_binary_1	LinearSVC	C=0.5	0.8353	False
-EXP_A_031	classification	norm_2_stopwords	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8774	False
-EXP_A_032	classification	norm_2_stopwords	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8807	False
-EXP_A_033	classification	norm_2_stopwords	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8792	False
-EXP_A_034	classification	norm_2_stopwords	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8761	False
-EXP_A_035	classification	norm_2_stopwords	vec_freq_1_2	LinearSVC	C=1.0	0.8793	False
-EXP_A_036	classification	norm_2_stopwords	vec_freq_1_2	LinearSVC	C=0.5	0.8825	False
-EXP_A_037	classification	norm_2_stopwords	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8767	False
-EXP_A_038	classification	norm_2_stopwords	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8764	False
-EXP_A_039	classification	norm_2_stopwords	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=1000	0.8832	False
-EXP_A_040	classification	norm_2_stopwords	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=1000	0.8799	False
-EXP_A_041	classification	norm_2_stopwords	vec_tfidf_1	LinearSVC	C=1.0	0.8728	False
-EXP_A_042	classification	norm_2_stopwords	vec_tfidf_1	LinearSVC	C=0.5	0.8763	False
-EXP_A_043	classification	norm_2_stopwords	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8671	False
-EXP_A_044	classification	norm_2_stopwords	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8803	False
-EXP_A_045	classification	norm_2_stopwords	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8834	False
-EXP_A_046	classification	norm_2_stopwords	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8801	False
-EXP_A_047	classification	norm_2_stopwords	vec_tfidf_1_2	LinearSVC	C=1.0	0.8864	False
-EXP_A_048	classification	norm_2_stopwords	vec_tfidf_1_2	LinearSVC	C=0.5	0.8866	True
-EXP_A_049	classification	norm_3_lemma	vec_binary_1	MultinomialNB	alpha=1.0	0.8635	False
-EXP_A_050	classification	norm_3_lemma	vec_binary_1	MultinomialNB	alpha=0.1	0.8571	False
-EXP_A_051	classification	norm_3_lemma	vec_binary_1	LogisticRegression	C=1.0, max_iter=1000	0.8295	False
-EXP_A_052	classification	norm_3_lemma	vec_binary_1	LogisticRegression	C=5.0, max_iter=1000	0.8359	False
-EXP_A_053	classification	norm_3_lemma	vec_binary_1	LinearSVC	C=1.0	0.8356	False
-EXP_A_054	classification	norm_3_lemma	vec_binary_1	LinearSVC	C=0.5	0.8356	False
-EXP_A_055	classification	norm_3_lemma	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8611	False
-EXP_A_056	classification	norm_3_lemma	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8712	False
-EXP_A_057	classification	norm_3_lemma	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8794	False
-EXP_A_058	classification	norm_3_lemma	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8794	False
-EXP_A_059	classification	norm_3_lemma	vec_freq_1_2	LinearSVC	C=1.0	0.8665	False
-EXP_A_060	classification	norm_3_lemma	vec_freq_1_2	LinearSVC	C=0.5	0.8665	False
-EXP_A_061	classification	norm_3_lemma	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8671	False
-EXP_A_062	classification	norm_3_lemma	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8834	False
-EXP_A_063	classification	norm_3_lemma	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=1000	0.8667	False
-EXP_A_064	classification	norm_3_lemma	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=1000	0.8662	False
-EXP_A_065	classification	norm_3_lemma	vec_tfidf_1	LinearSVC	C=1.0	0.8662	False
-EXP_A_066	classification	norm_3_lemma	vec_tfidf_1	LinearSVC	C=0.5	0.8628	False
-EXP_A_067	classification	norm_3_lemma	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8671	False
-EXP_A_068	classification	norm_3_lemma	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8738	False
-EXP_A_069	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=1000	0.8702	False
-EXP_A_070	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=1000	0.8636	False
-EXP_A_071	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=1.0	0.8628	False
-EXP_A_072	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=0.5	0.8662	False
-EXP_B_001	clustering	norm_3_lemma	tfidf_5000	KMeans	n_clusters=3	0.1722	True
-EXP_B_002	clustering	norm_3_lemma	tfidf_5000	AgglomerativeClustering	n_clusters=3	0.0623	False
-EXP_B_003	topic_modeling	norm_3_lemma	count_5000	LDA	n_components=3	0.0	True
-EXP_B_004	topic_modeling	norm_3_lemma	tfidf_5000	NMF	n_components=3	0.0	False
-EXP_B_001	clustering	norm_3_lemma	tfidf_5000	KMeans	n_clusters=3	0.1722	True
-EXP_B_002	clustering	norm_3_lemma	tfidf_5000	AgglomerativeClustering	n_clusters=3	0.0623	False
-EXP_B_003	topic_modeling	norm_3_lemma	count_5000	LDA	n_components=3	0.0	True
-EXP_B_004	topic_modeling	norm_3_lemma	tfidf_5000	NMF	n_components=3	0.0	False
+experiment_id	task	normalization	representation	method	hyperparameters	dev_metric	selected	selection_metric	selected_overall	notes
+EXP_B_001	clustering	norm_3_lemma	tfidf_5000	KMeans	n_clusters=3	0.1722	True			
+EXP_B_002	clustering	norm_3_lemma	tfidf_5000	AgglomerativeClustering	n_clusters=3	0.0623	False			
+EXP_B_003	topic_modeling	norm_3_lemma	count_5000	LDA	n_components=3	0.0	True			
+EXP_B_004	topic_modeling	norm_3_lemma	tfidf_5000	NMF	n_components=3	0.0	False			
+EXP_B_001	clustering	norm_3_lemma	tfidf_5000	KMeans	n_clusters=3	0.1722	True			
+EXP_B_002	clustering	norm_3_lemma	tfidf_5000	AgglomerativeClustering	n_clusters=3	0.0623	False			
+EXP_B_003	topic_modeling	norm_3_lemma	count_5000	LDA	n_components=3	0.0	True			
+EXP_B_004	topic_modeling	norm_3_lemma	tfidf_5000	NMF	n_components=3	0.0	False			
+EXP_A_001	classification	norm_1_baseline	vec_binary_1	MultinomialNB	alpha=1.0	0.8672551700961444	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_002	classification	norm_1_baseline	vec_binary_1	MultinomialNB	alpha=0.1	0.860528690812212	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_003	classification	norm_1_baseline	vec_binary_1	LogisticRegression	C=1.0, max_iter=2000	0.8250561836090103	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_004	classification	norm_1_baseline	vec_binary_1	LogisticRegression	C=5.0, max_iter=2000	0.8417569145564342	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_005	classification	norm_1_baseline	vec_binary_1	LinearSVC	C=1.0	0.835243686982543	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_006	classification	norm_1_baseline	vec_binary_1	LinearSVC	C=0.5	0.835243686982543	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_007	classification	norm_1_baseline	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8709040180572599	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_008	classification	norm_1_baseline	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8807082114987802	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_009	classification	norm_1_baseline	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=2000	0.8559503213127223	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_010	classification	norm_1_baseline	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=2000	0.8592849697727747	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_011	classification	norm_1_baseline	vec_freq_1_2	LinearSVC	C=1.0	0.8758713106539194	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_012	classification	norm_1_baseline	vec_freq_1_2	LinearSVC	C=0.5	0.8758713106539194	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_013	classification	norm_1_baseline	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8669002297989467	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_014	classification	norm_1_baseline	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8798499061913696	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_015	classification	norm_1_baseline	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=2000	0.8800140003500087	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_016	classification	norm_1_baseline	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=2000	0.8797929544198201	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_017	classification	norm_1_baseline	vec_tfidf_1	LinearSVC	C=1.0	0.8793403917299257	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_018	classification	norm_1_baseline	vec_tfidf_1	LinearSVC	C=0.5	0.8796188430116593	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_019	classification	norm_1_baseline	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8637679126633472	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_020	classification	norm_1_baseline	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8605038457706528	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_021	classification	norm_1_baseline	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=2000	0.8802456783669467	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_022	classification	norm_1_baseline	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=2000	0.8766890022335566	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_023	classification	norm_1_baseline	vec_tfidf_1_2	LinearSVC	C=1.0	0.8800140003500087	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_024	classification	norm_1_baseline	vec_tfidf_1_2	LinearSVC	C=0.5	0.8766890022335566	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_025	classification	norm_2_stopwords	vec_binary_1	MultinomialNB	alpha=1.0	0.8701925468928802	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_026	classification	norm_2_stopwords	vec_binary_1	MultinomialNB	alpha=0.1	0.8666803336750085	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_027	classification	norm_2_stopwords	vec_binary_1	LogisticRegression	C=1.0, max_iter=2000	0.849169671423493	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_028	classification	norm_2_stopwords	vec_binary_1	LogisticRegression	C=5.0, max_iter=2000	0.8422247345725259	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_029	classification	norm_2_stopwords	vec_binary_1	LinearSVC	C=1.0	0.8347600869339998	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_030	classification	norm_2_stopwords	vec_binary_1	LinearSVC	C=0.5	0.8347600869339998	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_031	classification	norm_2_stopwords	vec_freq_1_2	MultinomialNB	alpha=1.0	0.8804893293329635	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_032	classification	norm_2_stopwords	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8837393543275897	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_033	classification	norm_2_stopwords	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=2000	0.8928405774706243	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_034	classification	norm_2_stopwords	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=2000	0.88938403644286	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_035	classification	norm_2_stopwords	vec_freq_1_2	LinearSVC	C=1.0	0.8723851019274043	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_036	classification	norm_2_stopwords	vec_freq_1_2	LinearSVC	C=0.5	0.8755177189959799	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_037	classification	norm_2_stopwords	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8861722906984576	True	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_038	classification	norm_2_stopwords	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8763644377165954	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_039	classification	norm_2_stopwords	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=2000	0.8798322971928983	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_040	classification	norm_2_stopwords	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=2000	0.8830388381771107	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_041	classification	norm_2_stopwords	vec_tfidf_1	LinearSVC	C=1.0	0.8930276360969431	True	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_042	classification	norm_2_stopwords	vec_tfidf_1	LinearSVC	C=0.5	0.8863272993966063	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_043	classification	norm_2_stopwords	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.880067451820664	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_044	classification	norm_2_stopwords	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8767824460078835	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_045	classification	norm_2_stopwords	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=2000	0.8867233390005667	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_046	classification	norm_2_stopwords	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=2000	0.8965546417572003	True	macro_f1	True	Pipeline fitted on train; evaluated on dev.
+EXP_A_047	classification	norm_2_stopwords	vec_tfidf_1_2	LinearSVC	C=1.0	0.8896462510572665	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_048	classification	norm_2_stopwords	vec_tfidf_1_2	LinearSVC	C=0.5	0.8930276360969431	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_049	classification	norm_3_lemma	vec_binary_1	MultinomialNB	alpha=1.0	0.8668794354973833	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_050	classification	norm_3_lemma	vec_binary_1	MultinomialNB	alpha=0.1	0.8573049213399254	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_051	classification	norm_3_lemma	vec_binary_1	LogisticRegression	C=1.0, max_iter=2000	0.8260444134865748	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_052	classification	norm_3_lemma	vec_binary_1	LogisticRegression	C=5.0, max_iter=2000	0.8220439691027926	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_053	classification	norm_3_lemma	vec_binary_1	LinearSVC	C=1.0	0.8057149628425847	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_054	classification	norm_3_lemma	vec_binary_1	LinearSVC	C=0.5	0.8057149628425847	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_055	classification	norm_3_lemma	vec_freq_1_2	MultinomialNB	alpha=1.0	0.870702947845805	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_056	classification	norm_3_lemma	vec_freq_1_2	MultinomialNB	alpha=0.1	0.8740063621515209	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_057	classification	norm_3_lemma	vec_freq_1_2	LogisticRegression	C=1.0, max_iter=2000	0.8694052438637433	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_058	classification	norm_3_lemma	vec_freq_1_2	LogisticRegression	C=5.0, max_iter=2000	0.862688156744646	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_059	classification	norm_3_lemma	vec_freq_1_2	LinearSVC	C=1.0	0.8285146631968772	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_060	classification	norm_3_lemma	vec_freq_1_2	LinearSVC	C=0.5	0.8285146631968772	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_061	classification	norm_3_lemma	vec_tfidf_1	MultinomialNB	alpha=1.0	0.8798499061913696	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_062	classification	norm_3_lemma	vec_tfidf_1	MultinomialNB	alpha=0.1	0.8766972507646025	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_063	classification	norm_3_lemma	vec_tfidf_1	LogisticRegression	C=1.0, max_iter=2000	0.8704693998811646	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_064	classification	norm_3_lemma	vec_tfidf_1	LogisticRegression	C=5.0, max_iter=2000	0.8631589527111915	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_065	classification	norm_3_lemma	vec_tfidf_1	LinearSVC	C=1.0	0.8692901404736442	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_066	classification	norm_3_lemma	vec_tfidf_1	LinearSVC	C=0.5	0.8692901404736442	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_067	classification	norm_3_lemma	vec_tfidf_1_2	MultinomialNB	alpha=1.0	0.8704506938261707	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_068	classification	norm_3_lemma	vec_tfidf_1_2	MultinomialNB	alpha=0.1	0.8736476250066897	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_069	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=1.0, max_iter=2000	0.8704693998811646	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_070	classification	norm_3_lemma	vec_tfidf_1_2	LogisticRegression	C=5.0, max_iter=2000	0.8633803345083626	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_071	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=1.0	0.8662262892955962	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.
+EXP_A_072	classification	norm_3_lemma	vec_tfidf_1_2	LinearSVC	C=0.5	0.8695457485447037	False	macro_f1	False	Pipeline fitted on train; evaluated on dev.

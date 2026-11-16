@@ -1,204 +1,604 @@
-import pandas as pd
+from pathlib import Path
+import json
+
+import joblib
 import numpy as np
-from sklearn.pipeline import Pipeline
-from sklearn.naive_bayes import MultinomialNB
+import pandas as pd
+
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import LinearSVC
 from sklearn.metrics import (
     accuracy_score,
-    precision_recall_fscore_support,
     classification_report,
-    confusion_matrix
+    confusion_matrix,
+    precision_recall_fscore_support
 )
-from pipelines import get_preprocessing_configs, get_vectorizer_configs
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
+
+from pipelines import (
+    build_pipeline,
+    get_preprocessing_configs,
+    get_vectorizer_configs
+)
+
+from experiment_utils import (
+    update_experiment_log,
+    safe_text
+)
 
 
 def get_classifier_configs():
-    """Returns the 3 traditional classifiers with hyperparameter variations."""
+
     return [
-        ("MultinomialNB", MultinomialNB(alpha=1.0), "alpha=1.0"),
-        ("MultinomialNB", MultinomialNB(alpha=0.1), "alpha=0.1"),
-        ("LogisticRegression", LogisticRegression(C=1.0, max_iter=1000, random_state=0), "C=1.0, max_iter=1000"),
-        ("LogisticRegression", LogisticRegression(C=5.0, max_iter=1000, random_state=0), "C=5.0, max_iter=1000"),
-        ("LinearSVC", LinearSVC(C=1.0, random_state=0, dual="auto"), "C=1.0"),
-        ("LinearSVC", LinearSVC(C=0.5, random_state=0, dual="auto"), "C=0.5"),
+
+        (
+            "MultinomialNB",
+            MultinomialNB(alpha=1.0),
+            "alpha=1.0"
+        ),
+
+        (
+            "MultinomialNB",
+            MultinomialNB(alpha=0.1),
+            "alpha=0.1"
+        ),
+
+        (
+            "LogisticRegression",
+            LogisticRegression(
+                C=1.0,
+                max_iter=2000,
+                random_state=0
+            ),
+            "C=1.0, max_iter=2000"
+        ),
+
+        (
+            "LogisticRegression",
+            LogisticRegression(
+                C=5.0,
+                max_iter=2000,
+                random_state=0
+            ),
+            "C=5.0, max_iter=2000"
+        ),
+
+        (
+            "LinearSVC",
+            LinearSVC(
+                C=1.0,
+                random_state=0,
+                dual="auto"
+            ),
+            "C=1.0"
+        ),
+
+        (
+            "LinearSVC",
+            LinearSVC(
+                C=0.5,
+                random_state=0,
+                dual="auto"
+            ),
+            "C=0.5"
+        ),
     ]
 
 
-def compute_metrics_row(exp_id, model_name, split_name, y_true, y_pred):
-    """Computes macro metrics and returns a dictionary formatted for TSV export."""
-    acc = accuracy_score(y_true, y_pred)
-    prec, rec, f1, _ = precision_recall_fscore_support(y_true, y_pred, average="macro", zero_division=0)
+def aggregate_metrics(
+    exp_id,
+    model_name,
+    split,
+    y_true,
+    y_pred
+):
+
+    precision, recall, f1, _ = precision_recall_fscore_support(
+        y_true,
+        y_pred,
+        average="macro",
+        zero_division=0
+    )
+
     return {
         "experiment_id": exp_id,
         "model": model_name,
-        "split": split_name,
-        "accuracy": round(acc, 4),
-        "macro_precision": round(prec, 4),
-        "macro_recall": round(rec, 4),
-        "macro_f1": round(f1, 4)
+        "split": split,
+        "accuracy": accuracy_score(y_true, y_pred),
+        "macro_precision": precision,
+        "macro_recall": recall,
+        "macro_f1": f1,
     }
 
 
-def main():
-    df = pd.read_csv("labeled_documents.tsv", sep="\t")
+def append_detailed_metrics(
+    rows,
+    confusion_rows,
+    exp_id,
+    model_name,
+    split,
+    y_true,
+    y_pred,
+    labels
+):
 
+    report = classification_report(
+        y_true,
+        y_pred,
+        labels=labels,
+        output_dict=True,
+        zero_division=0
+    )
+
+    # Metrics for each category.
+    for label in labels:
+
+        values = report[str(label)]
+
+        rows.append({
+
+            "experiment_id": exp_id,
+            "model": model_name,
+            "split": split,
+            "class_label": label,
+            "precision": values["precision"],
+            "recall": values["recall"],
+            "f1_score": values["f1-score"],
+            "support": values["support"],
+
+        })
+
+    # Confusion matrix.
+    matrix = confusion_matrix(
+        y_true,
+        y_pred,
+        labels=labels
+    )
+
+    for i, true_label in enumerate(labels):
+
+        for j, predicted_label in enumerate(labels):
+
+            confusion_rows.append({
+
+                "experiment_id": exp_id,
+                "model": model_name,
+                "split": split,
+                "true_label": true_label,
+                "predicted_label": predicted_label,
+                "count": int(matrix[i, j]),
+
+            })
+
+
+def main():
+
+    data_path = Path("labeled_documents.tsv")
+
+    if not data_path.exists():
+
+        raise FileNotFoundError(
+            "Ejecuta primero: python split_data.py"
+        )
+
+    df = pd.read_csv(
+        data_path,
+        sep="\t"
+    )
+
+    required = {
+        "document_id",
+        "text",
+        "category",
+        "split"
+    }
+
+    if not required.issubset(df.columns):
+
+        raise ValueError(
+            f"labeled_documents.tsv debe contener {sorted(required)}"
+        )
+
+    # Separate partitions.
     train_df = df[df["split"] == "train"].copy()
     dev_df = df[df["split"] == "dev"].copy()
     test_df = df[df["split"] == "test"].copy()
 
-    y_train = train_df["category"].values
-    y_dev = dev_df["category"].values
-    y_test = test_df["category"].values
+    if min(
+        len(train_df),
+        len(dev_df),
+        len(test_df)
+    ) == 0:
+
+        raise ValueError(
+            "Train, dev y test deben contener documentos."
+        )
+
+    y_train = train_df["category"].astype(str).to_numpy()
+    y_dev = dev_df["category"].astype(str).to_numpy()
+    y_test = test_df["category"].astype(str).to_numpy()
+
+    labels = sorted(
+        df["category"].astype(str).unique()
+    )
 
     prep_configs = get_preprocessing_configs()
-    vec_configs = get_vectorizer_configs()
-    clf_configs = get_classifier_configs()
+    vector_configs = get_vectorizer_configs()
+    classifier_configs = get_classifier_configs()
 
-    normalized_data = {}
-    for norm_name, normalizer in prep_configs.items():
-        print(f"   Processing {norm_name}...")
-        normalized_data[norm_name] = {
-            "train": normalizer.transform(train_df["text"].tolist()),
-            "dev": normalizer.transform(dev_df["text"].tolist()),
-            "test": normalizer.transform(test_df["text"].tolist()),
-        }
-
-    experiments_log = []
+    experiments = []
     best_per_model = {}
-    overall_best = {"macro_f1": -1.0}
 
-    exp_counter = 1
-    for norm_name in prep_configs.keys():
-        X_train_text = normalized_data[norm_name]["train"]
-        X_dev_text = normalized_data[norm_name]["dev"]
+    counter = 1
 
-        for vec_name, vectorizer in vec_configs.items():
-            for model_name, clf, params_str in clf_configs:
-                exp_id = f"EXP_A_{exp_counter:03d}"
-                exp_counter += 1
+    # Run all supervised experiments.
+    for norm_name, normalizer in prep_configs.items():
 
-                pipe = Pipeline([
-                    ("vec", vectorizer),
-                    ("clf", clf)
-                ])
-                pipe.fit(X_train_text, y_train)
-                y_dev_pred = pipe.predict(X_dev_text)
+        for vec_name, vectorizer in vector_configs.items():
 
-                _, _, macro_f1, _ = precision_recall_fscore_support(
-                    y_dev, y_dev_pred, average="macro", zero_division=0
+            for model_name, estimator, params in classifier_configs:
+
+                exp_id = f"EXP_A_{counter:03d}"
+                counter += 1
+
+                pipe = build_pipeline(
+                    normalizer,
+                    vectorizer,
+                    estimator
                 )
-                macro_f1 = round(float(macro_f1), 4)
 
-                exp_record = {
+                # Fit exclusively on train.
+                pipe.fit(
+                    train_df["text"].astype(str).tolist(),
+                    y_train
+                )
+
+                # Evaluate on dev.
+                dev_pred = pipe.predict(
+                    dev_df["text"].astype(str).tolist()
+                )
+
+                metrics = aggregate_metrics(
+                    exp_id,
+                    model_name,
+                    "dev",
+                    y_dev,
+                    dev_pred
+                )
+
+                experiments.append({
+
                     "experiment_id": exp_id,
                     "task": "classification",
                     "normalization": norm_name,
                     "representation": vec_name,
                     "method": model_name,
-                    "hyperparameters": params_str,
-                    "dev_metric": macro_f1,
-                    "selected": False
+                    "hyperparameters": params,
+                    "selection_metric": "macro_f1",
+                    "dev_metric": metrics["macro_f1"],
+                    "selected": False,
+                    "selected_overall": False,
+                    "notes": (
+                        "Pipeline fitted on train; "
+                        "evaluated on dev."
+                    ),
+
+                })
+
+                current = {
+
+                    "experiment_id": exp_id,
+                    "model": model_name,
+                    "normalization": norm_name,
+                    "representation": vec_name,
+                    "estimator": estimator,
+                    "hyperparameters": params,
+                    "dev_metrics": metrics,
+                    "dev_predictions": dev_pred,
+
                 }
-                experiments_log.append(exp_record)
 
-                if model_name not in best_per_model or macro_f1 > best_per_model[model_name]["macro_f1"]:
-                    best_per_model[model_name] = {
-                        "exp_id": exp_id,
-                        "norm_name": norm_name,
-                        "vec_name": vec_name,
-                        "model_name": model_name,
-                        "clf": clf,
-                        "params_str": params_str,
-                        "macro_f1": macro_f1,
-                        "y_dev_pred": y_dev_pred
-                    }
+                # Keep the best configuration for each algorithm.
+                if (
+                    model_name not in best_per_model
+                    or metrics["macro_f1"]
+                    > best_per_model[model_name]["dev_metrics"]["macro_f1"]
+                ):
 
-                if macro_f1 > overall_best["macro_f1"]:
-                    overall_best = best_per_model[model_name].copy()
+                    best_per_model[model_name] = current
 
-    for rec in experiments_log:
-        if rec["experiment_id"] == overall_best["exp_id"]:
-            rec["selected"] = True
+    # Mark the best configuration of each classifier.
+    for record in experiments:
 
-    print("BEST RESULTS PER ALGORITHM ON DEV (Selection Metric: Macro-F1)")
-    metrics_rows = []
-    predictions_rows = []
+        for model_name, best in best_per_model.items():
 
-    for model_name, info in best_per_model.items():
-        print(f"- {model_name:20s}, ID: {info['exp_id']}, {info['norm_name']} + {info['vec_name']}, Macro-F1: {info['macro_f1']:.4f}")
-        metrics_rows.append(
-            compute_metrics_row(info["exp_id"], model_name, "dev", y_dev, info["y_dev_pred"])
+            if record["experiment_id"] == best["experiment_id"]:
+
+                record["selected"] = True
+
+    # Select the global winner.
+    overall_best = max(
+        best_per_model.values(),
+        key=lambda item: item["dev_metrics"]["macro_f1"]
+    )
+
+    for record in experiments:
+
+        if record["experiment_id"] == overall_best["experiment_id"]:
+
+            record["selected_overall"] = True
+
+    aggregate_rows = []
+    per_class_rows = []
+    confusion_rows = []
+    prediction_rows = []
+
+    # Save dev metrics for each classifier's best configuration.
+    for model_name, best in best_per_model.items():
+
+        aggregate_rows.append(
+            best["dev_metrics"]
         )
-        for doc_id, gold, pred in zip(dev_df["document_id"], y_dev, info["y_dev_pred"]):
-            predictions_rows.append({
-                "experiment_id": info["exp_id"],
-                "model": model_name,
+
+        append_detailed_metrics(
+            per_class_rows,
+            confusion_rows,
+            best["experiment_id"],
+            model_name,
+            "dev",
+            y_dev,
+            best["dev_predictions"],
+            labels
+        )
+
+        for doc_id, gold, predicted in zip(
+            dev_df["document_id"],
+            y_dev,
+            best["dev_predictions"]
+        ):
+
+            prediction_rows.append({
+
                 "document_id": doc_id,
                 "gold_label": gold,
-                "predicted_label": pred,
-                "split": "dev"
+                "predicted_label": predicted,
+                "split": "dev",
+                "model": model_name,
+                "experiment_id": best["experiment_id"],
+
             })
 
-    print(f"SELECTED WINNING MODEL: {overall_best['model_name']} ({overall_best['exp_id']})")
-    print(f"Configuration: {overall_best['norm_name']} + {overall_best['vec_name']} ({overall_best['params_str']})")
-
-    X_train_dev_text = (
-        normalized_data[overall_best["norm_name"]]["train"]
-        + normalized_data[overall_best["norm_name"]]["dev"]
+    print(
+        "BEST CONFIGURATION PER CLASSIFIER "
+        "(DEV / MACRO-F1)"
     )
-    y_train_dev = np.concatenate([y_train, y_dev])
-    X_test_text = normalized_data[overall_best["norm_name"]]["test"]
 
-    final_pipe = Pipeline([
-        ("vec", vec_configs[overall_best["vec_name"]]),
-        ("clf", overall_best["clf"])
-    ])
-    final_pipe.fit(X_train_dev_text, y_train_dev)
-    y_test_pred = final_pipe.predict(X_test_text)
+    for model_name, best in best_per_model.items():
 
-    test_metrics = compute_metrics_row(
-        overall_best["exp_id"], overall_best["model_name"], "test", y_test, y_test_pred
+        print(
+            f"{model_name}: {best['experiment_id']} | "
+            f"{best['normalization']} | "
+            f"{best['representation']} | "
+            f"macro-F1={best['dev_metrics']['macro_f1']:.4f}"
+        )
+
+    print("\nOVERALL WINNER:", overall_best["model"])
+    print("Experiment:", overall_best["experiment_id"])
+
+    # Refit the global winner using train + dev.
+    train_dev_df = pd.concat(
+        [train_df, dev_df],
+        ignore_index=True
     )
-    metrics_rows.append(test_metrics)
 
-    for doc_id, gold, pred in zip(test_df["document_id"], y_test, y_test_pred):
-        predictions_rows.append({
-            "experiment_id": overall_best["exp_id"],
-            "model": overall_best["model_name"],
+    y_train_dev = (
+        train_dev_df["category"]
+        .astype(str)
+        .to_numpy()
+    )
+
+    final_pipe = build_pipeline(
+
+        get_preprocessing_configs()[
+            overall_best["normalization"]
+        ],
+
+        get_vectorizer_configs()[
+            overall_best["representation"]
+        ],
+
+        overall_best["estimator"]
+
+    )
+
+    final_pipe.fit(
+        train_dev_df["text"].astype(str).tolist(),
+        y_train_dev
+    )
+
+    # Final evaluation on test.
+    test_pred = final_pipe.predict(
+        test_df["text"].astype(str).tolist()
+    )
+
+    test_metrics = aggregate_metrics(
+        "test",
+        overall_best["model"],
+        "test",
+        y_test,
+        test_pred
+    )
+
+    aggregate_rows.append(test_metrics)
+
+    append_detailed_metrics(
+        per_class_rows,
+        confusion_rows,
+        "test",
+        overall_best["model"],
+        "test",
+        y_test,
+        test_pred,
+        labels
+    )
+
+    for doc_id, gold, predicted in zip(
+        test_df["document_id"],
+        y_test,
+        test_pred
+    ):
+
+        prediction_rows.append({
+
             "document_id": doc_id,
             "gold_label": gold,
-            "predicted_label": pred,
-            "split": "test"
+            "predicted_label": predicted,
+            "split": "test",
+            "model": overall_best["model"],
+            "experiment_id": "test",
+
         })
 
-    print("\nFINAL PERFORMANCE ON TEST:")
-    print(f"Accuracy:        {test_metrics['accuracy']:.4f}")
-    print(f"Macro-Precision: {test_metrics['macro_precision']:.4f}")
-    print(f"Macro-Recall:    {test_metrics['macro_recall']:.4f}")
-    print(f"Macro-F1:        {test_metrics['macro_f1']:.4f}\n")
+    print("\nFINAL TEST RESULTS")
 
-    print("Per-class Classification Report on TEST:")
-    print(classification_report(y_test, y_test_pred, digits=4))
+    print(
+        classification_report(
+            y_test,
+            test_pred,
+            labels=labels,
+            digits=4,
+            zero_division=0
+        )
+    )
 
-    labels = sorted(df["category"].unique())
-    cm = confusion_matrix(y_test, y_test_pred, labels=labels)
-    print("Confusion Matrix on TEST:")
-    print(pd.DataFrame(cm, index=labels, columns=labels))
-    pd.DataFrame(experiments_log).to_csv("experiments.tsv", sep="\t", index=False)
-    pd.DataFrame(predictions_rows).to_csv("classification_predictions.tsv", sep="\t", index=False)
-    pd.DataFrame(metrics_rows).to_csv("classification_metrics.tsv", sep="\t", index=False)
+    print("Confusion matrix:")
 
-    print("\nGenerated TSV deliverables:")
-    print("- experiments.tsv")
+    print(
+        pd.DataFrame(
+            confusion_matrix(
+                y_test,
+                test_pred,
+                labels=labels
+            ),
+            index=labels,
+            columns=labels
+        )
+    )
+
+    # Error analysis on dev for the global winner.
+    best_dev_pred = overall_best["dev_predictions"]
+
+    errors = []
+
+    for (_, row), predicted in zip(
+        dev_df.iterrows(),
+        best_dev_pred
+    ):
+
+        if str(row["category"]) != str(predicted):
+
+            errors.append({
+
+                "document_id": row["document_id"],
+                "gold_label": row["category"],
+                "predicted_label": predicted,
+                "text": safe_text(row["text"], 1000),
+                "review_note": "",
+
+            })
+
+    pd.DataFrame(
+        errors,
+        columns=[
+            "document_id",
+            "gold_label",
+            "predicted_label",
+            "text",
+            "review_note"
+        ]
+    ).to_csv(
+        "classification_error_analysis.tsv",
+        sep="\t",
+        index=False
+    )
+
+    # Save all classification results.
+    pd.DataFrame(aggregate_rows).to_csv(
+        "classification_metrics.tsv",
+        sep="\t",
+        index=False
+    )
+
+    pd.DataFrame(per_class_rows).to_csv(
+        "classification_per_class_metrics.tsv",
+        sep="\t",
+        index=False
+    )
+
+    pd.DataFrame(confusion_rows).to_csv(
+        "classification_confusion_matrices.tsv",
+        sep="\t",
+        index=False
+    )
+
+    pd.DataFrame(prediction_rows).to_csv(
+        "classification_predictions.tsv",
+        sep="\t",
+        index=False
+    )
+
+    # Update the experiment log without deleting clustering records.
+    update_experiment_log(
+        experiments,
+        tasks_to_replace={"classification"}
+    )
+
+    # Save the final model.
+    Path("results").mkdir(
+        exist_ok=True
+    )
+
+    joblib.dump(
+        final_pipe,
+        "results/classifier_best.joblib"
+    )
+
+    metadata = {
+
+        "experiment_id": overall_best["experiment_id"],
+        "model": overall_best["model"],
+        "normalization": overall_best["normalization"],
+        "representation": overall_best["representation"],
+        "hyperparameters": overall_best["hyperparameters"],
+        "selection_metric": "dev_macro_f1",
+        "test_metrics": test_metrics,
+
+    }
+
+    Path(
+        "results/classifier_best_metadata.json"
+    ).write_text(
+        json.dumps(
+            metadata,
+            indent=2,
+            ensure_ascii=False
+        ),
+        encoding="utf-8"
+    )
+
+    print("\nGenerated classification deliverables:")
+
     print("- classification_predictions.tsv")
     print("- classification_metrics.tsv")
-    print("SAMPLE MISCLASSIFIED DOCUMENTS ON DEV (Error Analysis)")
-    dev_errors = dev_df[y_dev != overall_best["y_dev_pred"]].copy()
-    dev_errors["predicted"] = overall_best["y_dev_pred"][y_dev != overall_best["y_dev_pred"]]
-    for _, row in dev_errors.head(10).iterrows():
-        print(f"ID: {row['document_id']}, Gold: {row['category']}, Predicted: {row['predicted']}")
-        print(f"Text: {row['text'][:140]}...\n")
+    print("- classification_per_class_metrics.tsv")
+    print("- classification_confusion_matrices.tsv")
+    print("- classification_error_analysis.tsv")
+    print("- experiments.tsv")
+    print("- results/classifier_best.joblib")
+
+    print(
+        f"\nDev errors available for manual inspection: {len(errors)}"
+    )
 
 
 if __name__ == "__main__":

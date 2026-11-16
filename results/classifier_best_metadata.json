@@ -1,0 +1,17 @@
+{
+  "experiment_id": "EXP_A_046",
+  "model": "LogisticRegression",
+  "normalization": "norm_2_stopwords",
+  "representation": "vec_tfidf_1_2",
+  "hyperparameters": "C=5.0, max_iter=2000",
+  "selection_metric": "dev_macro_f1",
+  "test_metrics": {
+    "experiment_id": "test",
+    "model": "LogisticRegression",
+    "split": "test",
+    "accuracy": 0.8933333333333333,
+    "macro_precision": 0.8960100366475879,
+    "macro_recall": 0.8933333333333334,
+    "macro_f1": 0.893737851196264
+  }
+}
