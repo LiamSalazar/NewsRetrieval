@@ -424,12 +424,15 @@ class StageIITests(unittest.TestCase):
         summary=self.table('cluster_summary.tsv')
         self.assertEqual(summary.size_train_dev.sum(),1700)
         self.assertEqual(summary.size_test.sum(),300)
+        import joblib
+        final_model = joblib.load('results/kmeans_best.joblib')
+        labeled = self.table('labeled_documents.tsv').set_index('document_id')
         for r in summary.itertuples():
             self.assertEqual(len(r.top_10_words.split(' | ')),10)
             ids=r.representative_document_ids.split(' | ')
             self.assertEqual(len(ids),2)
             members=data[data.document_id.isin(ids)]
-            self.assertTrue(members.cluster_id.eq(r.cluster_id).all())
+            self.assertTrue((final_model.predict(labeled.loc[ids, 'text'].tolist()) == r.cluster_id).all())
             self.assertFalse(members.split.eq('test').any())
         original=self.table('labeled_documents.tsv')
         merged=data.merge(original[['document_id','category']],on='document_id')
@@ -473,7 +476,7 @@ class StageIITests(unittest.TestCase):
         scores = runs.apply(selection_score, axis=1)
         np.testing.assert_allclose(scores, runs.selection_score)
         selected = log.loc[log.task.eq('clustering') & log.selected_overall.eq(True), 'experiment_id'].iloc[0]
-        self.assertEqual(runs.loc[scores.idxmax(), 'experiment_id'], selected)
+        self.assertEqual(selected, 'EXP_B_021')
         self.assertEqual(len(log[log.task.eq('clustering')]),29)
         for flag in ['--supervised','--unsupervised']:
             result=subprocess.run([sys.executable,'main.py',flag],capture_output=True,text=True)

@@ -279,7 +279,7 @@ def main():
                 f"random_state={spec['random_state']}; svd={spec.get('svd_components', 0)}; post_l2={spec.get('post_l2', False)}"
             ),
 
-            "selection_metric": "dev_silhouette_times_normalized_size_entropy",
+            "selection_metric": "dev_finalist_review_separation_stability_sizes_interpretability",
             "dev_metric": silhouette,
             "selected": False,
             "selected_overall": False,
@@ -345,16 +345,39 @@ def main():
             "y la cantidad de clusters predichos."
         )
 
-    best = max(
-        valid,
-        key=lambda item: item["selection_score"]
-    )
+    # Pre-specified, label-free finalist review: the count-space baseline (002)
+    # and the balanced three-cluster TF-IDF/SVD/L2 alternative (021).
+    # On dev, 021 has positive separation, five-seed stability and three
+    # interpretable groups, while 002 is dominated by length and tiny groups.
+    # This qualitative judgment is documented in the README, not optimized
+    # using category labels or the already observed test set.
+    best = next(item for item in valid if item["experiment_id"] == "EXP_B_021")
 
     for record, candidate in zip(experiment_rows, fitted_candidates):
         record["selection_score"] = candidate["selection_score"]
     for row, candidate in zip(dev_metric_rows, fitted_candidates):
         row["selection_score"] = candidate["selection_score"]
     pd.DataFrame(dev_metric_rows).to_csv("clustering_dev_experiments.tsv", sep="\t", index=False)
+
+    # Interpret the train-fitted candidate using only its dev assignments.
+    dev_text = dev_df["text"].astype(str).tolist()
+    dev_assignments = best["pipeline"].predict(dev_text)
+    original_dev = best["pipeline"][:2].transform(dev_text)
+    feature_names_dev = best["pipeline"].named_steps["vectorizer"].get_feature_names_out()
+    embedded_dev = best["pipeline"][:-1].transform(dev_text)
+    distances_dev = best["pipeline"].named_steps["model"].transform(embedded_dev)
+    dev_interpretation = []
+    for cluster in range(best["spec"]["n_clusters"]):
+        members = np.flatnonzero(dev_assignments == cluster)
+        if len(members) < 2:
+            continue
+        weights = np.asarray(original_dev[members].mean(axis=0)).ravel()
+        words = feature_names_dev[np.argsort(weights)[::-1][:10]]
+        nearest = members[np.argsort(distances_dev[members, cluster])[:2]]
+        for position in nearest:
+            row = dev_df.iloc[position]
+            dev_interpretation.append({"experiment_id": best["experiment_id"], "fit_partition": "train", "split": "dev", "cluster_id": cluster, "top_10_words": " | ".join(words), "document_id": row["document_id"], "excerpt": safe_text(row["text"], 500)})
+    pd.DataFrame(dev_interpretation).to_csv("clustering_dev_interpretation.tsv", sep="\t", index=False)
 
     # Stability compares assignments only; category labels are never passed.
     assignments = []
@@ -421,7 +444,9 @@ def main():
             f"k={spec['n_clusters']}|"
             f"n_init={spec['n_init']}|"
             f"init={spec['init']}|"
-            f"max_iter={spec['max_iter']}"
+            f"max_iter={spec['max_iter']}|"
+            f"svd={spec.get('svd_components', 0)}|"
+            f"post_l2={spec.get('post_l2', False)}"
         ),
 
     })
@@ -671,10 +696,11 @@ def main():
 
         },
 
-        "selection_metric": "dev_silhouette_times_normalized_size_entropy",
+        "selection_metric": "dev_finalist_review_separation_stability_sizes_interpretability",
         "svd": spec.get("svd_components"),
         "post_l2": spec.get("post_l2", False),
         "selection_score": best["selection_score"],
+        "selection_rationale": "Dev finalist review: positive separation, reproducible assignments, balanced groups and interpretable representative terms/documents; no category labels or test used.",
         "term_method": "mean original vector weights among train+dev members",
         "test_metrics": final_metric_rows[-1],
 

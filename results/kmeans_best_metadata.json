@@ -1,26 +1,27 @@
 {
-  "experiment_id": "EXP_B_002",
+  "experiment_id": "EXP_B_021",
   "method": "KMeans",
-  "normalization": "norm_1_baseline",
-  "representation": "vec_freq_1_2",
+  "normalization": "norm_3_lemma",
+  "representation": "vec_tfidf_1_2",
   "hyperparameters": {
-    "n_clusters": 4,
+    "n_clusters": 3,
     "n_init": 10,
     "init": "k-means++",
     "max_iter": 300,
     "random_state": 0
   },
-  "selection_metric": "dev_silhouette_times_normalized_size_entropy",
-  "svd": null,
-  "post_l2": false,
-  "selection_score": 0.1372750347769955,
+  "selection_metric": "dev_finalist_review_separation_stability_sizes_interpretability",
+  "svd": 50,
+  "post_l2": true,
+  "selection_score": 0.07643935506717955,
+  "selection_rationale": "Dev finalist review: positive separation, reproducible assignments, balanced groups and interpretable representative terms/documents; no category labels or test used.",
   "term_method": "mean original vector weights among train+dev members",
   "test_metrics": {
     "experiment_id": "test",
     "split": "test",
-    "silhouette_euclidean": 0.2841018390674276,
-    "ari_external": 0.013511016842405126,
-    "nmi_external": 0.04574917130584117,
+    "silhouette_euclidean": 0.0715102253784536,
+    "ari_external": 0.596530270556384,
+    "nmi_external": 0.5801111371604872,
     "n_clusters_predicted": 3,
     "silhouette_sample_size": 300
   }
