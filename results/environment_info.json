@@ -1,12 +1,16 @@
 {
-  "python": "3.14.8",
-  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "python": "3.12.3",
+  "platform": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
   "random_state": 0,
   "packages": {
-    "pandas": "3.1.1",
+    "pandas": "2.3.3",
     "numpy": "2.5.5",
-    "scikit-learn": "1.9.1",
-    "spacy": "3.8.18",
-    "joblib": "1.6.0"
+    "scikit-learn": "1.6.1",
+    "spacy": "3.8.5",
+    "joblib": "1.5.0",
+    "en-core-web-sm": "3.8.0",
+    "scipy": "1.18.1",
+    "click": "8.1.8",
+    "matplotlib": "3.11.2"
   }
 }

@@ -10,8 +10,11 @@
     "max_iter": 300,
     "random_state": 0
   },
-  "selection_metric": "dev_silhouette_euclidean",
+  "selection_metric": "dev_silhouette_times_normalized_size_entropy",
   "svd": null,
+  "post_l2": false,
+  "selection_score": 0.1372750347769955,
+  "term_method": "mean original vector weights among train+dev members",
   "test_metrics": {
     "experiment_id": "test",
     "split": "test",

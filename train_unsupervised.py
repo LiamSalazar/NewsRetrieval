@@ -1,4 +1,6 @@
 from pathlib import Path
+from itertools import combinations
+from sklearn.base import clone
 import json
 
 import joblib
@@ -78,6 +80,8 @@ def build_experiment_specs():
             "init": init,
             "max_iter": max_iter,
             "random_state": RANDOM_STATE,
+            "svd_components": 0,
+            "post_l2": False,
 
         })
 
@@ -118,6 +122,10 @@ def build_experiment_specs():
         max_iter=500
     )
 
+    for components in (50, 100):
+        for l2 in (False, True):
+            for k in (3, 4, 5):
+                specs.append(dict(normalization=BASE_NORMALIZATION, representation=BASE_REPRESENTATION, n_clusters=k, n_init=10, init="k-means++", max_iter=300, random_state=0, svd_components=components, post_l2=l2))
     return specs
 
 
@@ -217,7 +225,8 @@ def main():
 
             prep_configs[spec["normalization"]],
             vector_configs[spec["representation"]],
-            estimator
+            estimator,
+            svd_components=spec.get("svd_components"), post_l2=spec.get("post_l2", False)
 
         )
 
@@ -267,18 +276,18 @@ def main():
                 f"n_init={spec['n_init']}; "
                 f"init={spec['init']}; "
                 f"max_iter={spec['max_iter']}; "
-                f"random_state={spec['random_state']}"
+                f"random_state={spec['random_state']}; svd={spec.get('svd_components', 0)}; post_l2={spec.get('post_l2', False)}"
             ),
 
-            "selection_metric": "dev_silhouette_euclidean",
+            "selection_metric": "dev_silhouette_times_normalized_size_entropy",
             "dev_metric": silhouette,
             "selected": False,
             "selected_overall": False,
 
-            "notes": (
-                "No SVD; original word-feature space "
-                "retained for interpretation."
-            ),
+            "svd_components": spec.get("svd_components", 0),
+            "post_l2": spec.get("post_l2", False),
+            "ngram_range": str(vector_configs[spec["representation"]].ngram_range),
+            "notes": "001-012 normalization/representation; 013-017 one KMeans factor vs 012; 018-029 SVD dimensions/L2/k controlled vs 012/013/014",
 
         })
 
@@ -286,12 +295,15 @@ def main():
 
             "experiment_id": exp_id,
             "split": "dev",
+            **spec,
             "silhouette_euclidean": silhouette,
             "ari_external": ari,
             "nmi_external": nmi,
             "n_clusters_predicted": len(
                 np.unique(dev_labels)
             ),
+            "cluster_sizes": json.dumps(np.bincount(dev_labels, minlength=spec["n_clusters"]).tolist()),
+            "feature_space": f"{spec['representation']}|svd={spec.get('svd_components', 0)}|l2={spec.get('post_l2', False)}",
             "silhouette_sample_size": min(
                 SILHOUETTE_SAMPLE_SIZE,
                 len(dev_df)
@@ -305,6 +317,7 @@ def main():
             "spec": spec,
             "pipeline": pipe,
             "silhouette": silhouette,
+            "selection_score": silhouette * (-sum(p * np.log(p) for p in np.bincount(dev_labels, minlength=spec["n_clusters"]) / len(dev_labels) if p > 0) / np.log(spec["n_clusters"])),
 
         })
 
@@ -334,8 +347,24 @@ def main():
 
     best = max(
         valid,
-        key=lambda item: item["silhouette"]
+        key=lambda item: item["selection_score"]
     )
+
+    for record, candidate in zip(experiment_rows, fitted_candidates):
+        record["selection_score"] = candidate["selection_score"]
+    for row, candidate in zip(dev_metric_rows, fitted_candidates):
+        row["selection_score"] = candidate["selection_score"]
+    pd.DataFrame(dev_metric_rows).to_csv("clustering_dev_experiments.tsv", sep="\t", index=False)
+
+    # Stability compares assignments only; category labels are never passed.
+    assignments = []
+    for seed in range(5):
+        repeated = clone(best["pipeline"])
+        repeated.set_params(model__random_state=seed)
+        repeated.fit(train_df["text"].tolist())
+        assignments.append(repeated.predict(dev_df["text"].tolist()))
+    stability = [{"experiment_id": best["experiment_id"], "seed_a": a, "seed_b": b, "ari_between_assignments": adjusted_rand_score(assignments[a], assignments[b])} for a, b in combinations(range(5), 2)]
+    pd.DataFrame(stability).to_csv("clustering_stability.tsv", sep="\t", index=False)
 
     for record in experiment_rows:
 
@@ -365,7 +394,8 @@ def main():
 
         prep_configs[spec["normalization"]],
         vector_configs[spec["representation"]],
-        final_kmeans
+        final_kmeans,
+        svd_components=spec.get("svd_components"), post_l2=spec.get("post_l2", False)
 
     )
 
@@ -395,6 +425,15 @@ def main():
         ),
 
     })
+
+    # Dev assignments must come from the selection fit (train only).
+    dev_mask = df["split"].eq("dev")
+    clustering_results["fit_partition"] = "train+dev"
+    clustering_results.loc[dev_mask, "cluster_id"] = best["pipeline"].predict(dev_df["text"].tolist())
+    clustering_results.loc[dev_mask, "fit_partition"] = "train"
+    external = clustering_results.merge(df[["document_id", "category"]], on="document_id")
+    external = external[external["split"].isin(["dev", "test"])]
+    external.groupby(["split", "experiment_id", "fit_partition", "cluster_id", "category"]).size().reset_index(name="count").to_csv("clustering_contingency.tsv", sep="\t", index=False)
 
     clustering_results.to_csv(
         "clustering_results.tsv",
@@ -499,6 +538,7 @@ def main():
         .transform(X_train_dev)
     )
 
+    original_X = final_pipe[:2].transform(train_dev_df["text"].tolist())
     summary_rows = []
 
     for cluster_id in range(spec["n_clusters"]):
@@ -513,7 +553,7 @@ def main():
 
 
         ranked_indices = np.argsort(
-            centers[cluster_id]
+            np.asarray(original_X[member_positions].mean(axis=0)).ravel()
         )[::-1]
 
         top_words = []
@@ -631,8 +671,11 @@ def main():
 
         },
 
-        "selection_metric": "dev_silhouette_euclidean",
-        "svd": None,
+        "selection_metric": "dev_silhouette_times_normalized_size_entropy",
+        "svd": spec.get("svd_components"),
+        "post_l2": spec.get("post_l2", False),
+        "selection_score": best["selection_score"],
+        "term_method": "mean original vector weights among train+dev members",
         "test_metrics": final_metric_rows[-1],
 
     }

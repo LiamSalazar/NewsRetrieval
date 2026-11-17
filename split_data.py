@@ -20,7 +20,7 @@ def save_environment_info(output_dir="results"):
 
     packages = {}
 
-    for package in ("pandas", "numpy", "scikit-learn", "spacy", "joblib"):
+    for package in ("pandas", "numpy", "scikit-learn", "spacy", "joblib", "en-core-web-sm", "scipy", "click"):
         try:
             packages[package] = importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:

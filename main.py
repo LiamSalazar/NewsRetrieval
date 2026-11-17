@@ -168,6 +168,9 @@ def inspect_unsupervised():
     print('        ETAPA II: CLUSTERING NO SUPERVISADO (K-MEANS)       ')
     print('============================================================')
     
+    metadata_path = Path('results/kmeans_best_metadata.json')
+    if metadata_path.exists():
+        print(metadata_path.read_text(encoding='utf-8'))
     clu_metrics = read_tsv('clustering_metrics.tsv')
     if clu_metrics:
         print('\nMétricas de evaluación geométrica y externa:')
@@ -190,6 +193,7 @@ def inspect_unsupervised():
             print(f"Clúster ID: {row['cluster_id']} | Train+Dev: {row['size_train_dev']} docs | Test: {row['size_test']} docs")
             print(f"  • Top 10 palabras: {row['top_10_words']}")
             print(f"  • IDs Representativos: {row['representative_document_ids']}")
+            print(f"  • Fragmentos: {row['representative_documents']}")
             print('-' * 70)
     else:
         print('No se encontró cluster_summary.tsv. Ejecuta primero: python train_unsupervised.py')

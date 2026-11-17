@@ -12,6 +12,8 @@ from sklearn.feature_extraction.text import (
     TfidfVectorizer
 )
 from sklearn.pipeline import Pipeline
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import Normalizer
 from joblib import Memory
 
 _NLP = spacy.load(
@@ -154,7 +156,8 @@ def build_pipeline(
     normalizer,
     vectorizer,
     estimator,
-    cache_dir="results/pipeline_cache"
+    cache_dir="results/pipeline_cache",
+    svd_components=None, post_l2=False
 ):
 
     """
@@ -164,7 +167,7 @@ def build_pipeline(
     the training partition.
     """
 
-    Path(cache_dir).mkdir(
+    Path(cache_dir or "results").mkdir(
         parents=True,
         exist_ok=True
     )
@@ -174,11 +177,13 @@ def build_pipeline(
         verbose=0
     )
 
-    return Pipeline(
-        steps=[
+    steps = [
             ("normalizer", clone(normalizer)),
             ("vectorizer", clone(vectorizer)),
-            ("model", clone(estimator)),
-        ],
-        memory=memory
-    )
+        ]
+    if svd_components:
+        steps.append(("svd", TruncatedSVD(n_components=svd_components, random_state=0)))
+    if post_l2:
+        steps.append(("l2", Normalizer()))
+    steps.append(("model", clone(estimator)))
+    return Pipeline(steps=steps, memory=memory)

@@ -488,6 +488,11 @@ def main():
     # Error analysis on dev for the global winner.
     best_dev_pred = overall_best["dev_predictions"]
 
+    previous_notes = {}
+    notes_path = Path("classification_error_analysis.tsv")
+    if notes_path.exists():
+        old = pd.read_csv(notes_path, sep="\t").fillna("")
+        previous_notes = {(str(r.document_id), str(r.gold_label), str(r.predicted_label)): r.review_note for r in old.itertuples()}
     errors = []
 
     for (_, row), predicted in zip(
@@ -503,7 +508,7 @@ def main():
                 "gold_label": row["category"],
                 "predicted_label": predicted,
                 "text": safe_text(row["text"], 1000),
-                "review_note": "",
+                "review_note": previous_notes.get((str(row["document_id"]), str(row["category"]), str(predicted)), ""),
 
             })
 

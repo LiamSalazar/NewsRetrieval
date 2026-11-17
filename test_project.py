@@ -380,5 +380,106 @@ class EvaluationTests(unittest.TestCase):
                 self.assertAlmostEqual(value, float(exported[name]), places=12)
 
 
+class StageIITests(unittest.TestCase):
+    def table(self, name):
+        import pandas as pd
+        return pd.read_csv(name, sep="\t")
+
+    def test_split_and_text(self):
+        import pandas as pd
+        from sklearn.model_selection import train_test_split
+        data = self.table('labeled_documents.tsv')
+        raw = self.table('data/news_raw_corpus.tsv')
+        self.assertEqual(data.split.value_counts().to_dict(), dict(train=1400, dev=300, test=300))
+        self.assertEqual(data.document_id.nunique(), 2000)
+        merged = data.merge(raw, left_on='document_id', right_on='id')
+        self.assertTrue((merged.category_x == merged.category_y).all())
+        expected = (merged.title.fillna('')+' '+merged['description/body'].fillna('')).str.replace(r"\s+", ' ', regex=True).str.strip()
+        self.assertTrue((merged.text == expected).all())
+        train, rest = train_test_split(raw, test_size=.3, shuffle=True, random_state=0, stratify=raw.category)
+        dev, test = train_test_split(rest, test_size=.5, shuffle=True, random_state=0, stratify=rest.category)
+        for split, frame in [('train',train),('dev',dev),('test',test)]:
+            self.assertEqual(set(data.loc[data.split.eq(split),'document_id']), set(frame.id))
+
+    def test_classification_exports(self):
+        from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+        pred = self.table('classification_predictions.tsv')
+        metrics = self.table('classification_metrics.tsv')
+        self.assertEqual(len(pred),1200)
+        self.assertEqual(len(metrics),4)
+        for r in metrics.itertuples():
+            group=pred[pred.experiment_id.eq(r.experiment_id) & pred.split.eq(r.split)]
+            self.assertEqual(len(group),300)
+            precision,recall,f1,_=precision_recall_fscore_support(group.gold_label,group.predicted_label,average='macro',zero_division=0)
+            for a,b in [(r.accuracy,accuracy_score(group.gold_label,group.predicted_label)),(r.macro_precision,precision),(r.macro_recall,recall),(r.macro_f1,f1)]:
+                self.assertAlmostEqual(a,b)
+        errors=self.table('classification_error_analysis.tsv')
+        self.assertGreaterEqual(errors.review_note.fillna('').ne('').sum(),10)
+        self.assertTrue(set(errors.document_id).issubset(set(self.table('labeled_documents.tsv').query("split == 'dev'").document_id)))
+
+    def test_clustering_exports(self):
+        data=self.table('clustering_results.tsv')
+        self.assertEqual(len(data),2000)
+        self.assertEqual(data.document_id.nunique(),2000)
+        summary=self.table('cluster_summary.tsv')
+        self.assertEqual(summary.size_train_dev.sum(),1700)
+        self.assertEqual(summary.size_test.sum(),300)
+        for r in summary.itertuples():
+            self.assertEqual(len(r.top_10_words.split(' | ')),10)
+            ids=r.representative_document_ids.split(' | ')
+            self.assertEqual(len(ids),2)
+            members=data[data.document_id.isin(ids)]
+            self.assertTrue(members.cluster_id.eq(r.cluster_id).all())
+            self.assertFalse(members.split.eq('test').any())
+        original=self.table('labeled_documents.tsv')
+        merged=data.merge(original[['document_id','category']],on='document_id')
+        observed=self.table('clustering_contingency.tsv')
+        expected=merged[merged.split.isin(['dev','test'])].groupby(['split','experiment_id','fit_partition','cluster_id','category']).size().reset_index(name='count')
+        self.assertEqual(observed.to_dict('records'),expected.to_dict('records'))
+        stability=self.table('clustering_stability.tsv')
+        self.assertEqual(len(stability),10)
+        self.assertTrue(stability.ari_between_assignments.between(-1,1).all())
+
+    def test_pipeline_train_only_and_original_terms(self):
+        from pipelines import build_pipeline, TextNormalizer
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.cluster import KMeans
+        pipe=build_pipeline(TextNormalizer(),TfidfVectorizer(),KMeans(n_clusters=2,random_state=0,n_init=2),cache_dir=None,svd_components=2,post_l2=True)
+        pipe.fit(['apple fruit tree','apple green fruit','car road wheel','car wheel drive'])
+        before=pipe.named_steps['svd'].components_.copy()
+        pipe.predict(['devonly apple','testonly wheel'])
+        self.assertNotIn('devonly',pipe.named_steps['vectorizer'].vocabulary_)
+        import numpy as np
+        np.testing.assert_array_equal(before,pipe.named_steps['svd'].components_)
+        import joblib
+        final=joblib.load('results/kmeans_best.joblib')
+        vocabulary=set(final.named_steps['vectorizer'].get_feature_names_out())
+        for terms in self.table('cluster_summary.tsv').top_10_words:
+            self.assertTrue(set(terms.split(' | ')).issubset(vocabulary))
+
+    def test_experiments_and_commands(self):
+        import subprocess
+        import sys
+        log=self.table('experiments.tsv')
+        self.assertEqual(len(log), 101)
+        self.assertFalse(log.experiment_id.duplicated().any())
+        import json
+        import numpy as np
+        runs = self.table('clustering_dev_experiments.tsv')
+        def selection_score(row):
+            sizes = np.asarray(json.loads(row.cluster_sizes))
+            probabilities = sizes[sizes > 0] / sizes.sum()
+            return row.silhouette_euclidean * (-sum(probabilities * np.log(probabilities)) / np.log(len(sizes)))
+        scores = runs.apply(selection_score, axis=1)
+        np.testing.assert_allclose(scores, runs.selection_score)
+        selected = log.loc[log.task.eq('clustering') & log.selected_overall.eq(True), 'experiment_id'].iloc[0]
+        self.assertEqual(runs.loc[scores.idxmax(), 'experiment_id'], selected)
+        self.assertEqual(len(log[log.task.eq('clustering')]),29)
+        for flag in ['--supervised','--unsupervised']:
+            result=subprocess.run([sys.executable,'main.py',flag],capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertIn('ETAPA II',result.stdout)
+
+
 if __name__ == '__main__':
     unittest.main()
